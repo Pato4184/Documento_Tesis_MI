@@ -12,4 +12,10 @@
   $\text{Re}_\tau = 590$.
 \newblock {\em Physics of fluids\/} (1999).
 
+\bibitem{vreman2014comparison}
+{\sc Vreman, A., and Kuerten, J.~G.}
+\newblock Comparison of direct numerical simulation databases of turbulent
+  channel flow at $\text{Re}_\tau = 180$.
+\newblock {\em Physics of Fluids\/} (2014).
+
 \end{thebibliography}

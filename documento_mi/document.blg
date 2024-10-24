@@ -7,44 +7,44 @@ A level-1 auxiliary file: cap2.aux
 A level-1 auxiliary file: cap3.aux
 The style file: acm.bst
 Database file #1: references.bib
-You've used 2 entries,
+You've used 3 entries,
             2253 wiz_defined-function locations,
-            543 strings with 4341 characters,
-and the built_in function-call counts, 576 in all, are:
-= -- 50
-> -- 34
+            549 strings with 4534 characters,
+and the built_in function-call counts, 813 in all, are:
+= -- 72
+> -- 46
 < -- 0
-+ -- 14
-- -- 12
-* -- 48
-:= -- 108
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 12
++ -- 19
+- -- 16
+* -- 64
+:= -- 150
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 17
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 18
-empty$ -- 41
-format.name$ -- 12
-if$ -- 111
+cite$ -- 3
+duplicate$ -- 27
+empty$ -- 60
+format.name$ -- 16
+if$ -- 159
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 2
-newline$ -- 13
-num.names$ -- 4
-pop$ -- 9
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 18
+num.names$ -- 6
+pop$ -- 13
 preamble$ -- 1
-purify$ -- 10
+purify$ -- 14
 quote$ -- 0
-skip$ -- 11
+skip$ -- 17
 stack$ -- 0
-substring$ -- 13
-swap$ -- 4
+substring$ -- 18
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 12
 warning$ -- 0
-while$ -- 5
-width$ -- 3
-write$ -- 21
+while$ -- 7
+width$ -- 4
+write$ -- 30
