@@ -1,0 +1,113 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \documentclass[12pt,papel,twoside]{ibtesis}
+\documentclass[12pt,screen,twoside]{ibtesis}
+% \documentclass[12pt,papel,singlespace,oneside]{ibtesis}
+% \documentclass[12pt,papel,preprint,singlespace,oneside]{ibtesis}
+
+
+%%%%%%%%%%%%%%%%%%%%% Paquetes extra %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Por conveniencia: aqu\'{\i} puede cargar todos los paquetes y definir los comandos 
+% que necesite
+%\usepackage{ibextra}
+
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor} %Si quisieramos poner texto en color
+\usepackage{float} %para poner Here en imagen
+\usepackage{graphicx} %para insertar imágenes
+\usepackage{subfig}
+%\usepackage{ibextra}
+                % Archivo de bibliografía
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%% Informacion sobre la tesis %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Análisis del Flujo en Convección Mixta en Canales Rectangulares}
+\author{Patricio G. Canciani}
+\director{Dr. William I. Machaca Abregu}
+\codirector{Dr. Federico Teruel}
+\carrera{Tesis Carrera de Maestría en Ingeniería}
+\grado{Maestrando}
+\laboratorio{Departamento de Mecánica Computacional \\ (Centro Atómico Bariloche)}
+\jurado{Dr. Christian P. Marcel (Instituto Balseiro -- CNEA)\\ 
+Dr. Pablo Garcia Martinez (Instituto Balseiro -- CNEA)\\ 
+Dr. César Venier (FCEIA -- SIMEC)\\}
+
+\palabrasclave{Flujo Turbulento,Convección Mixta}
+\keywords{Turbulent Flow, Mixed Convection}
+% Si queremos poner la fecha manualmente:
+% \date{Diciembre de 2099}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\titlepagefalse % Si no quiere compilar la portada descomente esta linea
+%\includeonly{apendices} % Compilar s\'{o}lo estos archivos 
+\graphicspath{{figs/}} % Lugar donde encontrar las figuras generales (se puede poner uno en cada cap{\'{\i}}tulo)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+% Dentro del environment 'preliminary' va:
+% la dedicatoria, resumen, abstract, indices
+
+\begin{preliminary}
+
+% Escriba su dedicatoria
+\dedicatoria{
+A mi padres\\
+A mi hermana\\
+A mis amigos\\
+A todos mis seres queridos}
+
+%%% \'{I}ndices %%%%
+
+\begin{abreviaturas}
+                                %Abreviaturas
+\end{abreviaturas}
+
+\tableofcontents                %\'{I}ndice
+
+\listoffigures                  %Figuras
+
+\listoftables                   %Tablas
+
+\include{resumen}
+
+\end{preliminary}
+
+
+% Podemos usar cualquiera de los dos comandos: \input o \include para incluir el texto
+\include{cap1}
+\include{cap2}
+\include{cap3}
+
+
+%\appendix
+%\include{apend1}
+
+
+\bibliographystyle{acm}
+\bibliography{references}
+\addcontentsline{toc}{chapter}{Bibliografía}
+
+\begin{postliminary}
+
+
+
+%\begin{seccion}{Publicaciones asociadas}
+%  \begin{enumerate}
+%  \item Mi primer aviso en la revista \textbf{ABC}, 1996
+%  \item Mi segunda publicaci\'{o}n en la revista \textbf{ABC}, 1997
+%  \end{enumerate}
+%\end{seccion}
+
+\begin{seccion}{Agradecimientos}
+\chapterquote{Oh if I get lost, I know I can return ... \\
+ There's a drink awaiting me at the tavern ...}{Lilith Max}
+ 
+A todos los que se lo merecen, por merecerlo
+\end{seccion}
+
+\end{postliminary}
+
+\end{document}
+
