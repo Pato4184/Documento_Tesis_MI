@@ -36,4 +36,30 @@ La principal motivación para el estudio de los flujos turbulentos radica en la 
 
 El primer paso para clasificar estos estudios es diferenciar entre la turbulencia a pequeña escala y los movimientos a gran escala en los flujos turbulentos. Mientras que los movimientos a gran escala están fuertemente influenciados por la geometría del flujo, es decir, por las condiciones de contorno, el comportamiento de las turbulencias a pequeña escala está determinado casi exclusivamente por la cantidad de energía que reciben de los movimientos a gran escala y por la viscosidad. Esto hace que las turbulencias a pequeña escala tengan un carácter universal, independiente de la geometría del flujo.
 
-\textcolor{red}{Esto es una modificación}
+\subsection{Cap 3}
+
+En un flujo turbulento, el campo de velocidad $U(x,t)$ es aleatorio. Esto plantea una pregunta fundamental sobre la consistencia entre la naturaleza aleatoria de los flujos turbulentos y la naturaleza determinista de la mecánica clásica, tal como está representada en las ecuaciones de Navier-Stokes. Si las ecuaciones del movimiento son deterministas, ¿Por qué las soluciones son aleatorias?
+
+La respuesta radica en la combinación de dos observaciones clave:
+
+\begin{itemize}
+	\item En cualquier flujo turbulento, existen, de manera inevitable, perturbaciones en las condiciones iniciales, las condiciones de contorno y las propiedades del material.
+	\item Los campos de flujo turbulento muestran una alta sensibilidad a tales perturbaciones.
+\end{itemize}
+    
+A los altos números de Reynolds propios de los flujos turbulentos, la evolución del campo de flujo es extremadamente sensible a pequeños cambios en las condiciones iniciales, las condiciones de contorno y las propiedades del material, lo que da lugar a comportamientos aparentemente aleatorios, a pesar de la naturaleza determinista de las ecuaciones subyacentes.
+
+
+En experimentos y simulaciones de flujos turbulentos, se utilizan varios tipos de promedios para definir otras medias que puedan estar relacionadas con $ \langle U(t) \rangle$. Para flujos estadísticamente estacionarios, el promedio temporal (sobre un intervalo de tiempo $T$) se define de la siguiente manera:
+
+$$\langle U(t) \rangle_T = \frac{1}{T} \int_t^{t+T} U(t') \hspace*{1mm} dt'$$
+
+Para flujos que pueden repetirse o replicarse \( N \) veces, el promedio de conjunto se define como:
+$$\langle U(t) \rangle_N = \frac{1}{N} \sum_{n=1}^{N} U^{(n)}(t)$$
+
+donde  $U^{(n)}(t)$ es la medición en la  $n$-ésima realización. En simulaciones de turbulencia homogénea en un dominio cúbico de lado $L$, el promedio espacial de $\mathbf{U}(\mathbf{x},t)$ se define como:
+
+
+$$\langle U(t) \rangle_L = \frac{1}{L^3} \int_0^{L} \int_0^{L} \int_0^{L} \mathbf{U}(\mathbf{x},t) \hspace*{1mm} dx_1 \hspace*{1mm} dx_2 \hspace*{1mm} dx_3$$
+Los promedios $\langle U \rangle_T$, $\langle U \rangle_N$ y $\langle U \rangle_L$ son variables aleatorias. Pueden usarse para estimar $ \langle U \rangle$, pero no para medirlo con certeza. Lo más importante es que  $\langle U \rangle$ está bien definido para todos los flujos, incluso aquellos que no son estacionarios o homogéneos, o que no pueden repetirse ni replicarse. Para flujos estadísticamente estacionarios (salvo circunstancias excepcionales), $\langle U \rangle_T$ tiende a $\langle U \rangle$ a medida que $T$ tiende al infinito, pero esto no se toma como la definición de la media.
+
