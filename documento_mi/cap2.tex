@@ -6,7 +6,74 @@
 \cite{kawamura2000dns}
 \section{Modelo Computacional}
 
-\cite{moser1999}
+El sistema físico ideal consiste en el flujo de fluido incompresible entre dos paredes paralelas e infinitas, las cuales están sometidas a un flujo de calor constante $q''_w$. La dirección del flujo se encuentra en la dirección del eje X y su sentido es opuesto a la aceleración de la gravedad. Las ecuaciones de gobierno corresponden a los principios de conservación de masa, momento y energía y se expresan en el cuadro \ref{eq:gob_system}.  
+
+\begin{equation}
+        \boxed{ \begin{array}{lcc}
+			  %\\
+              &  \nabla \cdot \left( \rho_o \mathbf{u} \right) = 0 \\
+              \vspace*{2mm}
+              &  \frac{\partial \left( \rho_o \mathbf{u} \right)}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \text{p} + \mu \hspace{1mm} {\nabla}^2 \mathbf{u}  + \rho(T) \hspace{1mm} \mathbf{g} \\
+              \vspace*{2mm}
+              &  \frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T =  \alpha \hspace{1mm} \nabla^2 T  \\
+              % \\
+             \end{array}
+               }
+             \label{eq:gob_system}
+\end{equation}
+
+En el sistema físico ideal donde la dimensión de las paredes son muy grandes (o infinitas), se coloca el sistema de referencia lejos de los extremos del dominio, a fin de evitar efectos de borde. Allí, el flujo se encuentra completamente desarrolado donde ha alcanzado un estado estadísticamente estacionario (EEE), es decir, sus valores estadísticos como el promedio no varían en el tiempo. La condición de flujo de calor constante en las paredes se imponen como condiciones de neumann:
+
+\begin{equation}
+\kappa \hspace{0.5mm} \left. \frac{\partial T}{\partial y} \right\vert_{\text{walls}} = \pm q''_w
+\label{eq:neumann}
+\end{equation}
+
+
+
+Sin embargo, debido a la limitación computacional obvia, nuestro modelo numérico no puede abarcar dicha extensión. En su lugar, se toma un dominio acotado de dimensiones $L_x \times L_y \times L_z$ adoptando condiciones de borde periódicas (PCB) en la direcciones X y Z:
+
+\begin{align}
+& \eta(x=0,y,z,t) = \eta(x=L_x,y,z,t) \\ 
+& \eta(x,y,z=0,t) = \eta(x,y,z=L_z,t)
+\end{align}
+siendo $\eta$ un campo escalar de interés. Las PCB crean "la ilusión" de un dominio infinito, mediante la repetición de este dominio finito conectando la salida del dominio computacional con la entrada del mismo.
+
+En un flujo turbulento, dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, Kasagi et al. \cite{kasagi1992direct} asumen que las fluctuaciones de temperatura son pequqeñas de forma que se considera que la temperatura en la pared es localmente isotérmica y además, el flujo de calor no varía en la dirección de la corriente. Esto es equivalente a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección Z, crece linealmente con X. Es decir, 
+
+$$
+\langle T_w \rangle = A \hspace{0.5mm} x
+$$
+Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que siga siendo válido las condiciones de borde periódicas de forma que $\theta(x=0,y,z,t)=\theta(x=L_x,y,z,t)$. Dicha modificación introduce un término fuente en la ecuación de transporte del escalar pasivo (ecuación de conservación de energía):
+
+\begin{equation}
+\frac{ \partial \theta }{ \partial t } + \mathbf{u} \cdot \nabla \theta = \alpha \nabla^2 \theta + A \hspace{0.5mm} u_x 
+\label{eq:energy_pcb_source}
+\end{equation}
+
+Por su parte, el término $\rho(T) \mathbf{g}$ en la ecuación de momento se reescribe empleando la aproximación de Bousinessq \cite{incropera}, $\rho(T) = \rho_o \left[ 1 - \beta (T - T_R) \right]$:
+
+\begin{equation}
+\frac{ \rho_o \hspace{0.5mm} \partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \left( \text{p} + \rho_o \hspace{0.5mm} g \hspace{0.5mm} x \right) + \mu \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{1mm} \rho_o \hspace{1mm} \beta \hspace{1mm} \theta \hspace{1mm} \mathbf{\hat{g}}   
+\end{equation}
+donde se ha considerado $T_R = \langle T_w \rangle$, siendo $\mathbf{\hat{g}}=(-1,0,0)$
+
+Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible deducir que $A = \frac{q''_w}{\rho_o  d \langle u \rangle c_p}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_c = A \hspace{0.3mm} d $ el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}.
+
+\begin{equation}
+\boxed{
+\begin{array}{l}
+    \nabla^* \cdot \mathbf{u^*} = 0 \\
+    \frac{\partial \mathbf{u^*}}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \mathbf{u^*} = 
+    -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \text{Ri}_o \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\hat{g}} \\
+    \frac{\partial \theta^*}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \theta^* = 
+    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* \hspace{0.5mm} \mathbf{\hat{e_x}}
+\end{array}
+}
+\label{eq:gob_system_adim}
+\end{equation}
+
+$$\text{Re}_o = \frac{\mu}{\rho_o \hspace{0.5mm} U_o\hspace{0.5mm} d } \quad ; \quad \text{Pr}= \frac{\nu_o}{\alpha} \quad ; \quad \text{Ri}_o = \frac{g \beta \Delta T d}{U_o^2}$$
 
 
 
