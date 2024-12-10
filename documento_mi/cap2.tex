@@ -58,7 +58,7 @@ Por su parte, el término $\rho(T) \mathbf{g}$ en la ecuación de momento se ree
 \end{equation}
 donde se ha considerado $T_R = \langle T_w \rangle$, siendo $\mathbf{\hat{g}}=(-1,0,0)$
 
-Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible deducir que $A = \frac{q''_w}{\rho_o  d \langle u \rangle c_p}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_c = A \hspace{0.3mm} d $ el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}.
+Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible deducir que $A = \frac{q''_w}{\rho_o  d \langle u \rangle c_p}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_c = A \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}.
 
 \begin{equation}
 \boxed{
@@ -67,7 +67,7 @@ Mediante el balance de energía en el volumen de control $L_x \times L_y \times 
     \frac{\partial \mathbf{u^*}}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \mathbf{u^*} = 
     -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \text{Ri}_o \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\hat{g}} \\
     \frac{\partial \theta^*}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \theta^* = 
-    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* \hspace{0.5mm} \mathbf{\hat{e_x}}
+    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* 
 \end{array}
 }
 \label{eq:gob_system_adim}
@@ -75,5 +75,19 @@ Mediante el balance de energía en el volumen de control $L_x \times L_y \times 
 
 $$\text{Re}_o = \frac{\mu}{\rho_o \hspace{0.5mm} U_o\hspace{0.5mm} d } \quad ; \quad \text{Pr}= \frac{\nu_o}{\alpha} \quad ; \quad \text{Ri}_o = \frac{g \beta \Delta T d}{U_o^2}$$
 
+Asimismo, las condiciones de flujo de calor constante están expresadas en la ecuación \ref{eq:neumann_adim}. Sin embargo, esta condición puede ser aproximada como una condición de Dirichlet ya que al suponer que la temperatura de las paredes es constante (fluctuaciones igual a cero) y entonces $T(x,y=0,z,t) = T(x,y=2d,z,t) = \langle T_w \rangle$ cuya forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim}.
+
+\begin{align}
+\begin{array}{l}
+    \left. \frac{\partial \theta^*}{\partial y^*} \right\vert_{y^*=0} = + \frac{2}{3} \text{Re}_o \hspace{0.5mm} \text{Pr} \\
+    \left. \frac{\partial \theta^*}{\partial y^*} \right\vert_{y^*=2} = - \frac{2}{3} \text{Re}_o \hspace{0.5mm} \text{Pr} 
+\end{array}
+\label{eq:neumann_adim}
+\end{align}
+
+\begin{equation}
+\theta^*(x^*,y^*=0,z^*,t^*) = \theta^*(x^*,y^*=2,z^*,t^*) = 0
+\label{eq:dirichlet_adim}
+\end{equation}
 
 
