@@ -7,15 +7,153 @@
 
 \section{Analisis de Estabilidad Lineal}
 
-La transición laminar-turbulenta, es decir, la evolución de un flujo laminar a uno turbulento, es crucial en ingeniería, ya que las características del flujo varían notablemente entre estos regímenes. Por ejemplo, los coeficientes de fricción y de convección aumentan considerablemente al pasar de un régimen laminar a uno turbulento. La ecuación de Navier–Stokes admite ambas soluciones bajo ciertos parámetros, lo que implica que el tipo de flujo y su evolución dependen de las perturbaciones y las condiciones impuestas en el sistema. Muchos fenómenos que cumplen exactamente las leyes de conservación resultan inobservables porque se inestabilizan ante las pequeñas perturbaciones inevitables en cualquier sistema real \cite{kundu}.
+%Los problemas esenciales de la estabilidad hidrodinámica fueron reconocidos y formulados en el siglo XIX, notablemente por Helmholtz, Kelvin, Rayleigh y Reynolds.
 
-El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave. Sin embargo, en ocasiones las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia estados de fluctuaciones caóticas, comúnmente descritos como turbulencia. Dos motivaciones principales para estudiar la estabilidad de los fluidos son comprender el proceso de transición de un flujo laminar a uno turbulento y predecir el inicio de dicha transición.
+%Reynolds demostró que el flujo laminar (es decir, el flujo \textit{suave}\footnote{Se refiere a velocidades  suficientemente bajas}) se descompone cuando el cociente $\mathcal{U} a / \nu$ supera cierto valor crítico, siendo $\mathcal{U}$ la velocidad máxima del agua en el tubo, $a$ el radio del tubo y $\nu$ la viscosidad cinemática del agua a la temperatura correspondiente. Este número adimensional, $\mathcal{U} a / \nu$, conocido hoy como el número de Reynolds, permite clasificar cualquier tipo de flujo dinámicamente similar en una tubería.
 
-El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_adim}. La idea consiste en suponer que los campos solución ($\mathbf{u^*}$,$\text{p}^*$,$\theta^*$) pueden descomponerse como un flujo base más una perturbación:
+%Primero se selecciona un flujo básico de interés, es decir, una solución de las ecuaciones que gobiernan el movimiento y cuya estabilidad deseamos investigar.
+
+%Por ejemplo, podemos especificar el flujo básico mediante el campo de velocidades $\mathbf{U}(\mathbf{x},t)$ y el campo de presión $P(x,t)$ de un fluido viscoso incompresible en un dominio dado $\mathcal{V}$ con frontera $\partial\mathcal{V}$. Este flujo está gobernado por las ecuaciones de Navier–Stokes.
+
+La transición laminar-turbulenta, es decir, la evolución de un flujo laminar a uno turbulento, es crucial en ingeniería, ya que las características del flujo varían notablemente entre estos regímenes. Por ejemplo, el coeficiente de fricción de Darcy y/o el número de Nusselt varían considerablemente al pasar de un régimen laminar a uno turbulento. Esto se debe a que la ecuación de Navier–Stokes admite ambas soluciones bajo ciertos parámetros. Esto implica que el tipo de flujo y su evolución dependen de las perturbaciones y las condiciones impuestas en el sistema. Muchos fenómenos que cumplen exactamente las leyes de conservación resultan inobservables porque se inestabilizan ante las pequeñas perturbaciones inevitables en cualquier sistema real \cite{kundu}.
+
+El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia \cite{schmid}. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave. Sin embargo, en ocasiones las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia estados de fluctuaciones caóticas, comúnmente descritos como turbulencia. Dos motivaciones principales para estudiar la estabilidad de los fluidos son comprender el proceso de transición de un flujo laminar a uno turbulento y predecir el inicio de dicha transición.
+
+
+Como punto de partida se selecciona un \textit{flujo base} de interés, es decir, una solución a las ecuaciones que gobiernan la dinámica y cuya estabilidad deseamos investigar. En el caso de estabilidad hidrodinámica el flujo base está constituido por soluciones laminares $\mathbf{U}(\mathbf{x},t)$, $\text{P}(\mathbf{x},t)$ de las ecuaciones de Navier-Stokes. Por otra parte, se considera un \textit{estado perturbado} constituido por perturbaciones $\tilde{\mathbf{u}}(\mathbf{x},t)$, $\tilde{\text{p}}(\mathbf{x},t)$. Así, el estado total del sistema se describe como la suma del flujo base y las perturbaciones: 
+\begin{align}
+\mathbf{u^*} &= \mathbf{U^*} + \tilde{\mathbf{u}}^* \\
+\text{p}^* &= \text{P}^*+ \tilde{\text{p}}^* \\
+\end{align}
+%\theta^* &= \Theta^* + \tilde{\theta}^*  
+La ecuaciones que gobiernan la dinámica de las perturbaciones se derivan al suponer que los campos totales satisfacen las ecuaciones de Navier-Stokes. Si las perturbaciones son pequeñas, se puede linealizar dichas ecuaciones depreciando productos de cantidades pequeñas, resultando en el sistema de ecuaciones diferenciales \ref{eq:gob_system_adim_perturb}.   
+
+\begin{equation}
+\boxed{
+\begin{array}{l}
+    \nabla^* \cdot \tilde{\mathbf{u}}^* = 0 \\
+    \frac{\partial \tilde{\mathbf{u}}^*}{\partial t^*} + \tilde{\mathbf{u}}^* \cdot \nabla^* \mathbf{U^*} + \mathbf{U^*} \cdot \nabla^*  \tilde{\mathbf{u}}^* = 
+    -\nabla^* \tilde{\text{p}}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \tilde{\mathbf{u}}^* \\
+
+\end{array}
+}
+\label{eq:gob_system_adim_perturb}
+\end{equation} 
+
+%Para describir el desarrollo de una perturbación inicial, se introduce el concepto de Energía Cinética Turbulenta $E_T$ de la perturbación resulta ser una elección natural. La energía cinética de la perturbación contenida en un volumen VV...
+
+
+%\begin{equation}
+%E_V = \frac{1}{2} \int_{V} \tilde{\mathbf{u}} \cdot \tilde{\mathbf{u}} \hspace{1mm} dV
+%\end{equation}
+
+
+
+%El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_adim}. La idea consiste en suponer que los campos solución ($\mathbf{u^*}$,$\text{p}^*$,$\theta^*$) pueden descomponerse como un flujo base más una perturbación:
+
+%\begin{align}
+%\mathbf{u^*} &= \mathbf{U^*} + \tilde{\mathbf{u}}^* \\
+%\text{p}^* &= \text{P}^*+ \tilde{\text{p}}^* \\
+%\theta^* &= \Theta^* + \tilde{\theta}^*
+%\end{align}  
+%donde las letras mayusculas hacen referencia al flujo base y aquellas letras con $\tilde{()}$ a las perturbaciones. Asimismo, se asume que $\mathbf{u^*}$, $\text{p}^*$, $\mathbf{U} = (U_x,U_y,U_z)$ y $\text{P}$ satisface el sistema \ref{eq:gob_system_adim}. Si las perturbaciones son pequeñas, se puede linealizar dichas ecuaciones depreciando productos de cantidades pequeñas, así, obtenemos el sistema de ecuaciones diferenciales \ref{eq:gob_system_adim_perturb}.
+
+\iffalse
+\begin{equation}
+\boxed{
+\begin{array}{l}
+    \nabla^* \cdot \tilde{\mathbf{u}}^* = 0 \\
+    \frac{\partial \tilde{\mathbf{u}}^*}{\partial t^*} + \tilde{\mathbf{u}}^* \cdot \nabla^* \mathbf{U^*} + \mathbf{U^*} \cdot \nabla^*  \tilde{\mathbf{u}}^* = 
+    -\nabla^* \tilde{\text{p}}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \tilde{\mathbf{u}}^* + \text{Ri}_o \hspace{0.5mm} \tilde{\theta}^* \hspace{0.5mm} \mathbf{\hat{g}} \\
+    \frac{\partial \tilde{\theta}^*}{\partial t^*} + \mathbf{U^*} \cdot \nabla^* \tilde{\theta}^* + \tilde{\mathbf{u}}^* \cdot \nabla^* \Theta^* = 
+    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \hspace{0.5mm} \tilde{\theta}^* + \tilde{u^*_x} 
+\end{array}
+}
+\label{eq:gob_system_adim_perturb}
+\end{equation} 
+\fi
+
+Se asume además flujo base no nulo unicamente en la dirección de la corriente: 
+
+\begin{equation*}
+\mathbf{U^*} = (U^*_x, U^*_y, U^*_z) = (U^*_x(y),0,0)
+\end{equation*}
+
+Así, aplicando el operador divergencia a la ecuación de momento y utilizando la conservación de masa es posible obtener un expresión para la perturbación de la presión \cite{schmid}:
+
+\begin{equation}
+\nabla^2 \tilde{\text{p}^*} = -2 \frac{d U^*_x}{d y^*} \frac{\partial \tilde{u}^*_y}{\partial x^*} 
+\label{pressure_pert}
+\end{equation}
+
+Utilizando la expresión \ref{pressure_pert} y aplicando el operador laplaciano a la ecuación de momento es posible eliminar el término de la presión y obtener la ecuación asociada a la perturbación $\tilde{u}^*_y$ \cite{schmid}. Por otra parte, para la descripción del campo de flujo tridimensional completo, Squire \cite{squire1933} propone utilizar la componente normal de la perturbación de la vorticidad:
+
+\begin{equation*}
+\mathbf{\eta} = \frac{\partial \tilde{u}^*_y}{\partial z^*} - \frac{\partial \tilde{u}^*_z}{\partial x^*}
+\end{equation*}
+
+Al tener todo esto en cuenta, se termina obteniendo el sitema de ecuaciones \ref{ec:momy_plus_vort}, donde se han suprimido los superíndices ``*'' y $D^i$ representa la derivada i-ésima con respecto a $y$. 
+
+
+\begin{equation}
+\begin{array}{l}
+    \left[ \left( \frac{\partial}{\partial t} + U_x \frac{\partial}{\partial x} \right) \hspace{1mm} \nabla^2 - D^2 (U_x) \frac{\partial}{\partial x} - \frac{1}{\text{Re}_o} \nabla^4 \right] \tilde{u}_y = 0 \vspace*{1mm}\\
+    \left[ \left( \frac{\partial}{\partial t} + U_x \frac{\partial}{\partial x} \right) \hspace{1mm} \nabla^2 - \frac{1}{\text{Re}_o} \nabla^2 \right] \tilde{\eta} = - D(U_x) \frac{\partial \tilde{u}_y}{\partial z}
+\end{array}
+\label{ec:momy_plus_vort}
+\end{equation} 
+Para que el problema esté bien planteado, se definen las condiciones de contorno e iniciales
+respectivamente:
+
+\begin{equation}
+\tilde{u}_y = D(\tilde{u}_y) = \eta = 0 \quad \text{en la frontera del dominio}  
+\label{ec:bc_orr_som}
+\end{equation}
+\begin{align}
+\tilde{u}_y (x,y,z, t=0) &= u_o(x,y,z) \\
+\tilde{\eta} (x,y,z, t=0) &= \eta_o(x,y,z)   
+\label{ec:init_orr_som}
+\end{align}
+
+El sistema \ref{ec:momy_plus_vort} prove una descripción completa de la evolución de una
+perturbación arbitraria en el espacio y en el tiempo. A partir de aquí, las ecuaciones de Orr-Sommerfeld Squire se deducen al  proponer una perturbación ondulatoria de la forma:
 
 \begin{align}
-\mathbf{u^*} &= \mathbf{U} + \tilde{\mathbf{u}}^* \\
-\text{p}^* &= \text{P}+ \tilde{\text{p}}^* \\
-\theta^* &= \Theta + \tilde{\theta}^*
-\end{align}  
-donde las letras mayusculas hacen referencia al flujo base y aquellas letras con $\tilde{()}$ a las perturbaciones. Asimismo, se asume que $\mathbf{u^*}$, $\text{p}^*$, $\mathbf{U} = (U_x,U_y,U_z)$ y $\text{P}$ satisface el sistema \ref{eq:gob_system_adim}. Así, despreciando
+\tilde{\mathbf{u}} (x,y,z,t) &= \hat{\mathbf{u}}(y) e^{ i (\alpha x + \beta z - \omega t)} \\
+\tilde{\eta} (x,y,z,t) &= \hat{\eta}(y) e^{ i (\alpha x + \beta z - \omega t)}   
+\label{ec:armonic_orr_som_sol}
+\end{align}
+Al introducir este tipo de soluciones en \ref{ec:momy_plus_vort}, se obtiene un problema de autovalores y
+autofunciones dado por la expresión \ref{ec:eigensistem}.
+
+\begin{equation}
+\mathbb{A} \mathbf{X} = \omega \mathbb{B}
+\label{ec:eigensistem}
+\end{equation}
+
+
+\begin{equation*}
+\mathbb{A} = 
+\begin{bmatrix}
+(- i \omega + i \alpha U_x) (D^2 - k^2) - i \alpha D^2(U_x) - \frac{1}{\text{Re}} (D^2 - k^2)^2  & 0 \\
+(- i \omega + i \alpha U_x) - \frac{1}{\text{Re}} (D^2 - k^2)^2  & \beta D(U_x) 
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\mathbb{B} = 
+\begin{bmatrix}
+(D^2 - k^2)  & 0 \\
+0  & 1 
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+\mathbf{X} = 
+\begin{bmatrix}
+\tilde{u}_y \\ \tilde{\eta}
+\end{bmatrix}
+\end{equation*}
+Donde $k^2 = \alpha^2 + \beta^2$.
+
+SEGUIR CON LA SECCION 2.5 Y 2.5.1 DE LA TESIS DE SCARAFIA
