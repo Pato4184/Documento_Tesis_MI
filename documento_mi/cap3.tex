@@ -1,9 +1,29 @@
-\chapter{Resultados de Simulaciones}
+\chapter{Fundamentos de Herramientas Numéricas}
+
+
 
 
 
 
 \newpage
+
+\section{Xcompac3D}
+
+The finite difference code Incompact3d [33, 34] is employed to solve equations 1–3. For the spatial differentiation, sixth‑order centered compact schemes are used [35]. The time integration is performed using a second‑order Adams–Bashforth scheme with an approximated time step of 10⁻³ due to the CFL restriction. The N‑S equations are solved using the fractional‑step method, where the Poisson equation is solved in the spectral space. The code is parallelized under the MPI paradigm and uses the 2DCOMP&FFT library [36]. For more information about the code Incompact3d visit http://www.incompact3d.com/.
+
+BUSCAR LAS REFERENCIAS. TRADUCIR, AGREGAR, MODIFICAR ETC ETC
+
+\subsection{Validación}
+
+\section{Orr-Somerfeld Mixed Convection}
+
+\subsection{Validación}
+
+
+
+
+\begin{comment}
+
 
 \section{Validaciones de Simulaciones de Canales Periódicos con Convección Forzada}
 
@@ -161,3 +181,4 @@
  
  \label{fig:guo}
 \end{figure}
+\end{comment}

@@ -1,0 +1,141 @@
+\chapter{Borrador}
+
+\textcolor{red}{\textbf{Acá estoy poniendo aquellas cosas que leo y que me pueden resultar útiles para poner en la tesis}}
+
+
+\newpage
+
+\section{\textcolor{red}{Tesis Maestría Machaca}}
+
+En la actualidad muchos problemas de la ingeniería presentan flujos en régimen de transición. Ejemplo de esto son las alas de los aviones, los  álabes de las turbinas, los intercambiadores de calor, entre otros. 
+
+Desde el punto de vista ingenieril, aunque este es un régimen de trabajo no deseado por su carácter intermitente, en el cual el flujo puede fluctuar entre los regímenes laminar y turbulento, las características de este fenómeno resultan de gran relevancia, ya que el coeficiente de fricción \cite{white} y el coeficiente de convección \cite{incropera} se incrementan notablemente al pasar del régimen laminar al turbulento \cite{tam2006transitional}.
+
+Por otro lado, un flujo se encuentra en un estado de transición desarrollado cuando no varía con el tiempo ni con el espacio en un promedio estadístico; en este caso, se dice que el flujo está en régimen de transición. La evolución de un flujo laminar a un flujo turbulento completamente desarrollado se denomina transición laminar-turbulenta, y puede ocurrir en el tiempo, en cuyo caso se habla de transición laminar-turbulenta temporal, o en el espacio, lo que se conoce como transición laminar-turbulenta espacial.
+
+
+En las últimas décadas, se han realizado numerosos esfuerzos para desarrollar técnicas que mejoren la transferencia de calor y el desempeño global de los intercambiadores de calor, motivados principalmente por el interés en ahorrar energía. Con este objetivo, se han llevado a cabo experimentos tanto en tubos como en canales, con el fin de determinar experimentalmente correlaciones de transferencia de calor \cite{hausen1959new, gnielinski1976new, churchill1977comprehensive, sleicher1975convenient}.
+
+Por otro lado, el estudio de la transferencia de calor en canales rectangulares ha ganado interés en los últimos años, motivado por su aplicación en reactores nucleares \cite{sikorska2024convective}, en el área de sistemas electrónicos avanzados por el sistema de refrigeración \cite{kamdem2020numerical}
+
+Es importante destacar que los experimentos reales suelen ser costosos, por lo que a menudo se recurre a experimentos numéricos como alternativa o complemento. En el campo de la simulación numérica de fluidos, surge el concepto de fluidodinámica computacional, que mediante simulaciones numéricas busca explicar el comportamiento de los fluidos. Sin embargo, es sabido que el régimen turbulento presenta un comportamiento caótico y fluctúa rápidamente en el espacio y el tiempo, lo que hace su estudio numérico complejo. Aún más desafiante es el análisis del flujo en transición, que representa un estado intermedio entre el régimen laminar y el turbulento.
+
+Hoy en día, el uso de supercomputadoras para resolver las ecuaciones que describen el movimiento de un fluido ha ganado relevancia y se ha convertido en una herramienta clave para el estudio de flujos turbulentos y en transición. Gracias al avance de las computadoras de alto rendimiento, la simulación numérica directa (DNS) se ha convertido en una herramienta esencial para investigar la turbulencia y la transición. El DNS permite calcular la solución tridimensional y dependiente del tiempo de las ecuaciones de conservación de masa, momento y energía. Como estas ecuaciones se resuelven sin un modelo de turbulencia, requieren una malla computacional fina para capturar todas las escalas del flujo. A medida que el número de Reynolds aumenta, surgen escalas más pequeñas \cite{pope2001turbulent}, lo que demanda mallas aún más finas para una correcta representación.
+
+Además, la simulación numérica directa del transporte de un escalar pasivo, como la temperatura, en un flujo turbulento requiere especial atención, ya que a un número de Reynolds fijo, el aumento en el número de Prandtl incrementa el requerimiento de mallado para capturar adecuadamente las variaciones de temperatura.
+
+Una de las primeras simulaciones numéricas directas de flujo turbulento completamente desarrollado fue realizada por Kim y Moin \cite{kim1989transport}. Más adelante, con el apoyo de la computación en paralelo masiva, Kawamura et al. \cite{kawamura2000dns} levaron a cabo simulaciones DNS en un canal periódico. %El estudio numérico de la transición es aún más complejo, ya que es necesario inestabilizar el flujo para desencadenar el proceso de transición. En particular, en el caso de la transición laminar-turbulenta espacial, se requiere el uso de dominios muy largos en la dirección de la corriente para capturar el proceso adecuadamente \cite{Schlatter2005, Schmid2001}.
+
+%Un aspecto importante a considerar son las características numéricas de la herramienta utilizada en este estudio. El método DNS, en general, requiere esquemas numéricos precisos para representar adecuadamente el amplio rango de escalas espaciales y temporales de los problemas de interés, como la transición y la turbulencia, con un costo computacional adecuado. Si bien los métodos espectrales son deseables debido a su alta precisión de convergencia, su aplicación se limita en general a dominios simples o académicos y a condiciones de contorno específicas, como canales o cajas periódicas, y a grillas uniformes. En respuesta a estas limitaciones, los esquemas compactos de diferencias finitas de alto orden tipo Padé \cite{Lele1992} representan una alternativa válida para capturar las escalas espaciales con un costo computacional razonable. Estos esquemas permiten flexibilidad en el tratamiento de las condiciones de contorno en grillas tanto uniformes como no uniformes y son relativamente simples en su planteamiento.
+
+%Este tipo de código se ha consolidado como una poderosa herramienta numérica para la investigación académica \cite{Laizet2010, Lamballais2011}.
+
+
+\section{\textcolor{red}{Turbulent Flows - Pope}}
+
+\subsection{Cap 1}
+
+La principal motivación para el estudio de los flujos turbulentos radica en la combinación de tres factores clave: en primer lugar, la mayoría de los flujos en la naturaleza son turbulentos; en segundo lugar, el transporte y la mezcla de materia, momento y calor en estos flujos son de gran importancia práctica; y en tercer lugar, la turbulencia incrementa significativamente las tasas de estos procesos. 
+
+El primer paso para clasificar estos estudios es diferenciar entre la turbulencia a pequeña escala y los movimientos a gran escala en los flujos turbulentos. Mientras que los movimientos a gran escala están fuertemente influenciados por la geometría del flujo, es decir, por las condiciones de contorno, el comportamiento de las turbulencias a pequeña escala está determinado casi exclusivamente por la cantidad de energía que reciben de los movimientos a gran escala y por la viscosidad. Esto hace que las turbulencias a pequeña escala tengan un carácter universal, independiente de la geometría del flujo.
+
+\subsection{Cap 3}
+
+En un flujo turbulento, el campo de velocidad $U(x,t)$ es aleatorio. Esto plantea una pregunta fundamental sobre la consistencia entre la naturaleza aleatoria de los flujos turbulentos y la naturaleza determinista de la mecánica clásica, tal como está representada en las ecuaciones de Navier-Stokes. Si las ecuaciones del movimiento son deterministas, ¿Por qué las soluciones son aleatorias?
+
+La respuesta radica en la combinación de dos observaciones clave:
+
+\begin{itemize}
+	\item En cualquier flujo turbulento, existen, de manera inevitable, perturbaciones en las condiciones iniciales, las condiciones de contorno y las propiedades del material.
+	\item Los campos de flujo turbulento muestran una alta sensibilidad a tales perturbaciones.
+\end{itemize}
+    
+A los altos números de Reynolds propios de los flujos turbulentos, la evolución del campo de flujo es extremadamente sensible a pequeños cambios en las condiciones iniciales, las condiciones de contorno y las propiedades del material, lo que da lugar a comportamientos aparentemente aleatorios, a pesar de la naturaleza determinista de las ecuaciones subyacentes.
+
+
+En experimentos y simulaciones de flujos turbulentos, se utilizan varios tipos de promedios para definir otras medias que puedan estar relacionadas con $ \langle U(t) \rangle$. Para flujos estadísticamente estacionarios, el promedio temporal (sobre un intervalo de tiempo $T$) se define de la siguiente manera:
+
+$$\langle U(t) \rangle_T = \frac{1}{T} \int_t^{t+T} U(t') \hspace*{1mm} dt'$$
+
+Para flujos que pueden repetirse o replicarse \( N \) veces, el promedio de conjunto se define como:
+$$\langle U(t) \rangle_N = \frac{1}{N} \sum_{n=1}^{N} U^{(n)}(t)$$
+
+donde  $U^{(n)}(t)$ es la medición en la  $n$-ésima realización. En simulaciones o experimentos que son estadísticamente homogéneos de en un dominio cúbico de lado $L$, el promedio espacial de $\mathbf{U}(\mathbf{x},t)$ se define como:
+
+
+$$\langle U(t) \rangle_L = \frac{1}{L^3} \int_0^{L} \int_0^{L} \int_0^{L} \mathbf{U}(\mathbf{x},t) \hspace*{1mm} dx_1 \hspace*{1mm} dx_2 \hspace*{1mm} dx_3$$
+Los promedios $\langle U \rangle_T$, $\langle U \rangle_N$ y $\langle U \rangle_L$ son variables aleatorias. Pueden usarse para estimar $ \langle U \rangle$, pero no para medirlo con certeza. Lo más importante es que  $\langle U \rangle$ está bien definido para todos los flujos, incluso aquellos que no son estacionarios o homogéneos, o que no pueden repetirse ni replicarse. Para flujos estadísticamente estacionarios (salvo circunstancias excepcionales), $\langle U \rangle_T$ tiende a $\langle U \rangle$ a medida que $T$ tiende al infinito, pero esto no se toma como la definición de la media.
+
+\subsection{Cap 4}
+
+\subsubsection{Mean-flow Equations. RANS equations}
+
+El campo vectorial de velocidades $\mathbf{U}(\mathbf{x},t)$ se puede descomponer como su promedio $ \langle \mathbf{U}(\mathbf{x},t) \rangle$ y la fluctuación $\mathbf{u'}(\mathbf{x},t) = \mathbf{U}(\mathbf{x},t) -  \langle \mathbf{U}(\mathbf{x},t) \rangle$. Esto se conoce como ``Descomposición de Reynolds''. De igual forma, el campo de presiones se descompone como $P(\mathbf{x},t) = \langle P(\mathbf{x},t) \rangle + p'$ siendo $p'$ la fluctuación de la presión. Al tomar el promedio de la Ecuación de Continuidad se obtiene:
+
+$$\nabla \cdot \langle \mathbf{U}(\mathbf{x},t) \rangle = \nabla \cdot \mathbf{u'} = 0$$ 
+Por otra parte, tomar el promedio de la ecuación de momento no resulta trivial. Teniendo en cuenta que es posible intercambiar el ``operador diferencial'' con el ``operador promedio'' y considerando que el promedio de las fluctuciones es nulo, se puede demostrar que la ecuación de momento promediada se escribe de la siguiente manera:
+
+$$\frac{\partial U_j }{\partial t} + \langle \mathbf{U} \rangle \cdot \nabla (U_j) = \nu \nabla^2 \langle U_j \rangle - \frac{\partial \langle u'_i u'_j \rangle}{\partial x_i} - \frac{1}{\rho} \frac{\partial \langle P \rangle}{\partial x_j}$$
+
+\textcolor{purple}{(Faltaría la ecuación promediada de la conservación de energía que en esencia tiene una forma similar. Después lo agrego. Aunque no se si esto lo voy a usar ya que XC3D no resuelve las ecuaciones promediadas sino las ecuaciones de gobierno originales ).}
+
+Las cantidades $ \langle u'_i u'_j \rangle$ reciben el nombre de esfuerzos de Reynolds. Estos juegan un papel fundametal en las ecuaciones RANS. Si estos son cero, las ecuaciones para $\langle \mathbf{U}(\mathbf{x},t) \rangle$ y $\mathbf{U}(\mathbf{x},t)$ serían idénticas. Por lo tanto, la diferencia en su comportamiento se atribuye a los esfuerzos de Reynolds. La ecuaciones de momento promediada se puede reescribir de otra forma:
+
+$$\frac{\partial U_j }{\partial t} + \langle \mathbf{U} \rangle \cdot \nabla (U_j) = \frac{\partial}{\partial x_i} \left[ \nu \left( \frac{\partial \langle U_i \rangle }{\partial x_j} + \frac{\partial \langle U_j \rangle }{\partial x_i} \right) - \langle P \rangle \delta_{ij} - \langle u'_i u'_j \rangle \right] $$
+
+Del lado derecho, entre corchetes, el primer término se asocia al esfuerzo viscoso, el segundo es el esfuerzo isotrópico proveniente de la presión promedio y el último término es el esfuerzo de Reynolds.
+
+En un flujo tridimensional, tenemos cuatro ecuaciones independientes: tres de ellas asociadas a las componentes de la velocidad promedio, provenientes de la ecuación promediada de momento, y por otro lado, la ecuacion promediada de continuidad. Sin embargo, a menos que el tensor de esfuerzos de Reynolds sea determinado mediante algún modelo, el problema no puede resolverse. Los esfuerzos de Reynolds constituyen las componentes del tensor de esfuerzos de Reynolds, tensor de segundo orden, el cuál, por supuesto, es simétrico:
+
+$$\langle u'_i u'_j \rangle = \langle u'_j u'_i \rangle.$$ 
+Sus componentes diagonales son esfuerzos normales y el resto son esfuerzos de corte (básicamente como el resto de tensores de esfuerzo).
+
+Una cantidad importante es la Energía Cinética Turbulenta (TKE, por su siglas en inglés) la cuál se define como la traza  del tensor de esfuerzo de Reynolds:
+
+$$\kappa = \frac{1}{2} \langle u'_i u'_i \rangle$$
+
+La ecuación de conservación de energía en nuestro caso, para el caso de convección forzada puede reducirse a la ecuación de transporte de un escalar pasivo. Si $\phi$ es nuestro escalar pasivo entonces la ecuación de transporte promediada se escribe de la siguiente forma:
+
+$$\frac{\partial \langle \phi \rangle}{\partial t} + \langle \mathbf{U} \rangle \cdot \nabla  \langle \phi \rangle  = \nabla \cdot \left( \Gamma \hspace{0.5mm} \nabla \langle \phi \rangle - \langle \mathbf{u'} \phi' \rangle \right)$$
+Las componentes $\langle u'_i \phi' \rangle$ se denominan ``Flujo de Escalar'' y representan el flujo del escalar debido a las fluctuaciones del campo de velocidades. Este juega un rol análogo a los esfuerzos de Reynolds en las ecuaciones RANS.
+
+
+\subsection{Cap 5}
+
+\subsubsection{Ecuación de Energía. The Budget of the Turbulent Kinectic Energy}
+
+La energía cinética del fluido (por unidad de masa) es 
+
+$$E(\mathbf{x},t) = \frac{1}{2} \mathbf{U}(\mathbf{x},t) \cdot \mathbf{U}(\mathbf{x},t) $$
+Tomando el promedio, la energía se descompone en dos partes:
+
+$$\langle E(\mathbf{x},t) \rangle = \bar{E} + \kappa$$
+siendo  $\bar{E}= \frac{1}{2} \langle \mathbf{U} \rangle \cdot \langle \mathbf{U} \rangle$ y $\kappa = \frac{1}{2} \langle \mathbf{u'} \cdot \mathbf{u'} \rangle $
+
+Por otro lado, a partir de la ecuación de momento (de Cauchy), y considerando el tensor de esfuerzo $\tau_{ij}=-P \delta_{ij} + 2 \rho \nu S_{ij}$, es posible demostrar que la ecuación de energía se puede escribir de la forma
+
+$$\rho \frac{\partial E}{\partial t} + \nabla \cdot \mathcal{T} = - 2 \nu  U_j S_{ij}$$ 
+donde $\mathcal{T}_i = U_i P / \rho - 2 \nu U_j S_{ij}$ y $S_{ij}=\frac{1}{2} (\partial U_i / \partial x_j + \partial U_j / \partial x_i )$
+
+
+
+
+
+
+
+\section{Analisis de Estabilidad Lineal}
+
+La transición laminar-turbulenta, es decir, la evolución de un flujo laminar a uno turbulento, es crucial en ingeniería, ya que las características del flujo varían notablemente entre estos regímenes. Por ejemplo, los coeficientes de fricción y de convección aumentan considerablemente al pasar de un régimen laminar a uno turbulento. La ecuación de Navier–Stokes admite ambas soluciones bajo ciertos parámetros, lo que implica que el tipo de flujo y su evolución dependen de las perturbaciones y las condiciones impuestas en el sistema. Muchos fenómenos que cumplen exactamente las leyes de conservación resultan inobservables porque se inestabilizan ante las pequeñas perturbaciones inevitables en cualquier sistema real \cite{kundu}.
+
+El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave. Sin embargo, en ocasiones las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia estados de fluctuaciones caóticas, comúnmente descritos como turbulencia. Dos motivaciones principales para estudiar la estabilidad de los fluidos son comprender el proceso de transición de un flujo laminar a uno turbulento y predecir el inicio de dicha transición.
+
+El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_adim}. La idea consiste en suponer que los campos solución ($\mathbf{u^*}$,$\text{p}^*$,$\theta^*$) pueden descomponerse como un flujo base más una perturbación:
+
+\begin{align}
+\mathbf{u^*} &= \mathbf{U} + \tilde{\mathbf{u}}^* \\
+\text{p}^* &= \text{P}+ \tilde{\text{p}}^* \\
+\theta^* &= \Theta + \tilde{\theta}^*
+\end{align}  
+donde las letras mayusculas hacen referencia al flujo base y aquellas letras con $\tilde{()}$ a las perturbaciones. Asimismo, se asume que $\mathbf{u^*}$, $\text{p}^*$, $\mathbf{U} = (U_x,U_y,U_z)$ y $\text{P}$ satisface el sistema \ref{eq:gob_system_adim}. Así, despreciando
+
+\\

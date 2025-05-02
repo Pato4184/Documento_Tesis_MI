@@ -1,0 +1,98 @@
+\chapter{Budgets Dynamics Equations}
+
+A partir de la descomposición de Reynolds de los campos de interés (componentes de la velocidad, presión, temperatura) aplicadas a las ecuaciones de gobierno \ref{eq:gob_system} se puede obtener, mediante mucho álgebra, ecuaciones que describen la dinámica de los budget de las cantidades de segundo orden como $\langle v'_x v'_y \rangle$, la energía cinética turbulenta $\kappa$, los flujos de calor turbulento $\langle v'_i \theta' \rangle$ y la varianza de la temperatura $\langle \theta' \theta' \rangle$. Se han omitido los superindices ``*''.
+
+\begin{equation}
+\partial_t \langle v'_i \theta' \rangle + \langle v_k \rangle \partial_k \langle v'_i \theta' \rangle = \mathcal{P}_{i\theta} + \mathcal{T}_{i\theta} + \Pi_{i\theta} + \mathcal{D}_{i\theta} + \mathcal{B}_{i\theta} - \varepsilon_{i\theta}
+\end{equation}
+
+\vspace*{-1cm}
+
+\begin{equation}
+\begin{aligned}
+\mbox{\small Difusión Turbulenta:}\quad 
+& \mathcal{T}_{i\theta} = - \partial_k \langle v'_i v'_k \theta' \rangle \\[2mm]
+\mbox{\small Producción:}\quad 
+& \mathcal{P}_{i\theta} = - \left[ \langle \theta' v'_k \rangle \partial_k \langle v_i \rangle + \langle v'_i v'_k \rangle \partial_k \langle \theta \rangle \right] + \langle v'_i v'_x \rangle \\[2mm]
+\mbox{\small Disipación:}\quad 
+& \mathcal{D}_{i\theta} = - \frac{1}{\text{Re}} \left(1 + \frac{1}{\text{Pr}} \right) \langle \partial_k \theta' \partial_k v'_i \rangle \\[2mm]
+\mbox{\small Correlacion Temp - Grad Presión:}\quad 
+& \Pi_{i\theta} = - \langle \theta' \partial_i p' \rangle \\[2mm]
+\mbox{\small Prod-Boyante:}\quad 
+& \mathcal{B}_{i\theta} = \text{Ri} \hspace{1mm} g_i  \hspace{1mm} \langle \theta' \theta' \rangle \\[2mm]
+\mbox{\small Difusión Viscosa:}\quad 
+& \varepsilon_{i\theta} = \frac{1}{\text{Re}} \partial_k \left[ \langle \theta' \partial_k v'_i \rangle 
++ \frac{1}{\text{Pr}} \langle v'_i \partial_k \theta' \rangle \right] \\[2mm]
+\end{aligned}
+\end{equation}
+
+\newpage 
+
+\begin{equation}
+\partial_t \langle v'_x v'_y \rangle + \langle v_k \rangle \partial_k \langle v'_x v'_y \rangle = \mathcal{P}_{xy} + \mathcal{T}_{xy} + \Pi_{xy} + \mathcal{D}_{xy} + \mathcal{B}_{xy} - \varepsilon_{xy}
+\end{equation}
+
+\vspace*{-1cm}
+
+\begin{equation}
+\begin{aligned}
+\mbox{\small Difusión Turbulenta:}\quad 
+& \mathcal{T}_{xy} = - \partial_k \langle v'_x v'_k v'_y \rangle \\[2mm]
+\mbox{\small Producción:}\quad 
+& \mathcal{P}_{xy} = - \left[ \langle v_y v'_k \rangle \partial_k \langle v_x \rangle + \langle v'_x v'_k \rangle \partial_k \langle v_y \rangle \right]  \\[2mm]
+\mbox{\small Disipación:}\quad 
+& \mathcal{D}_{xy} = - \frac{2}{\text{Re}} \langle \partial_k v'_x \partial_k v'_y \rangle \\[2mm]
+\mbox{\small Correlacion Vel - Grad Presión:}\quad 
+& \Pi_{xy} = - \left[ \langle v'_y \partial_x p' \rangle + \langle v'_x \partial_y p' \rangle \right]  \\[2mm]
+\mbox{\small Prod-Boyante:}\quad 
+& \mathcal{B}_{xy} = - \text{Ri} \hspace{1mm} \langle v'_y \theta' \rangle \\[2mm]
+\mbox{\small Difusión Viscosa:}\quad 
+& \varepsilon_{xy} = \frac{1}{\text{Re}} \partial^2_k \langle v'_x v'_y \rangle \\[2mm]
+\end{aligned}
+\end{equation}
+
+
+Siendo $\kappa = \langle v_i v'_i \rangle / 2$, la Energía Cinética Turbulenta, entonces:
+
+\begin{equation}
+\partial_t \kappa + \langle v_n \rangle \partial_n \kappa = \mathcal{P}_{i} + \mathcal{T}_{i} + \Pi_{i} + \mathcal{D}_{i} + \mathcal{B}_{i} - \varepsilon_{i}
+\end{equation}
+
+\vspace*{-0.5cm}
+
+\begin{equation}
+\begin{aligned}
+\mbox{\small Difusión Turbulenta:}\quad 
+& \mathcal{T}_{i} = - \frac{1}{2} \partial_n \langle v'_i v'_n v'_i \rangle \\[2mm]
+\mbox{\small Producción:}\quad 
+& \mathcal{P}_{i} = - \langle v_i v'_n \rangle \partial_n \langle v_i \rangle \\[2mm]
+\mbox{\small Disipación:}\quad 
+& \mathcal{D}_{i} = - \frac{1}{\text{Re}} \langle \partial_n v'_i \partial_n v'_i \rangle \\[2mm]
+\mbox{\small Correlacion Vel - Grad Presión:}\quad 
+& \Pi_{i} = - \langle \partial_i (v'_i p') \rangle \\[2mm]
+\mbox{\small Prod-Boyante:}\quad 
+& \mathcal{B}_{i} = - \text{Ri} \hspace{1mm} g_i \hspace{1mm} \langle v'_i \theta' \rangle \\[2mm]
+\mbox{\small Difusión Viscosa:}\quad 
+& \varepsilon_{i} = \frac{1}{\text{Re}} \partial^2_n \kappa \\[2mm]
+\end{aligned}
+\end{equation}
+
+
+\begin{equation}
+\partial_t \langle \theta' \theta' \rangle + \langle v_k \rangle \partial_k \langle \theta' \theta' \rangle = \mathcal{P}_{\theta} + \mathcal{T}_{\theta} +  \mathcal{D}_{\theta} - \varepsilon_{\theta}
+\end{equation}
+
+\vspace*{-0.5cm}
+
+\begin{equation}
+\begin{aligned}
+\mbox{\small Difusión Turbulenta:}\quad 
+& \mathcal{T}_{\theta} = - \partial_k \langle \theta' \theta' v'_k \rangle \\[2mm]
+\mbox{\small Producción:}\quad 
+& \mathcal{P}_{\theta} = 2 \left[ - \langle \theta' v'_k \rangle \partial_k \langle \theta \rangle + \langle v'_x \theta' \rangle \right]  \\[2mm]
+\mbox{\small Disipación:}\quad 
+& \mathcal{D}_{\theta} = - \frac{2}{\text{Re} \text{Pr}} \left( \langle \partial_k \theta' \rangle \left)^2 \\[2mm]
+\mbox{\small Difusión Viscosa:}\quad 
+& \varepsilon_{\theta} = \frac{1}{\text{Re} \text{Pr}}  \partial^2_k \langle \theta' \theta' \rangle \\[2mm]
+\end{aligned}
+\end{equation}
