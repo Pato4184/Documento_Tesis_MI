@@ -5,7 +5,7 @@ Aquí va el resumen del capítulo
 \newpage
 \section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno}
 
-Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=-d$ y $y=+d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
+Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=-d$ e $y=+d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
 
 \begin{figure}[H]
  \centering
@@ -43,23 +43,23 @@ Un sistema físico cuyas dimensiones ``son muy grandes'' (o infinitas) constituy
 \label{eq:neumann}
 \end{equation}
 
-Sin embargo, debido a la limitación computacional evidente, nuestro modelo computcional no puede abarcar dicha extensión. En ese sentido, el ``dominio infinito'' se reemplaza con un dominio acotado de dimensiones $L_x \times L_y \times L_z$ (Figura \ref{fig:dom3d}) adoptando condiciones de borde periódicas (PBC) en la direcciones $X$ y $Z$:
+Sin embargo, debido a la limitación computacional evidente, nuestro modelo computacional no puede abarcar dicha extensión. En ese sentido, el ``dominio infinito'' se reemplaza con un dominio acotado de dimensiones $L_x \times L_y \times L_z$ (Figura \ref{fig:dom3d}) adoptando condiciones de borde periódicas (PBC) en la direcciones $X$ y $Z$:
 \begin{align}
-\eta(x=0,y,z,t) &= \eta(x=L_x,y,z,t) \\ 
-\eta(x,y,z=0,t) &= \eta(x,y,z=L_z,t)
+\xi(x=0,y,z,t) &= \xi(x=L_x,y,z,t) \\ 
+\xi(x,y,z=0,t) &= \xi(x,y,z=L_z,t)
 \end{align}
-siendo $\eta$ un campo escalar de interés. Esto se puede interpretar como si las PBC crearan ``la ilusión'' de un dominio infinito, mediante la repetición de este dominio finito en el espacio.
+siendo $\xi$ un campo escalar de interés. Esto se puede interpretar como si las PBC crearan ``la ilusión'' de un dominio infinito, mediante la repetición de este dominio finito en el espacio.
 
 Por otra parte, en un flujo turbulento, dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, Kasagi et al. \cite{kasagi1992direct} asumen que las fluctuaciones de temperatura son pequqeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Esto es equivalente a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con $x$, y por lo tanto: 
 
 $$
-\langle T_w \rangle = A \hspace{0.5mm} x.
+\langle T_w \rangle = \mathcal{A} \hspace{0.5mm} x.
 $$
 
-Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que siga siendo válido las condiciones de borde periódicas, esto es, $\theta(x=0,y,z,t)=\theta(x=L_x,y,z,t)$. Dicha modificación introduce un término fuente en la ecuación de conservación de energía:
+Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que siga siendo válido las condiciones de borde periódicas, esto es, $\theta(x=0,y,z,t)=\theta(x=L_x,y,z,t)$. Ésta aproximación se encuentra en la literatura científica como \textit{Mixed Boundary Condcitions} \cite{straub2019influence}. Dicha modificación introduce un término fuente en la ecuación de conservación de energía:
 
 \begin{equation}
-\frac{ \partial \theta }{ \partial t } + \mathbf{u} \cdot \nabla \theta = \alpha \nabla^2 \theta + A \hspace{0.5mm} u_x 
+\frac{ \partial \theta }{ \partial t } + \mathbf{u} \cdot \nabla \theta = \alpha \nabla^2 \theta + \mathcal{A} \hspace{0.5mm} u_x 
 \label{eq:energy_pcb_source}
 \end{equation}
 Por su parte, el término $\rho(T) \mathbf{g}$ en la ecuación de momento se reescribe empleando la aproximación de Bousinessq \cite{incropera}, $\rho(T) = \rho_o \left[ 1 - \beta (T - T_R) \right]$:
@@ -69,7 +69,7 @@ Por su parte, el término $\rho(T) \mathbf{g}$ en la ecuación de momento se ree
 \end{equation}
 donde se ha considerado $T_R = \langle T_w \rangle$, siendo $\mathbf{\hat{g}}=(-1,0,0)$.
 
-Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible deducir que $A = \frac{q''_w}{\rho_o  d \langle u \rangle c_p}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_c = A \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}. 
+Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible deducir que $\mathcal{A} = \frac{q''_w}{\rho_o  d \langle u_x \rangle c_p}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}. 
 
 Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por un caudal másico constante. Esta cuestión se encuentra representada por el término fuente $f \mathbf{\hat{x}}$, en la ecuación de momento, donde $f$ es una constante en el espacio y varía con el tiempo de manera que mantiene constante el caudal total. 
 
@@ -89,7 +89,7 @@ Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por
 $$\text{Re}_o = \frac{\mu}{\rho_o \hspace{0.5mm} U_o\hspace{0.5mm} d } \quad ; \quad \text{Pr}= \frac{\nu_o}{\alpha} \quad ; \quad \text{Ri}_o = \frac{g \beta \Delta T d}{U_o^2} = \frac{\text{Ra}}{\text{Re}_o^2 \hspace{1mm} \text{Pr}}$$
 %siendo Ra, el número de Rayleigh.
 
-Asimismo, las condiciones de flujo de calor constante están expresadas en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante, fluctuaciones igual a cero, se obtiene: $T(x,y=0,z,t) = T(x,y=2d,z,t) = \langle T_w \rangle$. Su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. Por otra parte, para el resto de variables (campo de presión y componentes de velocidad) se adoptan condiciones de no deslizamiento en las paredes. 
+Asimismo, las condiciones de flujo de calor constante están expresadas en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante (fluctuaciones de temperatura iguales a cero) se obtiene: $T(x,y=0,z,t) = T(x,y=2d,z,t) = \langle T_w \rangle$. Su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. Por otra parte, para el resto de variables (campo de presión y componentes de velocidad) se adoptan condiciones de no deslizamiento en las paredes. 
 
 \begin{align}
 \begin{array}{l}
@@ -106,8 +106,52 @@ Asimismo, las condiciones de flujo de calor constante están expresadas en la ec
 
 
 
+\section{Sumario de Ecuaciones}
 
+\textbf{Ecuaciones de Gobierno:}
+\begin{equation}
+\begin{array}{l}
+    \nabla^* \cdot \mathbf{u^*} = 0 \\
+    \frac{\partial \mathbf{u^*}}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \mathbf{u^*} = 
+    -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \text{Ri}_o \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\hat{g}} + f \mathbf{\hat{x}} \\
+    \frac{\partial \theta^*}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \theta^* = 
+    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* 
+\end{array}
+\label{eq:gob_system_res1}
+\end{equation}
 
+\textbf{Condiciones de borde:} considerando $\xi= u^*_x, u^*_y, u^*_z, p^*, \theta^*$, entonces
+\begin{align}
+&\xi(x=0,y,z,t) = \xi(x=L_x,y,z,t) 
+	\label{eq:bc_1} \\
+&\xi(x,y,z=0,t) = \xi(x,y,z=L_z,t) 
+	\label{eq:bc_2} \\
+&\theta^*(x^*,y^*=-1,z^*,t^*)       = \theta^*(x^*,y^*=+1,z^*,t^*) = 0
+	\label{eq:bc_3} \\
+&\mathbf{u^*}(x^*,y^*=-1,z^*,t^*)   = \mathbf{u^*}(x^*,y^*=+1,z^*,t^*) = 0
+	\label{eq:bc_4} \\
+&\partial_y p^*(x^*,y^*=-1,z^*,t^*) = \partial_y p^*(x^*,y^*=+1,z^*,t^*) = 0
+	\label{eq:bc_5} \\
+\end{align}
+
+A lo largo de este trabajo también se utiliza, particularmente para el análisis de estabilidad lineal, la forma adimensional de las ecuaciones del trabajo de Chen \cite{chen1996linear} que se obtienen empleando el  semiancho del canal $d$, la velocidad media laminar $\langle u_x \rangle$ y la temperatura $T_c = \text{Re} \hspace{0.5mm} \text{Pr} \hspace{0.5mm} \mathcal{A} \hspace{0.5mm} d$. Dichas ecuaciones se expresan en \ref{eq:gob_system_res2}. Las condiciones de borde son exactamente análogas que su forma adimensional de más arriba.
+
+\begin{equation}
+\begin{array}{l}
+    \nabla^* \cdot \mathbf{v^*} = 0 \\
+    \frac{\partial \mathbf{v^*}}{\partial t^*} + \mathbf{v^*} \cdot \nabla^* \mathbf{v^*} = 
+    -\nabla p^* + \frac{1}{\text{Re}_b} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \frac{\text{Ra}}{\text{Re}_b} \hspace{0.5mm} \varphi^* \hspace{0.5mm} \mathbf{\hat{g}} + f \mathbf{\hat{x}} \\
+    \frac{\partial \varphi^*}{\partial t^*} + \mathbf{v^*} \cdot \nabla^* \varphi^* = 
+    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_b} \hspace{0.5mm} \left[ \nabla^{*2} \varphi^* - v_x^* \right]  
+\end{array}
+\label{eq:gob_system_res2}
+\end{equation}
+
+\begin{equation*}
+\varphi^* = -  \frac{\theta^*}{\text{Re}_o \hspace{0.5mm} \text{Pr}}  \quad ; \quad \mathbf{v^*} = \frac{2}{3} \mathbf{u^*} \quad ; \quad \text{Re}_b = \frac{2}{3} \text{Re}_o
+\end{equation*}  
+
+\newpage
 \section{Teoría de Estabilidad Lineal. Perturbaciones} \label{line_an}
 
 Para analizar la estabilidad lineal y prever de forma matemática cómo cambiará un flujo una vez perturbado, resulta indispensable aceptar que las perturbaciones actúan sobre un flujo base. Aquí se adopta como referencia el flujo laminar completamente desarrollado. En consecuencia, la evolución de las perturbaciones también queda condicionada por dicho estado inicial.
@@ -116,36 +160,33 @@ Para analizar la estabilidad lineal y prever de forma matemática cómo cambiar�
 
 \section{Flujo Base}
 
-Si el flujo está completamente desarrollado, térmica e hidrodinámicamente, entonces el mismo solo dependerá de la variable $y^*$. El sistema de ecuaciones \ref{eq:gob_system_adim} se reduce a la ecuación de momento en la dirección $X$ y a la ecuación de transporte del escalar pasivo, las cuales quedan expresadas como 
+Si el flujo está completamente desarrollado, tanto térmica como hidrodinámicamente, entonces el mismo sólo dependerá de la variable $y^*$. El sistema de ecuaciones \ref{eq:gob_system_res2} se reduce a la ecuación de momento en la dirección $X$ y a la ecuación de transporte del escalar pasivo, las cuales quedan expresadas como 
 
-\begin{equation}
-\frac{d \text{p}^* }{d x^*} = \frac{\text{Ra}}{\text{Re}^2 \hspace{1mm} \text{Pr}} \theta^* + \frac{1}{\text{Re}} \frac{d^2 u^*_x}{d {y^*}^2}
+\begin{align}
+&\frac{d p^* }{d x^*} = \frac{\text{Ra}}{\text{Re}_b } \Phi^* + \frac{1}{\text{Re}} \frac{d^2 V^*_x}{d {y^*}^2} \\
+&\frac{d^2 \Phi^*}{ d {y^*}^2 } =  V^*_x
 \label{eq:base1}
-\end{equation}
-
-\begin{equation}
-\frac{d^2 \theta^*}{ d {y^*}^2 } = - {\text{Pr}} \hspace{1mm} \text{Re} u^*_x
-\end{equation}
-El perfil de velocidad y de temperatura admiten las condiciones de borde $u^*_x({y^*}= \pm 1) = \theta^* ({y^*}= \pm 1) = 0 $. Las soluciones para un flujo asistido por fuerzas boyantes están dadas por las expresiones \ref{eq:vel_asist_boyant} y \ref{eq:theta_asist_boyant}, mientras que para un flujo donde las fuerzas boyantes son opuestas, las soluciones quedan definidas por las ecuaciones \ref{eq:vel_opo_boyant} y \ref{eq:theta_opo_boyant} \cite{chen1996linear}. 
+\end{align}
+El perfil de velocidad y de temperatura admiten las condiciones de borde $V^*_x({y^*}= \pm 1) = \Phi^* ({y^*}= \pm 1) = 0 $. Las soluciones para un flujo asistido por fuerzas boyantes están dadas por las expresiones \ref{eq:vel_asist_boyant} y \ref{eq:theta_asist_boyant}, mientras que para un flujo donde las fuerzas boyantes son opuestas, las soluciones quedan definidas por las ecuaciones \ref{eq:vel_opo_boyant} y \ref{eq:theta_opo_boyant} \cite{chen1996linear}. 
 \small{
 \begin{equation}
-U_x = \frac{-E}{\sqrt{\text{Ra}}} \frac{\sinh(\kappa(1+y^*))\sin(\kappa(1-y^*)) + \sinh(\kappa(1-y^*))\sin(\kappa(1+y^*)) }{\cosh(2\kappa) + \cos(2\kappa)}
+V^*_x = \frac{-E}{\sqrt{\text{Ra}}} \frac{\sinh(\kappa(1+y^*))\sin(\kappa(1-y^*)) + \sinh(\kappa(1-y^*))\sin(\kappa(1+y^*)) }{\cosh(2\kappa) + \cos(2\kappa)}
 \label{eq:vel_asist_boyant}
 \end{equation}
 
 \begin{equation}
-\Theta^* = \frac{E}{\text{Ra}} \left[ 1 - \frac{\cosh(\kappa(1+y^*))\cos(\kappa(1-y^*)) + \cosh(\kappa(1-y^*))\cos(\kappa(1+y^*))}{\cosh(2\kappa) + \cos(2\kappa)} \right] 
+\Phi^* = \frac{E}{\text{Ra}} \left[ 1 - \frac{\cosh(\kappa(1+y^*))\cos(\kappa(1-y^*)) + \cosh(\kappa(1-y^*))\cos(\kappa(1+y^*))}{\cosh(2\kappa) + \cos(2\kappa)} \right] 
 \label{eq:theta_asist_boyant}
 \end{equation}
 
 
 \begin{equation}
-U_x = \frac{F}{2 m^2} \left( \frac{\cosh(m y^*)}{\cosh(m)} - \frac{\cos(m y^*)}{\cos(m)} \right) 
+V_x = \frac{F}{2 m^2} \left( \frac{\cosh(m y^*)}{\cosh(m)} - \frac{\cos(m y^*)}{\cos(m)} \right) 
 \label{eq:vel_opo_boyant}
 \end{equation}
 
 \begin{equation}
-\Theta^* = \frac{F}{2 m^4} \left( \frac{\cosh(m y^*)}{\cos(m)} + \frac{\cos(m y^*)}{\cos(m)} - 2 \right) 
+\Phi^* = \frac{F}{2 m^4} \left( \frac{\cosh(m y^*)}{\cos(m)} + \frac{\cos(m y^*)}{\cos(m)} - 2 \right) 
 \label{eq:theta_opo_boyant}
 \end{equation}
 
@@ -157,9 +198,7 @@ U_x = \frac{F}{2 m^2} \left( \frac{\cosh(m y^*)}{\cosh(m)} - \frac{\cos(m y^*)}{
 E= -2 \kappa \hspace{1mm} \text{Ra}^{1/2} \hspace{1mm} \frac{\cosh(2\kappa) + \cos(2\kappa)}{\sinh(2\kappa) - \sin(2\kappa)} 
 \end{equation*}
 }
-donde $\Theta^*= \frac{-1}{\text{Re} \hspace{1mm} \text{Pr}} \theta^*$ y $U_x = \frac{2}{3} u^*_x$. Obsérvese que el único parámetro aquí es el número de Rayleigh.
- 
-En el Capitulo 3, se utilizarán estás ecuaciones para la validación de la herramienta numérica en estas condciones. 
+Obsérvese que el único parámetro aquí es el número de Rayleigh. En el Capitulo 3, se utilizarán estás ecuaciones para la validación de la herramienta numérica en estas condiciones. 
 
 \section{Análsis de Estabilidad Lineal}
 
@@ -167,14 +206,106 @@ La transición laminar-turbulenta, es decir, la evolución de un flujo laminar a
 
 El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave. Sin embargo, en ocasiones las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia estados de fluctuaciones caóticas, comúnmente descritos como turbulencia. Dos motivaciones principales para estudiar la estabilidad de los fluidos son comprender el proceso de transición de un flujo laminar a uno turbulento y predecir el inicio de dicha transición.
 
-El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_adim}. La idea consiste en suponer que los campos solución ($\mathbf{u^*}$,$\text{p}^*$,$\theta^*$) pueden descomponerse como un flujo base más una perturbación:
-
+El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_res2} donde se han omitido los superíndices ``*''. La idea consiste en suponer que los campos solución ($\mathbf{v}$,$p$,$\varphi$) pueden descomponerse como un flujo base más una perturbación:
 
 \begin{align}
-\mathbf{u^*} &= \mathbf{U} + \tilde{\mathbf{u}}^* \\
-\text{p}^* &= \text{P}+ \tilde{\text{p}}^* \\
-\theta^* &= \Theta + \tilde{\theta}^*
+\mathbf{v} &= \mathbf{V} + \widetilde{\mathbf{v}} \\
+p &= P + \widetilde{p} \\
+\varphi &= \Phi + \widetilde{\varphi}
 \end{align}  
-donde las letras mayusculas hacen referencia al flujo base y aquellas letras con $\tilde{()}$ a las perturbaciones. Asimismo, se asume que $\mathbf{u^*}$, $\text{p}^*$, $\mathbf{U} = (U_x,U_y,U_z)$ y $\text{P}$ satisface el sistema \ref{eq:gob_system_adim}. Así, despreciando
+donde las letras mayusculas hacen referencia al flujo base laminar y aquellas letras con $\widetilde{()}$ a las perturbaciones. %Se asume que $\mathbf{v}$, $p$, $\mathbf{V} = (V_x,V_y,V_z)$ y $\text{P}$ satisface el sistema de ecuaciones. 
 
-\\
+Despreciando términos de segundo orden, esto es, productos de perturbaciones, y asumiendo que los flujos bases son los flujos laminares desarrollados $\mathbf{V} = (V_x(y),0,0)$ y $\Phi \equiv \Phi(y)$ es posible expresar las ecuaciones que describen la dinámica de $\widetilde{\mathbf{v}}$, $\widetilde{p}$ y $\widetilde{\varphi}$ de la siguiente forma: 
+
+\begin{align}
+&\nabla \cdot \mathbf{\widetilde{v}} = 0
+	\label{eq:pertub_continuity} \\
+&\partial_t \mathbf{\widetilde{v}} + V_x \hspace{1mm} \partial_x \mathbf{\widetilde{v}} + {\widetilde{v_y}} \partial_y V_x \hspace{1mm} \mathbf{\hat{e_x}} = - \nabla \widetild{p} + \frac{1}{\text{Re}_b} \hspace{1mm} \nabla^2 \mathbf{\widetilde{v}} + \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \widetilde{\varphi} \hspace{1mm}  \mathbf{\hat{e_x}} 
+	\label{eq:pertub_momentum} \\
+&\partial_t {\widetilde{\varphi}} + V_x \hspace{1mm} \partial_x {\widetilde{\varphi}} + {\widetilde{v_y}} \partial_y \Phi \hspace{1mm} = \frac{1}{\text{Re}_b \hspace{1mm} \text{Pr}} \left[ \nabla^2 \widetilde{\varphi} - \widetilde{v_x} \right]
+	\label{eq:pertub_energy} 
+\end{align} 
+
+Luego, aplicando el operador divergencia a la ecuación \ref{eq:pertub_momentum} es posible encontrar una expresión para el laplaciano de la presión:
+
+\begin{equation}
+- \nabla \widetilde{p} = 2 \hspace{1mm} \partial_x \widetilde{v_y} \hspace{1mm} \partial_y V_x - \frac{\text{Ra}}{\text{Re}_b} \partial_x \widetilde{\varphi}
+\label{eq:pressure_eigen}
+\end{equation}
+Aplicando el operador laplaciano a la componente Y de la ecuación \ref{eq:pertub_momentum} es posible eliminar el término que involucra la presión, resultando en la siguiente expresión:
+
+\begin{equation}
+\left\lbrace \left[ \partial_t + V_x \partial_x \right] \nabla^2 - D^2(V_x) \partial_x - \frac{1}{\text{Re}_b} \nabla^4 \right\rbrace \widetilde{v_y} = - \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \partial_{xy} \widetilde{\varphi}
+\label{eq:eigensis_ec1}
+\end{equation}
+donde $D^j \equiv \partial^j_y$.
+
+Para la descripción completa de las perturbaciones se utiliza la componente y de la vorticidad $\widetilde{\eta} \equiv \partial_z \widetilde{v_x} - \partial_x \widetilde{v_z}$ cuya dinámica se detalla está dada por la ecuación \ref{eq:eigensis_ec2}.
+
+\begin{equation}
+ \left[ \partial_t + V_x \partial_x - \frac{1}{\text{Re}_b} \nabla^2  \right] \widetilde{\eta}  +  D(V_x) \hspace{1mm} \partial_z \widetilde{v_y} = \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \partial_{z} \widetilde{\varphi}
+\label{eq:eigensis_ec2}
+\end{equation}
+
+Así, las ecuaciones \ref{eq:pertub_energy}, \ref{eq:eigensis_ec1} y \ref{eq:eigensis_ec2} constituyen un sistema de EDP de 3 ecuaciones con 3 campos incognitas. A partir de los campos escalares $\widetilde{\eta}$ y $\widetilde{v_y}$, utilizando las ecuación \ref{eq:pertub_continuity} y la definición de $\widetilde{\eta}$ es posible hallar los campos $\widetilde{v_x}$ y $\widetilde{v_z}$. Asimismo, empleando la ecuación \ref{eq:pressure_eigen} y los campos $\widetilde{v_y}$ y  $\widetilde{\varphi}$ es posible hallar el campo de presión  $\widetilde{p}$. 
+
+Las soluciones a dicho sistema se proponen como ondas planas tridimensionales. Si $\widetilde{\xi}$ es una perturbación cualquiera, entonces, se escribe de la siguiente forma arbitraria:
+
+\begin{equation}
+\widetilde{\xi} = \hat{\xi}(y) \hspace{1mm} e^{i \left[ \alpha x + \beta z - \alpha c t \right]}
+\label{eq:waves3d}
+\end{equation}
+donde $c \equiv c_r + i \hspace{0.5mm} c_i$ es la velocidad de fase y $\omega \equiv \alpha c$ es la frecuencia angular. Además: 
+
+\begin{equation*}
+\alpha \hspace{1mm}, \hspace{1mm} \beta \hspace{1mm} , \hspace{1mm} c_r \hspace{1mm} , \hspace{1mm} c_i \quad \epsilon \quad \mathbb{R}
+\end{equation*}
+
+En este sentido, se distinguen dos casos:
+
+\begin{itemize}
+\item[$\blacklozenge$] Si $\alpha c_i > 0$ entonces las perturbaciones crecen en el tiempo. El flujo se vuelve inestable.
+
+\item[$\blacklozenge$] Si $\alpha c_i < 0$ entonces las perturbaciones decaen exponencialmente en el tiempo y la pertubación se atenúa. El flujo se vuelve estable.
+\end{itemize}
+
+Al reemplazar las soluciones tipo \ref{eq:waves3d} en el sistema de ecuaciones se obtiene un problema de autovalores generalizado de la siguiente forma:
+
+\begin{equation}
+\begin{bmatrix}
+a_{11} & a_{12} & 0 \\[4pt]
+a_{21} & a_{22} & a_{23} \\[4pt]
+a_{31} & a_{32} & a_{33}
+\end{bmatrix}
+\,\begin{bmatrix}
+\widehat{v_y} \\[4pt]
+\widehat{\varphi} \\[4pt]
+\widehat{\eta}
+\end{bmatrix}
+\;=\; i \omega
+\,\begin{bmatrix}
+  b_1 & 0 & 0 \\[4pt]
+    0 & 1 & 0 \\[4pt]
+    0 & 0 & 1
+\end{bmatrix}
+\,\begin{bmatrix}
+\widehat{v_y} \\[4pt]
+\widehat{\varphi} \\[4pt]
+\widehat{\eta}
+\end{bmatrix}
+\end{equation}
+
+\begin{align*}
+a_{11} &= \frac{1}{\text{Re}_b} \left[ D^2 - k^2 \right]^2 - i \alpha \left( V_x \left[ D^2 - k^2 \right] + D^2(V_x)\right) \hspace{2mm} ; \hspace{2mm} a_{12} = -\left[ i \alpha \frac{\text{Ra}}{\text{Re}_b} D \right] \\
+a_{21} &= \frac{i \alpha}{\text{Re}_b \hspace{1mm} \text{Pr} \hspace{1mm} k^2} D + D(\Phi) \hspace{2mm} ; \hspace{2mm} a_{22} = \frac{-1}{\text{Re}_b \hspace{1mm} \text{Pr} } \left[ D^2 - k^2 \right] + i \alpha V_x  \hspace{2mm} ; \hspace{2mm} a_{23} = \frac{\beta}{\text{Re}_b \hspace{1mm} \text{Pr} \hspace{1mm} k^2} \\
+a_{31} &= \beta D(V_x) \hspace{2mm} ; \hspace{2mm} a_{32} = - \beta \frac{\text{Ra}}{\text{Re}_b}  \hspace{2mm} ; \hspace{2mm} a_{33} = -\frac{1}{\text{Re}_b} \left[ D^2 - k^2 \right] + i \alpha V_x \\
+b_1    &= - \left[ D^2 - k^2 \right] \hspace{2mm} ; \hspace{2mm} k^2 = \alpha^2 + \beta^2 \\
+\end{align*}
+
+A partir de las condiciones de borde \ref{eq:bc_1} - \ref{eq:bc_5}, las autofunciones $\widehat{v_y}(y)$, $\widehat{\varphi}(y)$, $\widehat{\eta}(y)$ deben satisfacer las condiciones:
+
+\begin{equation}
+\widehat{v_y}(y) = D(\widehat{v_y}) = \widehat{\varphi}(y) = \widehat{\eta}(y) = 0 \quad \text{en} \quad y= \pm 1
+\end{equation} 
+
+La resolución de este problema de autovalores generalizado se realiza empleando una estrategía numérica la cuál se detalla en el capítulo 3. 
