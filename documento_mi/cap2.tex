@@ -1,19 +1,25 @@
 \chapter{Modelo Matemático}
 
-Aquí va el resumen del capítulo
+Resumen del capítulo 2. Marco teórico (acotado) del contenido mínimo necesario para el entendimiento de los
+capitulos posteriores.
 
 \newpage
-\section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno}
+
+\section{Conceptos Elementales de Turbulencia}
+Definiciones y conceptos básicos de turbulencia.
+
+
+\section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno y Condiciones de Borde}
 
 Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=-d$ e $y=+d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
 
 \begin{figure}[H]
  \centering
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/domain3d.eps}
+    \includegraphics[width=0.49\textwidth]{figures/cap2/domain3d.eps}
     \label{fig:dom3d}}  
     \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/domain2d.eps}
+    \includegraphics[width=0.49\textwidth]{figures/cap2/domain2d.eps}
     \label{fig:dom2d}}  
  \caption{} 
  \label{fig:sistem_domain}
@@ -219,11 +225,11 @@ Despreciando términos de segundo orden, esto es, productos de perturbaciones, y
 
 \begin{align}
 &\nabla \cdot \mathbf{\widetilde{v}} = 0
-	\label{eq:pertub_continuity} \\
-&\partial_t \mathbf{\widetilde{v}} + V_x \hspace{1mm} \partial_x \mathbf{\widetilde{v}} + {\widetilde{v_y}} \partial_y V_x \hspace{1mm} \mathbf{\hat{e_x}} = - \nabla \widetild{p} + \frac{1}{\text{Re}_b} \hspace{1mm} \nabla^2 \mathbf{\widetilde{v}} + \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \widetilde{\varphi} \hspace{1mm}  \mathbf{\hat{e_x}} 
-	\label{eq:pertub_momentum} \\
+\label{eq:pertub_continuity} \\
+&\partial_t \mathbf{\widetilde{v}} + V_x \hspace{1mm} \partial_x \mathbf{\widetilde{v}} + {\widetilde{v_y}} \partial_y V_x \hspace{1mm} \mathbf{\hat{e_x}} = - \nabla \widetilde{p} + \frac{1}{\text{Re}_b} \hspace{1mm} \nabla^2 \mathbf{\widetilde{v}} + \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \widetilde{\varphi} \hspace{1mm}  \mathbf{\hat{e_x}} 
+\label{eq:pertub_momentum} \\
 &\partial_t {\widetilde{\varphi}} + V_x \hspace{1mm} \partial_x {\widetilde{\varphi}} + {\widetilde{v_y}} \partial_y \Phi \hspace{1mm} = \frac{1}{\text{Re}_b \hspace{1mm} \text{Pr}} \left[ \nabla^2 \widetilde{\varphi} - \widetilde{v_x} \right]
-	\label{eq:pertub_energy} 
+\label{eq:pertub_energy} 
 \end{align} 
 
 Luego, aplicando el operador divergencia a la ecuación \ref{eq:pertub_momentum} es posible encontrar una expresión para el laplaciano de la presión:
@@ -309,3 +315,7 @@ A partir de las condiciones de borde \ref{eq:bc_1} - \ref{eq:bc_5}, las autofunc
 \end{equation} 
 
 La resolución de este problema de autovalores generalizado se realiza empleando una estrategía numérica la cuál se detalla en el capítulo 3. 
+
+\section{Ondas TS e Inestabilidad Secundaria }
+
+Falta completar

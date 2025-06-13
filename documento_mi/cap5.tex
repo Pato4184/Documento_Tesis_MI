@@ -1,23 +1,222 @@
-\chapter{Transición Temporal}
+\chapter{Convección Mixta en Flujos Completamente Desarrollado}
 
 
+La finalidad de este capítulo es que el lector/jurado comprenda la forma de abordar el problema estudiado. Así como las magnitudes y parámetros relevantes del problema. 
 
 
 \newpage
 
-\section{Analisis de Estabilidad Lineal}
+A continuación van todos los casos de flujos completamente desarrollados de los cuales tengo seguridad.
 
-La transición laminar-turbulenta, es decir, la evolución de un flujo laminar a uno turbulento, es crucial en ingeniería, ya que las características del flujo varían notablemente entre estos regímenes. Por ejemplo, los coeficientes de fricción y de convección aumentan considerablemente al pasar de un régimen laminar a uno turbulento. La ecuación de Navier–Stokes admite ambas soluciones bajo ciertos parámetros, lo que implica que el tipo de flujo y su evolución dependen de las perturbaciones y las condiciones impuestas en el sistema. Muchos fenómenos que cumplen exactamente las leyes de conservación resultan inobservables porque se inestabilizan ante las pequeñas perturbaciones inevitables en cualquier sistema real \cite{kundu}.
+%% ==============================================================
+%%  Re = 2100, Pr = 0.71
+%% ==============================================================
 
-El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave. Sin embargo, en ocasiones las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia estados de fluctuaciones caóticas, comúnmente descritos como turbulencia. Dos motivaciones principales para estudiar la estabilidad de los fluidos son comprender el proceso de transición de un flujo laminar a uno turbulento y predecir el inicio de dicha transición.
+\section{$\text{Re}=2100$ y $\text{Pr}=0.71$}
 
-El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_adim}. La idea consiste en suponer que los campos solución ($\mathbf{u^*}$,$\text{p}^*$,$\theta^*$) pueden descomponerse como un flujo base más una perturbación:
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re2100-Pr071}
+\end{figure}
 
-\begin{align}
-\mathbf{u^*} &= \mathbf{U} + \tilde{\mathbf{u}}^* \\
-\text{p}^* &= \text{P}+ \tilde{\text{p}}^* \\
-\theta^* &= \Theta + \tilde{\theta}^*
-\end{align}  
-donde las letras mayusculas hacen referencia al flujo base y aquellas letras con $\tilde{()}$ a las perturbaciones. Asimismo, se asume que $\mathbf{u^*}$, $\text{p}^*$, $\mathbf{U} = (U_x,U_y,U_z)$ y $\text{P}$ satisface el sistema \ref{eq:gob_system_adim}. Así, despreciando
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re2100-Pr071}
+\end{figure}
 
-\\
+%% ==============================================================
+%%  Re = 2100, Pr = 0.071
+%% ==============================================================
+
+\section{$\text{Re}=2100$ y $\text{Pr}=0.071$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr0071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr0071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re2100-Pr0071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr0071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re2100-Pr0071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re2100-Pr0071}
+\end{figure}
+
+%% ==============================================================
+%%  Re = 3150, Pr = 0.71
+%% ==============================================================
+
+\section{$\text{Re}=3150$ y $\text{Pr}=0.71$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re3150-Pr071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re3150-Pr071}
+\end{figure}
+
+%% ==============================================================
+%%  Re = 3150, Pr = 0.071
+%% ==============================================================
+
+\section{$\text{Re}=3150$ y $\text{Pr}=0.071$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr0071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr0071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re3150-Pr0071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr0071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re3150-Pr0071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re3150-Pr0071}
+\end{figure}
+
+%% ==============================================================
+%%  Re = 4278, Pr = 0.71
+%% ==============================================================
+
+\section{$\text{Re}=4278$ y $\text{Pr}=0.71$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re4278-Pr071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re4278-Pr071}
+\end{figure}
+
+%% ==============================================================
+%%  Re = 4278, Pr = 0.071
+%% ==============================================================
+
+\section{$\text{Re}=4278$ y $\text{Pr}=0.071$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr0071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr0071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re4278-Pr0071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr0071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re4278-Pr0071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re4278-Pr0071}
+\end{figure}
+
+%% ==============================================================
+%%  Re = 5000, Pr = 0.71
+%% ==============================================================
+
+\section{$\text{Re}=5000$ y $\text{Pr}=0.71$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re5000-Pr071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re5000-Pr071}
+\end{figure}
+
+%% ==============================================================
+%%  Re = 5000, Pr = 0.071
+%% ==============================================================
+
+\section{$\text{Re}=5000$ y $\text{Pr}=0.071$}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr0071/phi_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr0071/phi_mean_profile.png}}
+  \caption{}
+  \label{fig:phi-Re5000-Pr0071}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr0071/ux_mean_plus_log_profile.png}}
+  \subfloat[]{
+    \includegraphics[width=0.45\textwidth]{figures/cap5/Re5000-Pr0071/ux_mean_profile.png}}
+  \caption{}
+  \label{fig:ux-Re5000-Pr0071}
+\end{figure}
+
+
+Faltan graficas de correlaciones (Nu, Re$_{\tau}$) vs Re y (Nu, Re$_{\tau}$) vs Ri.
+
+Adicionalmente tengo simulaciones con Re=2100 ; Pr=1,0.1 ; Ri=10$^{-2}$,10$^{-3}$,10$^{-4}$ que no recuerdo porque las hice pero quizás podrian servir para la correlacion/análisis (Nu, Re$_{\tau}$) vs Ri del caso Re=2100.	
