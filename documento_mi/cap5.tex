@@ -81,21 +81,25 @@ Por su parte, la Figura \ref{fig:ux-log-Re5000-Pr071} muestra buen acuerdo con l
 
 \section{UHF vs UWT}
 
-\textcolor{magenta}{Caso de ejemplo para comparar con el sistema físico estudiado por Guo et al. Comparar los perfiles de temperatura y velocidad y comparar los fenómenos físicos que ocurren en ambos casos. Hay que hacer los perfiles en un mismo grafico temperatura y velocidad ux.}
-
-\textcolor{magenta}{hay que usar el caso con Reo=3150, Pr=0.071 y Ri=0.67} 
-
-\textcolor{magenta}{es lo mas parecido que tengo al Reo=3500, Pr=0.025 y Ri=0.5}
+En la sección [REF-VALIDACIONES] se utilizaron las simulaciones obtenidas por Guo y Prasser \cite{guo2022direct} para validar la herramienta numérica utilizada. El sistema estudiado por dichos autores corresponde a una configuración física distinta que al sistema estudiado en este trabajo, sin embargo, resulta útil comparar los perfiles de velocidad y temperatura, para entender en mayor profundidad el fenómeno de convección. En esta sección se pretende cotejar las dos configuraciones físicas establecidas: UHF\footnote{\textit{Uniform Heat Flux}} y UWT\footnote{\textit{Uniform Wall Temperature}}. El primero corresponde a los parámetros Re$_o$=3150, Pr=0.071 y Ri$_b$=0.67, y el segundo, a Re$_o$=3500, Pr=0.025 y Ri$_b$=0.5. Si bien los parámetros involucrados no son idénticos, están en el mismo orden de magnitud, para fines cualitativos, esto es más que adecuado para análizar la física detrás de ellos. Las Figuras \ref{fig:guocomp_ux} y \ref{fig:guocomp_phi} exponen los perfiles de velocidad en la dirección de la corriente y la temperatura de ambas configuraciones, respectivamente. En ambos casos se normaliza los perfiles con el máximo de la propia curva.  
 
 \begin{figure}[H]
   \centering
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap5/Re3150-Pr0071/phi_mean_profile.png}}
+    \includegraphics[width=0.49\textwidth]{figures/cap5/phi_mean_profile.png}
+    	\label{fig:guocomp_ux}}
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap5/Re3150-Pr0071/ux_mean_profile.png}}
-  \caption{\textcolor{magenta}{No son los perfiles reales o bueno casi.}}
-  \label{fig:ux-Re3150-Pr0071}
+    \includegraphics[width=0.49\textwidth]{figures/cap5/ux_mean_profile.png}
+    	\label{fig:guocomp_phi}}
+  \caption{Comparación entre los dos problemas.}
+  \label{fig:ux-guocomp}
 \end{figure}
+
+
+Una característica inmediata que se observa recae en la asimetría del los perfiles del caso UWT en comparación con UHF, lo que resulta claro debido a la asimetría del primero con respecto al segundo caso. 
+
+
+\textcolor{magenta}{seguir explicando la fisica de ambos casos.}
 
 
 
@@ -116,15 +120,13 @@ Un parámetro importante desde una perspectiva ingenieríl es el número de Nuss
 La Figura \ref{fig:nu_vs_bo} presenta todos los valores de Nu obtenidos, graficados en función del número de boyancia Bo, definido en la ecuación \ref{eq:jackson_bo}. Los valores se contrastan con la correlación de Jackson et al. \cite{jackson1989studies}, expresada en la ecuación \ref{eq:jackson_corr}, donde la misma está normalizada por un valor de Nusselt de convección forzada pura Nu$_{fc}$. En este trabajo, Nu$_{fc}$ se obtiene a partir de la correlación de Dittus-Boelter \cite{incropera}. 
 
 En dicha correlación se observa tres regiones principales:
+\begin{itemize}
+ \item[$\bullet$] para Bo $\lesssim$ $10^{-6}$ el valor Nu es practicamente igual a Nu$_{fc}$, es decir, domina la convección forzada,
+ \item[$\bullet$] en el rango $10^{-6}$ $\lesssim$ Bo $\lesssim$ $3 \times 10^{-5}$ se observa una caida y una recuperación del número de Nusselt, revelando la existencia de una región donde la transferencia de calor empeora por debajo del caso únicamente forzada y que luego retoma su condición original,
+ \item[$\bullet$] por último, para Bo $\gtrsim$ $3 \times 10^{-5}$ la transferencia de calor aumenta notoriamente, impulsado por las corrientes de convección natural que en esta región tiene mayor preponderancia.
+\end{itemize}
 
-\begin{enumerate}
-
-\item para Bo $\lesssim$ $10^{-6}$ el valor Nu es practicamente igual a Nu$_{fc}$, es decir, domina la convección forzada,
-
-\item en el rango $10^{-6}$ $\lesssim$ Bo $\lesssim$ $3 \times 10^{-5}$ se observa una caida y una recuperación del número de Nusselt, revelando la existencia de una región donde la transferencia de calor empeora por debajo del caso únicamente forzada y que luego retoma su condición original,
-
-\item por último, para Bo $\gtrsim$ $3 \times 10^{-5}$ la transferencia de calor aumenta notoriamente, impulsado por las corrientes de convección natural que en esta región tiene mayor preponderancia.
-\end{enumerate}
+%\vspace*{-1.5cm}
 
 \begin{equation}
 \text{Bo}= \frac{Gr*}{{\text{Re}_D}^{3.425} \hspace*{1mm} \text{Pr}^{0.8} }
@@ -160,5 +162,37 @@ Los valores obtenidos de la correlación de Jackson y nuestros valores obtenidos
   \subfloat[]{
     \includegraphics[width=0.7\textwidth]{figures/cap5/nusselt_corr/darcy_vs_Bo.png}}
   \caption{Factor de Darcy $ f$. Aquí $Bo = Gr / (Re^{3,425} Pr^{0,8})$}
+  \label{fig:darcy_vs_bo}
+\end{figure}
+
+
+
+\newpage
+\section{Gráficos de Presiones Varios }
+
+\begin{figure}[H]
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/ppx_mean_profile.png}
+    	\label{fig:Re5000-Pr071-pp}}
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/dP_boyant_vs_Bo_Re5000-Pr071.png}
+    	\label{fig:Re5000-Pr071-dpboyant}}
+    
+  \caption{la imagen (b) corresponde a $\langle p(x) \rangle_{x} - p_o$ siendo $p_o = \langle p(x) \rangle_{x}(\text{Ri}=0)$ }
+  \label{fig:Re5000-Pr071-pressure}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+	\includegraphics[width=0.5\textwidth]{figures/cap5/Re5000-Pr071/DeltaP_vs_Bo_Re5000-Pr071.png}
+  \caption{Caida de presión}
+  \label{fig:darcy_vs_bo}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{figures/cap5/DeltaP_vs_Bo.png}
+  \caption{Caida de presión}
   \label{fig:darcy_vs_bo}
 \end{figure}
