@@ -26,7 +26,9 @@ Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde 
 \end{figure}
 
 
-La dirección del flujo se encuentra en la dirección de la corriente (\textit{stramwise}) paralelo al eje X y su sentido es opuesto a la aceleración de la gravedad. Las ecuaciones de gobierno corresponden a los principios de conservación de masa, momento y energía que se expresan en el cuadro \ref{eq:gob_system}.
+%La dirección del flujo se encuentra en la dirección de la corriente (\textit{streamwise}) paralelo al eje X y su sentido es opuesto a la aceleración de la gravedad. Las ecuaciones de gobierno corresponden a los principios de conservación de masa, momento y energía que se expresan en el cuadro \ref{eq:gob_system}.
+
+El flujo ocurre en la dirección de la corriente (\textit{streamwise}) paralelo al eje X y su sentido es opuesto a la aceleración de la gravedad. Esta configuración se conoce como flujo ascendente o \textit{aiding flow}. Las ecuaciones de gobierno corresponden a los principios de conservación de masa, momento y energía que se expresan en el cuadro \ref{eq:gob_system}.
 
 \begin{equation}
         \boxed{ \begin{array}{lcc}
@@ -56,7 +58,7 @@ Sin embargo, debido a la limitación computacional evidente, nuestro modelo comp
 \end{align}
 siendo $\xi$ un campo escalar de interés. Esto se puede interpretar como si las PBC crearan ``la ilusión'' de un dominio infinito, mediante la repetición de este dominio finito en el espacio.
 
-Por otra parte, en un flujo turbulento, dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, Kasagi et al. \cite{kasagi1992direct} asumen que las fluctuaciones de temperatura son pequqeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Esto es equivalente a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con $x$, y por lo tanto: 
+Por otra parte, en un flujo turbulento, dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, algunos autores \cite{kasagi1992direct,tao1960} asumen que las fluctuaciones de temperatura son pequeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Eso equivale a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con $x$, y por lo tanto: 
 
 $$
 \langle T_w \rangle = \mathcal{A} \hspace{0.5mm} x.
