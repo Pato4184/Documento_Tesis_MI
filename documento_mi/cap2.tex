@@ -11,7 +11,7 @@ Definiciones y conceptos básicos de turbulencia.
 
 \section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno y Condiciones de Borde}
 
-Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=-d$ e $y=+d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
+Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=\pm d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
 
 \begin{figure}[H]
  \centering
@@ -35,7 +35,7 @@ El flujo ocurre en la dirección de la corriente (\textit{streamwise}) paralelo 
 			  %\\
               &  \nabla \cdot \left( \rho_o \mathbf{u} \right) = 0 \\
               \vspace*{2mm}
-              &  \frac{\partial \left( \rho_o \mathbf{u} \right)}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \text{p} + \mu \hspace{1mm} {\nabla}^2 \mathbf{u}  + \rho(T) \hspace{1mm} \mathbf{g} \\
+              &  \frac{\partial \left( \rho_o \mathbf{u} \right)}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \text{p} + \mu_o \hspace{1mm} {\nabla}^2 \mathbf{u}  + \rho(T) \hspace{1mm} \mathbf{g} \\
               \vspace*{2mm}
               &  \frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T =  \alpha \hspace{1mm} \nabla^2 T  \\
               % \\
@@ -58,46 +58,62 @@ Sin embargo, debido a la limitación computacional evidente, nuestro modelo comp
 \end{align}
 siendo $\xi$ un campo escalar de interés. Esto se puede interpretar como si las PBC crearan ``la ilusión'' de un dominio infinito, mediante la repetición de este dominio finito en el espacio.
 
-Por otra parte, en un flujo turbulento, dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, algunos autores \cite{kasagi1992direct,tao1960} asumen que las fluctuaciones de temperatura son pequeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Eso equivale a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con $x$, y por lo tanto: 
+Por otra parte, en un flujo turbulento, dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, algunos autores \cite{kasagi1992direct,tao1960} asumen que las fluctuaciones de temperatura son pequeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Eso equivale a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con la coordenada $x$, y por lo tanto: 
 
 $$
 \langle T_w \rangle = \mathcal{A} \hspace{0.5mm} x.
 $$
 
-Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que siga siendo válido las condiciones de borde periódicas, esto es, $\theta(x=0,y,z,t)=\theta(x=L_x,y,z,t)$. Ésta aproximación se encuentra en la literatura científica como \textit{Mixed Boundary Condcitions} \cite{straub2019influence}. Dicha modificación introduce un término fuente en la ecuación de conservación de energía:
+Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que siga siendo válido las condiciones de borde periódicas, esto es, $\theta(x=0,y,z,t)=\theta(x=L_x,y,z,t)$. Dicha modificación introduce un término fuente en la ecuación de conservación de energía:
 
 \begin{equation}
 \frac{ \partial \theta }{ \partial t } + \mathbf{u} \cdot \nabla \theta = \alpha \nabla^2 \theta + \mathcal{A} \hspace{0.5mm} u_x 
 \label{eq:energy_pcb_source}
 \end{equation}
-Por su parte, el término $\rho(T) \mathbf{g}$ en la ecuación de momento se reescribe empleando la aproximación de Bousinessq \cite{incropera}, $\rho(T) = \rho_o \left[ 1 - \beta (T - T_R) \right]$:
+
+\newpage
+Por su parte, el término $\rho(T) \mathbf{g}$ de la ecuación de momento se reescribe empleando la aproximación de Bousinessq \cite{incropera}, donde $\rho_o \equiv \rho(T_R)$:
+
+\begin{align}
+\rho(T) \mathbf{g} &\simeq \rho_o \left[ 1 - \beta (T - T_R) \right] \mathbf{g} \\
+				   &\simeq \rho_o \left[ 1 - \beta ( \hspace{0.5mm} (\langle T_w \rangle - \theta) - T_R) \right] \mathbf{g} \\
+ 		           &\simeq \rho_o \beta \theta \mathbf{g} + \rho_w \mathbf{g}
+\label{eq:bussinesq}
+\end{align}
+siendo $\rho_w \equiv \rho(T=\langle T_w \rangle)$. Utilizando estas definiciones, la ecuación de momento se reescribe como se expresa en la ecuación \ref{eq:mom_rewrite} siendo $\mathbf{\hat{e_g}}=(-1,0,0)$.
 
 \begin{equation}
-\frac{ \rho_o \hspace{0.5mm} \partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \left( \text{p} + \rho_o \hspace{0.5mm} g \hspace{0.5mm} x \right) + \mu \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{1mm} \rho_o \hspace{1mm} \beta \hspace{1mm} \theta \hspace{1mm} \mathbf{\hat{g}}   
+\frac{ \rho_o \hspace{0.5mm} \partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \text{p} + \mu_o \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{0.5mm} \rho_o \hspace{0.5mm} \beta \hspace{0.5mm} \theta \hspace{0.5mm} \mathbf{\widehat{e_g}} + \rho_w \hspace{0.5mm} g \hspace{0.5mm} \mathbf{\widehat{e_g}}
+\label{eq:mom_rewrite}  
 \end{equation}
-donde se ha considerado $T_R = \langle T_w \rangle$, siendo $\mathbf{\hat{g}}=(-1,0,0)$.
 
-Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible deducir que $\mathcal{A} = \frac{q''_w}{\rho_o  d \langle u_x \rangle c_p}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}. 
 
-Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por un caudal másico constante. Esta cuestión se encuentra representada por el término fuente $f \mathbf{\hat{x}}$, en la ecuación de momento, donde $f$ es una constante en el espacio y varía con el tiempo de manera que mantiene constante el caudal total. 
+Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible demostrar que $\mathcal{A} = \frac{q''_w}{\rho_o  c_p U_b d}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}. Los números adimensionales asociados a estas ecuaciones se expresan en las relaciones \ref{eq:num_adim}: de izquierda a derecha, se tiene el número de Reynolds, el número de Prandtl, el parámetro que acompaña al término boyante y al número de Richardson basado en el flujo de calor. 
+
+Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por un caudal másico constante. Esta cuestión se encuentra representada por el término fuente $f \hspace{0.3mm} \mathbf{\widehat{e_x}}$, en la ecuación de momento, donde $f$ es una constante en el espacio y varía con el tiempo de manera que mantiene constante el caudal total. 
 
 \begin{equation}
 \boxed{
 \begin{array}{l}
     \nabla^* \cdot \mathbf{u^*} = 0 \\
     \frac{\partial \mathbf{u^*}}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \mathbf{u^*} = 
-    -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \text{Ri}_o \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\hat{g}} + f \mathbf{\hat{x}} \\
+    -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \Pi \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\widehat{e_g}} + f \mathbf{\widehat{e_x}} + \rho_w \hspace{0.5mm} g \hspace{0.5mm} \mathbf{\widehat{e_g}} \\
     \frac{\partial \theta^*}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \theta^* = 
-    \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* 
+    \frac{1}{\text{Re}_o \hspace{0.5mm} \text{Pr}} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* 
 \end{array}
 }
 \label{eq:gob_system_adim}
 \end{equation}
 
-$$\text{Re}_o = \frac{\mu}{\rho_o \hspace{0.5mm} U_o\hspace{0.5mm} d } \quad ; \quad \text{Pr}= \frac{\nu_o}{\alpha} \quad ; \quad \text{Ri}_o = \frac{g \beta \Delta T d}{U_o^2} = \frac{\text{Ra}}{\text{Re}_o^2 \hspace{1mm} \text{Pr}}$$
+\begin{equation}
+\text{Re}_o = \frac{\mu_o}{\rho_o \hspace{0.5mm} U_o \hspace{0.5mm} d } \quad ; \quad \text{Pr}= \frac{\mu_o}{\rho_o \hspace{0.5mm} \alpha} \quad ; \quad \Pi = \frac{\text{Ri}_o}{\text{Re}_o \hspace{0.5mm} \text{Pr}} \quad ; \quad \text{Ri}_o = \frac{g \hspace{0.5mm} \beta \hspace{0.5mm} q''_w \hspace{0.5mm} d^2}{k \hspace{0.5mm} U_o^2}
+\label{eq:num_adim}
+\end{equation}
 %siendo Ra, el número de Rayleigh.
 
-Asimismo, las condiciones de flujo de calor constante están expresadas en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante (fluctuaciones de temperatura iguales a cero) se obtiene: $T(x,y=0,z,t) = T(x,y=2d,z,t) = \langle T_w \rangle$. Su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. Por otra parte, para el resto de variables (campo de presión y componentes de velocidad) se adoptan condiciones de no deslizamiento en las paredes. 
+Asimismo, las condiciones de flujo de calor constante están expresadas en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante (fluctuaciones de temperatura despreciables) se obtiene: 
+$$T(x,y=0,z,t) = T(x,y=2d,z,t) = \langle T_w \rangle$$ 
+Éste tipo aproximaciones se conoce en la literatura científica como \textit{Mixed Boundary Conditions} \cite{straub2019influence} y su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. Por último, para las componentes de velocidad y el campo de presión, se adoptan condiciones de no deslizamiento y condiciones de Neumann homogéneas, respectivamente, en las paredes. 
 
 \begin{align}
 \begin{array}{l}
@@ -114,14 +130,14 @@ Asimismo, las condiciones de flujo de calor constante están expresadas en la ec
 
 
 
-\section{Sumario de Ecuaciones}
+\subsection{Sumario de Ecuaciones}
 
 \textbf{Ecuaciones de Gobierno:}
 \begin{equation}
 \begin{array}{l}
     \nabla^* \cdot \mathbf{u^*} = 0 \\
     \frac{\partial \mathbf{u^*}}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \mathbf{u^*} = 
-    -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \text{Ri}_o \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\hat{g}} + f \mathbf{\hat{x}} \\
+    -\nabla \text{p}^* + \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \mathbf{u^*} + \frac{\text{Ri}_o}{\text{Re}_o \hspace{0.5mm} \text{Pr}} \hspace{0.5mm} \theta^* \hspace{0.5mm} \mathbf{\hat{g}} + f \mathbf{\widehat{e_x}} + \rho_w \hspace{0.5mm} g \hspace{0.5mm} \mathbf{\widehat{e_g}} \\
     \frac{\partial \theta^*}{\partial t^*} + \mathbf{u^*} \cdot \nabla^* \theta^* = 
     \frac{1}{\text{Pr}}\hspace{0.5mm}  \frac{1}{\text{Re}_o} \hspace{0.5mm} \nabla^{*2} \theta^* + u_x^* 
 \end{array}
@@ -130,16 +146,16 @@ Asimismo, las condiciones de flujo de calor constante están expresadas en la ec
 
 \textbf{Condiciones de borde:} considerando $\xi= u^*_x, u^*_y, u^*_z, p^*, \theta^*$, entonces
 \begin{align}
-&\xi(x=0,y,z,t) = \xi(x=L_x,y,z,t) 
+&\xi(x^*=0,y^*,z^*,t^*) = \xi(x^*=L_x/d,y^*,z^*,t^*) 
 	\label{eq:bc_1} \\
-&\xi(x,y,z=0,t) = \xi(x,y,z=L_z,t) 
+&\xi(x^*,y^*,z^*=0,t^*) = \xi(x^*,y^*,z^*=L_z/d,t^*) 
 	\label{eq:bc_2} \\
 &\theta^*(x^*,y^*=-1,z^*,t^*)       = \theta^*(x^*,y^*=+1,z^*,t^*) = 0
 	\label{eq:bc_3} \\
 &\mathbf{u^*}(x^*,y^*=-1,z^*,t^*)   = \mathbf{u^*}(x^*,y^*=+1,z^*,t^*) = 0
 	\label{eq:bc_4} \\
 &\partial_y p^*(x^*,y^*=-1,z^*,t^*) = \partial_y p^*(x^*,y^*=+1,z^*,t^*) = 0
-	\label{eq:bc_5} \\
+	\label{eq:bc_5}
 \end{align}
 
 A lo largo de este trabajo también se utiliza, particularmente para el análisis de estabilidad lineal, la forma adimensional de las ecuaciones del trabajo de Chen \cite{chen1996linear} que se obtienen empleando el  semiancho del canal $d$, la velocidad media laminar $\langle u_x \rangle$ y la temperatura $T_c = \text{Re} \hspace{0.5mm} \text{Pr} \hspace{0.5mm} \mathcal{A} \hspace{0.5mm} d$. Dichas ecuaciones se expresan en \ref{eq:gob_system_res2}. Las condiciones de borde son exactamente análogas que su forma adimensional de más arriba.

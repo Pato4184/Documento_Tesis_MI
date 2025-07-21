@@ -1,13 +1,17 @@
 \chapter{Convección Mixta en Flujos Completamente Desarrollado}
 
 
-El propósito de este capítulo es mostrar, vía simulaciones, cómo la flotabilidad o boyancia modifica un flujo turbulento plenamente desarrollado en un canal de placas paralelas. Se parte de simulaciones DNS que cubren un amplio espectro de números de Reynolds, Richardson y Prandtl, lo que permite examinar la transición desde convección forzada hasta convección natural. Tras describir los casos y las variables adimensionales de referencia, se presentan (i) magnitudes estadísticas de primer y segundo orden, (ii) la influencia del Prandtl sobre las subcapas viscosa y térmica, (iii) la variación del número de Nusselt y (iv) el impacto en el factor de fricción de Darcy.
+El propósito de este capítulo es mostrar, vía simulaciones numéricas, cómo la flotabilidad o boyancia modifica un flujo turbulento plenamente desarrollado en un canal de placas paralelas. Se utiliza para esto simulaciones DNS que cubren un extenso espectro de números de Reynolds, Richardson y Prandtl, lo que permite examinar la evolución desde convección forzada hasta convección natural. Tras describir los casos y las variables adimensionales de referencia, se presentan (i) magnitudes estadísticas de primer y segundo orden, (ii) la influencia del número de Prandtl sobre las subcapas viscosa y térmica, (iii) el número de Nusselt y (iv) el factor de fricción de Darcy.
+
+\textcolor{red}{Falta agregar las principales conclusiones}
 
 \newpage
 
 \section{Casos simulados} 
 
-Los resultados de las simulaciones realizadas en este capítulo corresponden a un flujo completamente desarrollado tanto térmica como hidrodinámicamente. Se emplearon Re$_o$=2100, 3150, 4278, 5000, Pr=0.071, 0.71 y valores de Richardon en el rango 0.04 $\lesssim$ Ri$_b$ $\lesssim$ 106. En la Figura \ref{fig:map_flow_regime} se expone un ``mapa'' del régimen de flujo donde se gráfica el número de Reynolds\footnote{Número de Reynolds basado en el diámetro hidráulico: $Re^D_b = 8/3 \hspace*{1mm} Re_o$} versus el número de Richardson. De acuerdo al diagrama de Moody \cite{white}:
+Los resultados de las simulaciones realizadas en este capítulo corresponden a un flujo completamente desarrollado tanto térmica como hidrodinámicamente. Se emplearon Re$_o$=2100, 3150, 4278, 5000, Pr=0.071, 0.71 y valores de Richardon en el rango 0.04 $\lesssim$ Ri$_b$ $\lesssim$ 106. Desde una perspectiva física, la interpretación de estos números adimensionales puede resumirse así: un aumento del número de Reynolds implica una menor viscosidad cinemática y, por tanto, una difusión más rápida del momento dentro del fluido; un incremento del número de Prandtl señala una reducción de la conductividad térmica; mientras que un mayor número de Richardson denota un crecimiento en el flujo de calor.
+
+En la Figura \ref{fig:map_flow_regime} se expone un ``mapa'' del régimen de flujo donde se gráfica el número de Reynolds \textit{bulk}\footnote{Número de Reynolds basado en la velocidad \textit{bulk} y el diámetro hidráulico: $Re^D_b = 8/3 \hspace*{1mm} Re_o$} versus el número de Richardson \textit{bulk} y se muestran las simulaciones realizadas en este trabajo. Es oportuno precisar que, como hipótesis inicial, se supone que ambos fenómenos actúan de forma independiente; no obstante, tal independencia no está necesariamente garantizada. Cabe destacar, además, que en este trabajo se analiza la transición de un régimen a otro, en el cual el flujo se vuelve inestable y puede manifestar intermitencia y/o turbulencia \cite{chen2003direct}. Aceptando provisionalmente que la interacción entre los fenómenos es despreciable y tomando como referencia el diagrama de Moody \cite{white}, se presenta lo siguiente:
 
 \begin{itemize}
 	\item para valores de Re$^D_b$ $<$ 2000 el régimen es laminar,
@@ -25,28 +29,20 @@ Por otra parte, el fenómeno de convección es \cite{incropera,cengelheat}:
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{figures/cap5/map.eps}
-  \caption{Mapa de regímenes en el plano $Re_D$–$Ri_b$. Se señalan las zonas laminar, de transición y turbulenta, así como los dominios de convección forzada, mixta y natural.}
+  \caption{Mapa de regímenes en el plano $Re^D_b$–$Ri_b$. Se señalan las zonas laminar, de transición y turbulenta, así como los dominios de convección forzada, mixta y natural.}
   \label{fig:map_flow_regime}
 \end{figure}
 
-La totalidad de casos se encuentra en un régimen de flujo turbulento. En su mayoría, los casos se encuentran en flujo de convección mixta, sin embargo, se cuenta con casos donde predomina la convección forzada, y por otro lado, donde domina la convección natural. Esto brinda un espectro más amplio para el análisis del problema.
-
-
-
-
-
-
-
-
+De esta manera, basados en el diagrama de Moody, la totalidad de casos se encuentra en un régimen de flujo turbulento. En su mayoría, los casos se encuentran en flujo de convección mixta, sin embargo, se cuenta con casos donde predomina la convección forzada, y otros donde domina la convección natural. Esto brinda un espectro amplio para el análisis del problema.
 
 \section{Magnitudes de Primer y Segundo Orden}
 
-En esta sección, se analiza la influencia de la fuerza boyante en las magnitudes estadísticas de primer y segundo orden. Para tal fin, se consideran, únicamente, los casos Re$_o$=5000 y Pr=0.71. El aumento de la fuerza boyante, o el número de Ri$_b$, equivale a aumentar el flujo de calor ya que Ri$_b$ es proporcional al flujo de calor $q''_w$. En otras palabras, el aumento de la boyancia en el sistema físico corresponde a aumentar la energía térmica que se le entrega a través de las paredes cuando el fluido es ascendente\footnote{También es equivalente a quitarle energía térmica (enfriar las paredes) cuando la dirección del flujo es descendente.}.
+En esta sección se analiza la influencia de la fuerza boyante en las magnitudes estadísticas de primer y segundo orden. Para tal fin, se consideran, únicamente, los casos Re$_o$=5000 y Pr=0.71. El aumento de la fuerza boyante, o el número de Ri$_b$, equivale a aumentar el flujo de calor. En otras palabras, el aumento de la boyancia en el sistema físico puede interpretarse como aumentar la energía térmica que se le entrega a través de las paredes cuando el fluido es ascendente\footnote{También es equivalente a quitarle energía térmica (enfriar las paredes) cuando la dirección del flujo es descendente.}.
 
 
 \subsection{Perfiles de velocidad y de temperatura} \label{sec:velo_temp}
 
-En la Figura \ref{fig:ux-Re5000-Pr071} se presentan los perfiles promedio de velocidad en la dirección \textit{streamwise} para distintos números de Richardson. En dichos perfiles pueden distinguirse con claridad los tres regímenes de convección. Conforme se intensifica la fuerza boyante, las curvas adoptan una configuración en ``M'', en concordancia con lo reportado por otros autores \cite{you2003direct, zhou2024direct}. A diferencia del caso de convección exclusivamente forzada, el máximo de velocidad deja de situarse en la línea central del canal y se desplaza progresivamente hacia la pared a medida que aumenta Ri$_b$,\cite{carr1973velocity, steiner1971reverse, zhou2024direct}, originando dos máximos locales en lugar del único pico característico del flujo puramente forzado. Este comportamiento puede interpretarse cualitativamente del siguiente modo: en las proximidades de la pared el fluido se encuentra a mayor temperatura lo que implica menor densidad; en consecuencia, la fuerza boyante acelera el flujo en esa región y, por conservación de masa, el fluido ubicado en la zona central experimenta una desaceleración.
+En la Figura \ref{fig:ux-Re5000-Pr071} se presentan los perfiles medios de velocidad  \textit{streamwise}\footnote{Es decir, en la dirección de la corriente.} para distintos números de Richardson. En dichos perfiles pueden distinguirse con claridad los tres regímenes de convección. Conforme se intensifica la fuerza boyante, las curvas adoptan una configuración en ``M'', en concordancia con lo reportado por otros autores \cite{you2003direct, zhou2024direct}. A diferencia del caso de convección exclusivamente forzada, el máximo de velocidad deja de situarse en la línea central del canal y se desplaza progresivamente hacia la pared a medida que aumenta Ri$_b$,\cite{carr1973velocity, steiner1971reverse, zhou2024direct}, originando dos máximos locales en lugar del único pico característico del flujo puramente forzado. Este comportamiento puede interpretarse cualitativamente del siguiente modo: en las proximidades de la pared el fluido se encuentra a mayor temperatura lo que implica menor densidad; en consecuencia, la fuerza boyante acelera el flujo en esa región y, por conservación de masa, el fluido ubicado en la zona central experimenta una desaceleración.
 
 \begin{figure}[H]
   \centering
@@ -59,54 +55,112 @@ En la Figura \ref{fig:ux-Re5000-Pr071} se presentan los perfiles promedio de vel
   \caption{Perfiles medios adimensionales de \textbf{(a)} velocidad y \textbf{(b)} temperatura, para varios Ri$_b$.}
 \end{figure}
 
-%Por otra parte, la Figura \ref{fig:phi-Re5000-Pr071} se exponen los perfiles medios de temperatura adimensional. Al contrario que los perfiles de velocidad, aquí no presentan una forma en ``M'' \cite{you2003direct, steiner1971reverse}. Aquí, los casos se pueden dividir, a priori, en dos grupos: el primer grupo que corresponde a valores de Rib$_b$ entre 0.04 y 1.06, y el segundo grupo está compuesto por valores de 5.33 a 106.5. En el primer grupo, se observa el crecimiento de los perfiles, correspondiente a un decrecimiento en el perfil de temperatura real del sistema. A medida que incrementa la fuerza boyante, como se observa en el segundo grupo, la temperatura adimensional decrece y ello significa un crecimiento en el perfil de temperatura real. Por otro lado, la forma ``achatada'' puede explicarse cualitativamente con ayuda de los perfiles de velocidad. La diferencia de velocidades entre las zonas cercanas a la pared y el centro del canal promueven la mezcla del fluido y con ello una distribución más homogénea de la temperatura. 
+Por otra parte, la Figura \ref{fig:phi-Re5000-Pr071} presenta los perfiles medios de temperatura adimensional. A diferencia de los perfiles de velocidad, estos no exhiben la configuración en ``M'' al igual que reportan otros autores \cite{you2003direct, steiner1971reverse}. Los casos pueden clasificarse, en primera instancia, en dos conjuntos:
+
+\begin{itemize}
+
+\item[\textbf{(I)}] valores de Ri$_b$ comprendidos entre 0.04 y 1.06,
+
+\item[\textbf{(II)}] valores de Ri$_b$ entre 5.33 y 106.5.
+
+\end{itemize}
+Además, ambos conjuntos exhiben comportamientos físicos claramente diferenciados. Esta distinción se analizará en detalle a lo largo de la presente sección.
+
+En el primer conjunto se aprecia un aumento del perfil adimensional respecto al caso de conveccion forzada, lo que equivale a un descenso de la temperatura dimensional. Cuando la fuerza boyante se intensifica (conjunto \textbf{II}) la temperatura adimensional disminuye, lo que indica un aumento en la temperatura dimensional del fluido. Asimismo, en este segundo conjunto, los perfiles presentan una forma ``achatada'' en el seno del canal que puede interpretarse cualitativamente a partir de sus perfiles de velocidad: la diferencia de velocidades entre la región próxima a la pared y el centro del canal favorece la mezcla del fluido y, por consiguiente, conduce a una distribución térmica más homogénea.
+
+
+
+
+%################################################################################
+% MOSAICOS DE TEMPERATURE Y VELOCIDAD UX. 
+% Hasta no corregir todo lo demas, esto no se hace 
+
+%\newpage
 %
-%Como se verá en la sección \ref{sec:nu}, en el primer grupo, la transferencia de calor por convección empeora y en el segundo grupo, la misma se recupera y mejora.
+%\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
+%  \centering
+%  \includegraphics[width=0.9\textwidth]{figures/cap5/phi_tessel.png}  
+%  \caption{}
+%  \label{fig:tesselphi}
+%\end{figure}
 %
-%Estas afirmaciones, que no son evidentes a primera vista, se comprenden a partir de la Figura \ref{fig:uphi-Re5000-Pr071}, donde se muestra el perfil medio $\langle u_x^{*} \theta^{*} \rangle$. El número de Nusselt es inversamente proporcional a
-%$\langle \theta^*_b \rangle$ (ecuación \ref{eq:nu}), el cual depende del comportamiento de $\langle u_x^{*} \theta^{*} \rangle$. Así, un incremento de la temperatura aumenta $\langle u_x^{*} \theta^{*} \rangle$, y, en consecuencia, eleva $\langle \theta_b^{*} \rangle$, lo que provoca una disminución de Nu.
+%\newpage
+%
+%\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
+%  \centering
+%  \includegraphics[width=0.9\textwidth]{figures/cap5/ux_tessel.png}  
+%  \caption{}
+%  \label{fig:tesselphi}
+%\end{figure}
 
-
-
-Por otra parte, la Figura \ref{fig:phi-Re5000-Pr071} presenta los perfiles medios de temperatura adimensional. A diferencia de los perfiles de velocidad, estos no exhiben la configuración en ``M'' al igual que reportan otros autores \cite{you2003direct, steiner1971reverse}. Los casos pueden clasificarse, en primera instancia, en dos conjuntos: (i) valores de Ri$_b$ comprendidos entre 0.04 y 1.06, y (ii) valores entre 5.33 y 106.5. En el primer conjunto se aprecia un aumento del perfil adimensional, lo que equivale a un descenso de la temperatura dimensional. Cuando la fuerza boyante se intensifica (segundo conjunto) la temperatura adimensional disminuye, indicando un incremento de la temperatura real del fluido. La forma ``achatada'' de estos perfiles puede interpretarse cualitativamente a partir de los perfiles de velocidad: la diferencia de velocidades entre la región próxima a la pared y el centro del canal favorece la mezcla del fluido y, por consiguiente, conduce a una distribución térmica más homogénea.
-
-Como se analizará en la sección \ref{sec:nu}, en el primer conjunto la transferencia de calor por convección se deteriora, mientras que en el segundo conjunto dicha transferencia se recupera e incluso mejora. Estas observaciones, que no son evidentes a primera vista, se esclarecen al examinar la Figura \ref{fig:uphi-Re5000-Pr071}, donde se representa el perfil medio $\langle u_x^{*}\theta^{*}\rangle$. El número de Nusselt es inversamente proporcional a $\langle\theta^{*}_b\rangle$ (ecuación \ref{eq:nu}), magnitud que depende del comportamiento de $\langle u_x^{*}\theta^{*}\rangle$. En consecuencia, un aumento de la temperatura incrementa $\langle u_x^{*}\theta^{*}\rangle$ y, por lo tanto, eleva $\langle\theta^{*}_b\rangle$, lo que conlleva una disminución de Nu.
-
-\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
-  \centering
-  \includegraphics[width=0.6\textwidth]{figures/cap5/Re5000-Pr071/uphi_profile.png}
-  \caption{Perfil de la magnitud media $\langle u^{*}_x\theta^{*}\rangle$.}
-  \label{fig:uphi-Re5000-Pr071}
-\end{figure}
+%################################################################################
 
 
 
 
-\subsection{Valores RMS de temperatura, velocidad y flujo turbulento de calor} 
+\newpage
+\subsection{Valores RMS de temperatura y velocidad} 
 
-Las Figuras \ref{fig:rms-phi-log-Re5000-Pr071} y \ref{fig:rms-ux-Re5000-Pr071} muestran, respectivamente, los perfiles de las fluctuaciones de temperatura adimensional y de velocidad en la dirección \textit{streamwise}. A primera vista, al aumentar el número de Richardson, las fluctuaciones de temperatura disminuyen mientras que las de velocidad aumentan, lo cual se aprecia sobre todo en los casos de Ri$_b$ más elevados. No obstante, para Ri$_b = 0{.}04$, $0{.}11$ y $1{.}06$ la evolución difiere: primero se observa una reducción (incremento) de las fluctuaciones de velocidad (temperatura) seguida de una ligera recuperación (caída) antes de alinearse con la tendencia general del resto de los casos. Este comportamiento particular también fue encontrado en otros trabajos \cite{you2003direct,carr1973velocity}. El incremento de $(u_x^*)_{rms}$ con la fuerza boyante sugiere que el flujo adquiere un carácter más caótico, y por ende, más turbulento, lo que potencia la mezcla y genera mayor homogeneidad en la temperatura adimensional, y por tanto, atenúa las fluctuaciones de la misma.
+Las Figuras \ref{fig:rms-phi-Re5000-Pr071} y \ref{fig:rms-ux-Re5000-Pr071} muestran los perfiles de las fluctuaciones de temperatura adimensional y de velocidad \textit{streamwise}, respectivamente. Partiendo del caso puramente forzado, el incremento de la fuerza boyante provoca evoluciones distintas en los conjuntos \textbf{I} y \textbf{II} considerados anteriormente. En el primero, se observa una disminución (incremento) de las fluctuaciones de velocidad (temperatura) seguida de una ligera recuperación (leve descenso). En el segundo, las fluctuaciones de velocidad crecen de manera sostenida a medida que la fuerza boyante se intensifica, mientras que las de temperatura tienden a reducirse. Tendencias análogas han sido descritas por otros autores \cite{you2003direct,carr1973velocity}.
 
 \begin{figure}[H]
   \centering
   \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/phi_rms_profile.png}
-    	\label{fig:rms-phi-log-Re5000-Pr071}}
+    \label{fig:rms-phi-Re5000-Pr071}}
   \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/ux_rms_profile.png}
-    	\label{fig:rms-ux-Re5000-Pr071}}
-    \caption{Fluctuaciones RMS: \textbf{(a)} la boyancia atenúa $\theta^*_{\text{rms}}$ y \textbf{(b)}, eleva $u^*_{\text{rms}}$, intensificando la turbulencia.}
+     \label{fig:rms-ux-Re5000-Pr071}}
+    \caption{Fluctuaciones RMS: \textbf{(a)} velocidad en la dirección de la corriente y \textbf{(b)} temperatura adimensional.}
+    \label{fig:rms-Re5000-Pr071}
 \end{figure}
 
-La Figura \ref{fig:uxphi_f-Re5000-Pr071} muestra el perfil de la correlación $\langle u_x^{*'} \theta^{*'} \rangle$. Dado que el flujo de calor convectivo obedece, en primer orden, a $q'' \simeq \rho \hspace{0.5mm} c_P \hspace{0.5mm} U \hspace{0.5mm} \Delta T$, esta correlación puede interpretarse como proporcional al flujo de calor turbulento en la dirección $x$, es decir, al calor transportado por las estructuras turbulentas del flujo \cite{kundu, pope2001turbulent}. Para valores de Ri$_b$ próximos a cero (es decir, la convección forzada predomina), dichas estructuras trasportan el calor sobre todo en las proximidades de las paredes. Sin embargo, al aumentar la fuerza boyante, el signo de $\langle u_x^{*'} \theta^{*'} \rangle$ se invierte en la región central del canal: el flujo de calor turbulento se orienta contracorriente, de modo que regiones más frías de fluido son arrastradas aguas abajo. Este mecanismo disminuye la eficiencia global de la transferencia de calor.
+Como se aprecia en la Figura \ref{fig:rms-ux-Re5000-Pr071}, la aparicion de la fuerza boyante de baja intensidad realtiva produce primero una leve estabilización del flujo, evidenciada por una disminución de aproximadamente un 40$\%$ en los máximos de $(u^*_x)_{rms}$ próximos a las paredes. En contraste, las fluctuaciones de temperatura $T$ aumentan debido al incremento del flujo de calor impuesto y sus máximos se desplazan hacia el centro del canal, favorecidos por una relativa y débil redistribución causada por la turbulencia. Para Ri$_b$=5.33 la fuerza boyante adquiere mayor preponderancia y las fluctuaciones de velocidad crecen en todo el ancho del canal; por ejemplo, en el caso de Ri$_b$=10.65 el valor en el centro es un 100$\%$ mayor respecto al caso con Ri$_b$=1.06. Este incremento de la agitación dinámica redistribuye las fluctuaciones de temperatura, que disminuyen la magnitud adimensional respecto al caso de convección forzada (Figura \ref{fig:rms-phi-Re5000-Pr071}).
 
-Los cambios descritos en las fluctuaciones de temperatura y en el flujo turbulento $\langle u_x'\theta'\rangle$ repercuten directamente en la transferencia global de calor. En particular, la reducción de este flujo en el núcleo del canal para Bo$\lesssim3\times10^{-5}$ anticipa la caída del número de Nusselt, mientras que su posterior aumento (resultado de la mezcla intensificada por la fuerza boyante) explica la recuperación de $Nu$ a valores superiores al caso puramente forzado.
+\subsection{Flujos turbulentos de calor} 
+
+En la Figura \ref{fig:uxphi_f-Re5000-Pr071} se expone el perfil de la correlación $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle$. Esta cantidad corresponde al flujo de calor turbulento \textit{streamwise} que surge como consecuencia de promediar la ecuación de conservación de energía \cite{kundu,pope2001turbulent}, y puede interpretarse como el calor transportado por las estructuras producidas por el flujo turbulento. 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.6\textwidth]{figures/cap5/Re5000-Pr071/uphif_profile.png}
-\caption{Flujo de calor turbulento \textit{streamwise} $\langle u^{*'}_x \theta^{*'} \rangle$: a Ri$_b$ altos se invierte en el núcleo.}
-\label{fig:uxphi_f-Re5000-Pr071}
+  \centering
+  \subfloat[]{
+    \includegraphics[width=0.53\textwidth]{figures/cap5/Re5000-Pr071/uxphif_profile.png}
+    \label{fig:uxphi_f-Re5000-Pr071}}
+  \subfloat[]{
+    \includegraphics[width=0.46\textwidth]{figures/cap5/Re5000-Pr071/uxphif_esquema.eps}
+     \label{fig:uxphi_esquema-Re5000-Pr071}}
+    \caption{\textbf{(a)} Flujo de calor turbulento en la dirección de la corriente. \textbf{(b)} Esquemá de perfiles de temperatura y velocidad para convección forzada y mixta.}
+    \label{fig:rms-Re5000-Pr071}
 \end{figure}
+
+En el seno del canal se aprecia una diferencia marcada entre el caso forzado y aquellos muy próximos a este (Ri$_b$=0.04,0.11), y el resto de casos. Esta disparidad se puede entender cualitativamente a traves de los perfiles de $u^*_x$ y $\theta^*$. Para ello, en la Figura \ref{fig:uxphi_esquema-Re5000-Pr071} se muestran los perfiles esquemáticos de ambas magnitudes para los regímenes de conveción forzada y mixta:
+
+\begin{itemize}
+
+\item \textbf{Cerca la pared:} analizando el caso forzado, si una partícula de fluido próxima a la pared (punto \textbf{(1)}) se desplaza un diferencial $dy^*$ a la izquierda, produce una fluctuación negativa en la velocidad ($u^{* \prime}_x <0$), esto ocasiona que la misma se traslade de una zona más fría a una más caliente, y por lo tanto, experimenta una fluctuación negativa en su temperatura adimensional ($\theta^{* \prime}<0$) que se traduce en una correlación positiva $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle > 0$. 
+
+Por otro lado, si la partícula de fluido se desplaza un diferencial $dy^*$ a la derecha, esto genera una fluctuación positiva en la velocidad ($u^{* \prime}_x >0$) y la misma se desplaza de una región más caliente a una más fría, y en consecuencia $\theta^{* \prime}$ es positiva y se produce nuevamente una correlación positiva.
+
+La situación es completamente análoga para el caso de convección mixta.
+
+\item \textbf{Cerca del centro del canal:} En el caso de convección forzada la situación es idéntica: un desplazamiento $dy^*$ a la izquierda (derecha) desde una región cercana al centro (punto \textbf{(2)}) da lugar a una fluctuación negativa (positiva) de la velocidad y la partícula se traslada de una región más fría (caliente) a una más caliente (fría) y nuevamente la correlación resulta postiva. Por cuál, en el caso forzado se tiene una correlación positiva global. 
+
+Sin embargo, si uno realiza el mismo análisis para el caso de convección mixta, ocurre lo contrario, en otras palabras, un desplazamiento $dy^*$ a la izquierda (derecha) produce una fluctuación positiva (negativa) de la velocidad y la partícula se traslada de una región más fría (caliente) a una más caliente (fría) dado como resultado una fluctuación negativa de la temperatura adimensional en ambas situaciones y por lo tanto, en el seno del canal, la correlación $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle$ es negativa.
+\end{itemize}  
+
+A partir del análisis anterior, se puede afirmar, que la disparidad del comportamiento  entre ambos regímenes de convección es consecuencia del cambio de la concavidad del perfil de velocidad en el seno del canal, debido al aumento de la fuerza boyante.
+
+
+\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/cap5/Re5000-Pr071/uyphif_profile.png}  
+  \caption{Flujo de calor turbulento en la dirección normal a la pared.}
+  \label{fig:uyphi_f-Re5000-Pr071}
+\end{figure}
+
+Por último, en la Figura \ref{fig:uyphi_f-Re5000-Pr071} se expone el perfil de la correlación $\langle u_y^{\ast \prime } \theta^{\ast \prime } \rangle$. 
+
+Ri_b = 0.04,0.11,1.06 etc se observa un corrimiento del maximo cerca de la pared hacia el seno del canal
 
 
 \section{Comparación entre casos de distinto Prandtl}
@@ -319,6 +373,22 @@ Esta última cuestión puede confirmarse al observar las Figuras \ref{fig:shear_
   \caption{Producción de energía cinética turbulenta: \textbf{(a)} componente por cizalla $\mathcal{P}$ y \textbf{(b)} contribución de la fuerza boyante $\mathcal{B}$.}
   \label{fig:budgets_prod}
 \end{figure}
+
+
+Como se analizará en la sección \ref{sec:nu}, en el primer conjunto la transferencia de calor por convección se deteriora, mientras que en el segundo conjunto dicha transferencia se recupera e incluso mejora respecto al caso de convección forzada pura. Estas observaciones, que no resultan intuitivas a primera vista, se esclarecen al examinar la Figura \ref{fig:uphi-Re5000-Pr071}, donde se representa el perfil medio $\langle u_x^{*}\theta^{*}\rangle$. El número de Nusselt es inversamente proporcional a $\langle\theta^{*}_b\rangle$ (ecuación \ref{eq:nu}), magnitud que depende del comportamiento de $\langle u_x^{*}\theta^{*}\rangle$. En consecuencia, un aumento de la temperatura incrementa $\langle u_x^{*}\theta^{*}\rangle$ y, por lo tanto, eleva $\langle\theta^{*}_b\rangle$, lo que conlleva una disminución de Nu.
+
+\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/cap5/Re5000-Pr071/uxphi_profile.png}  
+  \caption{Perfil de la magnitud media $\langle u^{*}_x\theta^{*}\rangle$.}
+  \label{fig:uphi-Re5000-Pr071}
+\end{figure}
+
+
+
+Los cambios descritos en las fluctuaciones de temperatura y en el flujo turbulento $\langle u_x'\theta'\rangle$ repercuten directamente en la transferencia global de calor. En particular, la reducción de este flujo en el núcleo del canal para Bo$\lesssim3\times10^{-5}$ anticipa la caída del número de Nusselt, mientras que su posterior aumento (resultado de la mezcla intensificada por la fuerza boyante) explica la recuperación de $Nu$ a valores superiores al caso puramente forzado.
+
+
 
 
 \newpage
