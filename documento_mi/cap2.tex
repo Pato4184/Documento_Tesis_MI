@@ -9,7 +9,7 @@ capitulos posteriores.
 Definiciones y conceptos básicos de turbulencia.
 
 
-\section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno y Condiciones de Borde}
+\section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno}
 
 Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=\pm d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
 
@@ -88,7 +88,7 @@ siendo $\rho_w \equiv \rho(T=\langle T_w \rangle)$. Utilizando estas definicione
 \end{equation}
 
 
-Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible demostrar que $\mathcal{A} = \frac{q''_w}{\rho_o  c_p U_b d}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} en su forma adimensional queda escrito como se muestra en el cuadro \ref{eq:gob_system_adim}. Los números adimensionales asociados a estas ecuaciones se expresan en las relaciones \ref{eq:num_adim}: de izquierda a derecha, se tiene el número de Reynolds, el número de Prandtl, el parámetro que acompaña al término boyante y al número de Richardson basado en el flujo de calor. 
+Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible demostrar que $\mathcal{A} = \frac{q''_w}{\rho_o  c_p U_b d}$ siendo $d$ el semiancho del canal. Así, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$ y la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $, el sistema de ecuaciones \ref{eq:gob_system} dimensional queda escrito en su forma adimensional como se muestra en el cuadro \ref{eq:gob_system_adim}. Los números adimensionales asociados a estas ecuaciones se expresan en las relaciones \ref{eq:num_adim}: de izquierda a derecha, se tiene el número de Reynolds, el número de Prandtl, el parámetro que acompaña al término boyante y al número de Richardson basado en el flujo de calor. 
 
 Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por un caudal másico constante. Esta cuestión se encuentra representada por el término fuente $f \hspace{0.3mm} \mathbf{\widehat{e_x}}$, en la ecuación de momento, donde $f$ es una constante en el espacio y varía con el tiempo de manera que mantiene constante el caudal total. 
 
@@ -334,6 +334,34 @@ A partir de las condiciones de borde \ref{eq:bc_1} - \ref{eq:bc_5}, las autofunc
 
 La resolución de este problema de autovalores generalizado se realiza empleando una estrategía numérica la cuál se detalla en el capítulo 3. 
 
-\section{Ondas TS e Inestabilidad Secundaria }
+\section{Mecanismos de Inestabilidad. Ondas TS e Inestabilidad Secundaria }
 
-Falta completar
+\textcolor{red}{FALTA COMPLETAR. Esto es solo para poder citar las formulas en el capitulo 6 de resultados.}
+
+Para el estudio de la transición temporal es necesario introducir una condición inicial en el flujo de interés. En el presente trabajo, la perturbación impuesta en la condición inicial, siguiendo la metodología de Zang y Krist [1989], se calcula con las autofunciones asociadas a un autovalor elegido. La condición inicial adoptada tiene la forma siguiente: 
+
+\begin{equation}
+\begin{aligned}
+\mathbf{v}(x,y,z,t=0) &= \mathbf{V} + \widetilde{\mathbf{v}} \\
+\phi(x,y,z,t=0) &= \Phi +  \widetilde{\varphi} 
+\end{aligned}
+\label{eq:init_con_1}
+\end{equation}
+
+donde $\mathbf{V}=(V_x(y),0,0)$ y también se tiene que:
+
+\begin{equation}
+\begin{aligned}
+\widetilde{\mathbf{v}}(x,y,z,t=0) = A_{2D} \mathbb{R} \left[ \widehat{\mathbf{v^{}_{2D}}}(y) e^{\mathit{i} \alpha_{2D} x} \right] &+ \frac{1}{2} A_{3D} \mathbb{R} \left[ \widehat{\mathbf{v^{+}_{3D}}}(y) e^{\mathit{i} ( \alpha x + \beta z)} \right] \\
+ &+ \frac{1}{2} A_{3D} \mathbb{R} \left[ \widehat{\mathbf{v^{-}_{3D}}}(y) e^{\mathit{i} ( \alpha x - \beta z)} \right]
+\end{aligned}
+\label{eq:init_con_2}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+\widetilde{\varphi}(x,y,z,t=0) = A_{2D} \mathbb{R} \left[ \widehat{\varphi^{}_{2D}}(y) e^{\mathit{i} \alpha_{2D} x} \right] &+ \frac{1}{2} A_{3D} \mathbb{R} \left[ \widehat{\varphi^{+}_{3D}}(y) e^{\mathit{i} ( \alpha x + \beta z)} \right] \\
+ &+ \frac{1}{2} A_{3D} \mathbb{R} \left[ \widehat{\varphi^{-}_{3D}}(y) e^{\mathit{i} ( \alpha x - \beta z)} \right]
+\end{aligned}
+\label{eq:init_con_3}
+\end{equation}
