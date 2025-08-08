@@ -1,4 +1,4 @@
-\chapter{Convección Mixta En Transición Laminar-Turbulenta}
+\chapter{Convección Mixta En Transición Laminar-Turbulenta} \label{cap:transicion}
 
 El presente capítulo examina la transición laminar-turbulenta en convección mixta en un canal de placas paralelas mediante simulaciones numéricas directas (DNS). El mismo se organiza en tres partes: (i) una exploración de condiciones iniciales para dos valores del número de Richardson \textit{bulk} (casos A y B), (ii) un análisis detallado del caso A-C10 y (iii) un análisis detallado del caso B-C2. Este ordenamiento permite evaluar la sensibilidad del proceso transitorio a la naturaleza de la perturbación inicial y contrastar la dinámica de transición bajo diferentes intensidades de fuerza boyante.
 
@@ -12,13 +12,19 @@ En contraste, para el conjunto B con Ri$_b$=1.06, las configuraciones considerad
 
 \section{Exploración de casos}
 
-La transición temporal laminar-turbulenta en convección mixta ha sido poco estudiada. Por ello, se realiza primero una exploración numérica que permita identificar combinaciones de perturbaciones capaces de inducir la inestabilidad. Se seleccionan dos valores del número de Richardson \textit{bulk} (casos A y B de la Tabla \ref{tab:cases}) manteniendo constantes Re$_o$ y Pr. 
+Como se ha mencionado en los Capítulos \ref{cap:intro} y \ref{cap:modelo}, la convección mixta en canales ha sido investigada exhaustivamente debido a sus múltiples aplicaciones de interés. Sin embargo, la transición laminar-turbulenta en convección mixta apenas ha sido objeto de investigación. En la bibliografía reciente existen escasos trabajos como el de Chen y Chung \cite{chen2003direct}, donde se analiza el fenómeno de transición temporal.
 
-El mecanismo de inestabilización se contruye a partir de condiciones iniciales de acuerdo a las ecuaciones \ref{eq:init_con_1} - \ref{eq:init_con_3} con distintos números de onda y amplitudes. Las autofunciones y sus autovalores se obtuvieron mediante el método de estabilidad lineal descrito en el Capítulo [REFERENCIA]. Asimismo, dichas autofunciones y su espectro de autovalores se encuentran disponible en el Apéndice \ref{cap:transition_apendice}. Para decidir si una perturbación arbitraria es capaz de inestabilizar el flujo considerado se utiliza la evolución temporal de las siguientes magnitudes:
+Por ello, se realiza primero una exploración numérica que permita identificar combinaciones de perturbaciones capaces de inducir la inestabilidad. Se seleccionan dos números de Richardson \textit{bulk} que corresponden a soluciones desarrolladas con diferentes características: una levemente afectada por la fuerza boyante y la otra con perfiles de velocidad y temperatura claramente influidos por la flotación. Estos corresponden a los casos A y B de la Tabla \ref{tab:cases}, respectivamente, y en ambos se considera Re$_o$=5000 y Pr=0.71.
+
+El mecanismo de inestabilización se construye a partir de condiciones iniciales de acuerdo a las ecuaciones \ref{eq:init_con_1} - \ref{eq:init_con_3} seleccionando distintos números de onda y amplitudes. Los autovalores, y sus autofunciones asociadas, se obtuvieron mediante el análisis de estabilidad lineal descrito en el Capítulo \ref{cap:modelo}. El espectro de autovalores y las autofunciones empleadas se encuentran disponibles en el Apéndice \ref{cap:transition_apendice}. Para decidir si una perturbación arbitraria es capaz de inestabilizar el flujo se estudia la evolución temporal de las siguientes magnitudes:
 
 \begin{itemize}
-  \item la energía cinética turbulenta, TKE\footnote{\textit{Turbulent Kinetic Energy}}, \(k = \langle u_i^{* \prime}u_i^{* \prime}\rangle/2\),
-  \item el número de Reynolds de fricción
+  \item la energía cinética turbulenta, TKE, definida en el Capítulo \ref{cap:modelo}: 
+  	\begin{equation*}
+  		k = \frac{1}{2} \left[ \langle u^{* \prime}_x u^{* \prime}_x \rangle + \langle u^{* \prime}_y u^{* \prime}_y \rangle + \langle u^{* \prime}_z u^{* \prime}_z \rangle \right], 
+  	\end{equation*}
+
+  \item y el número de Reynolds de fricción
         \[
           \text{Re}_{\tau} = \frac{u_{\tau}\,d}{\nu},
         \]
@@ -27,30 +33,33 @@ El mecanismo de inestabilización se contruye a partir de condiciones iniciales 
 
 \begin{table}[H]
 \centering
-\resizebox{0.\textwidth}{!}{%
-\begin{tabular}{lllll}
+\resizebox{0.24\textwidth}{!}{%
+\begin{tabular}{lccc}
 \toprule
-Caso & Re$_o$ & Pr & Ri$_b$ & Ra \\
+Caso & Ri$_b$ & Ra \\
 \midrule
-A & 5000 &  0.71 & 0.04 & 65  \\
-B & 5000 &  0.71 & 1.06 & 17750  \\
+A & 0.04 & 65 \\
+B & 1.06 & 17750 \\
 \bottomrule
 \end{tabular}}
 \caption{Parámetros adimensionales de los dos casos elegidos.}
 \label{tab:cases}
 \end{table}
 
+
 \subsection{Caso A (Ri$_b$=0.04)}
 
-Los parámetros de las perturbaciones se resumen en la Tabla \ref{tab:grupo1}. Por otro lado, en la Figura \ref{fig:case-A-Re5000-Pr071} se expone la evolución en el tiempo de TKE y Re$_{\tau}$ para las distintas condiciones. 
+En la Figura \ref{fig:case-A-Re5000-Pr071} se expone la evolución en el tiempo de TKE y Re$_{\tau}$ para las distintas condiciones iniciales consideradas. Los parámetros asociados a las perturbaciones de dichas condiciones se resumen en la Tabla \ref{tab:grupo1}. Adicionalmente, en dichas gráficas, se añaden los valores asociados al caso laminar\footnote{En el caso de TKE, las cantidades $\langle u^{* \prime}_i u^{* \prime}_i \rangle$ se aproximan por los valores de las perturbaciones $(\widetilde{v_i} \widetilde{v_i})$.} (linea a trazos negra) y los valores asociados al caso turbulento completamente desarrollado (linea a trazos roja).  
 
-Los cuatro primeros ensayos (de A‑C1 a A‑C4) utilizan únicamente una onda bidimensional y un mismo conjunto de autofunciones cuya parte imaginaria del autovalor es positiva (modo más inestable). Se observa que aumentar A$_\text{2D}$ del 1 \% al 6 \% no genera transición, solo adelanta el máximo en la TKE (de $t^* \approx 140$ a $\approx 80$); sin embargo, el flujo se relaminariza: la evolución temporal de TKE experimenta un descenso pronunciado y Re$_{\tau}$ cae hasta $\approx 145$ sin recuperar su valor inicial.
+Las condiciones iniciales de los cuatro primeros ensayos, de A‑C1 a A‑C4, se construyen empleando únicamente una onda bidimensional y un mismo conjunto de autofunciones cuya parte imaginaria del autovalor es positiva (modo más inestable, $\lambda_{2D}$=1.212 + 0.037 j); no obstante, se varían las amplitudes 2D utilizadas. Al aumentar A$_\text{2D}$ del 1 \% al 6 \%  no se logra gatillar la transición. En su lugar, el efecto que se logra es la traslación (adelanto) del máximo en la TKE desde $t^* \approx 140$ hasta $t^* \approx 80$. En todos los casos, luego de crecer y alcanzar un valor máximo, la TKE retorna a niveles cercanos a su valor inicial en $t^*=0$ próximos a la referencia laminar. Por su parte, los valores de Re$_{\tau}$ permanecen practicamente constante hasta $t^* \approx 90$ donde comienza un descenso de la magnitud, y posteriormente, tiende a recuperarse y evolucionar, posiblemente, hacia su estado incial. Sin embargo, como lo que se busca es una transición del flujo, se opta por finalizar las simulaciones de estos ensayos.  
 
-En los casos A‑C7 y A‑C8 se conserva la amplitud (6 \%) pero se emplean autofunciones asociadas a modos menos inestables. Se observa que el máximo en la TKE se retrasa hasta los tiempos adimensionales $t^* \approx 340$ y $t^* \approx 180$, respectivamente. Por otro lado, el descenso de Re$_{\tau}$ se retrasa. El condición de flujo vuelve a ser una situación estable.
+Por otro lado, se trata de inducir la inestabilidad empleando otras autofunciones. Se conserva la amplitud (6 \%) y se utilizan autofunciones de modos menos inestables (véase Tabla \ref{tab:grupo1}). En ambos ensayos, la TKE crece hasta un máximo absoluto, que continua con un segundo máximo local de menor intensidad y finaliza con una pequeña replica de aún menor intensidad (aproximadamente un órden de magnitud menor) para luego retornar a valores próximos al estado inicial. Sin embargo, si bien el comportamiento descrito es similar en ambos casos, debido a que la parte imaginaria del autovalor correspondiente a A-C7 es menor que el de A-C8, el dinámica del primero se retrasa. Esto se aprecia en los máximos absolutos de ambos: para A-C7 el máximo se encuentra en $t^* \approx 340$, mientras que para A-C8 está ubicado en  $t^* \approx 180$. Por su parte, el descenso de Re$_{\tau}$ se retrasa en ambos casos, siendo más extenso en el ensayo A-C7. Luego, en ambos casos, el sistema adquiere una nueva condición de flujo que, al menos hasta el tiempo simulado, es distinto del estado inicial. No obstante, no se ha encontrado indicios de que una transición temporal vaya a ocurrir.  
 
-Finalmente, en los ensayos A‑C9 y A‑C10 se realiza una combinación de una onda 2D (A$_\text{2D}=6$ \%) con dos ondas 3D oblicuas débiles (A$_\text{3D}=1$ \%). En ambas simulaciones se observa que, tras una primera fase laminar ($t^*\lesssim 300$), se produce un crecimiento brusco de TKE y un incremento de Re$_{\tau}$ que luego se sostiene en el tiempo, es decir, estas magnitudes no decaen como en los casos anteriores. Esto indica el comienzo de la transición hacia un régimen turbulento y confirma que la combinación de ondas 2D y 3D es necesaria para ocasionar la inestabilidad del flujo.
+El uso exclusivo de ondas bidimensionales resulta, aparentemente, insuficiente para desencadenar la transición del flujo. Por ello, resulta necesario buscar otra estrategia o herramienta que nos permita inestabilizar al mismo. Se procede entonces a emplear una combinación de ondas bidimensionales y tridimensionales para construir una perturbación que pueda reproducir la inestabilidad secundaria (Capitulo \ref{cap:modelo}). En este sentido, las condiciones iniciales de los ensayos A‑C9 y A‑C10 se construyen empleando una combinación de una onda 2D (A$_\text{2D}=6$ \% y mismas autofunciones de los casos A-C7 y A-C8, respectivamente) con dos ondas 3D oblicuas (A$_\text{3D}=1$ \%). 
 
-\paragraph{Caso representativo.} El ensayo \textbf{A‑C10} se elige como referencia para la discusión detallada (Sección \ref{sec:ac10}) ya que se logra una transición temprana ($t^* \approx 300$) que fue claramente inducida y además que se sostiene en el tiempo ($t^*>400$). 
+En una primera etapa, tanto la energía cinética turbulenta como el Re$_{\tau}$ reproducen el mismo comportamiento que ocurre para los ensayos A‑C7 y A‑C8. Posteriormente, para $t^* \gtrsim 395$ (A-C9) y $t^* \gtrsim 340$ (A-C10), los casos se despegan y experimentan un crecimiento brusco seguido de un pico que luego se sostiene en el tiempo entorno al valor del caso completamente desarrollado; es decir, no decaen como en los casos anteriores. Esto indica el comienzo de la transición hacia un régimen turbulento, y para estos dos ensayos simulados, se observa que la combinación de ondas 2D y 3D resulta exitosa para inestabilizar el flujo. 
+
+\paragraph{Caso representativo.} El ensayo \textbf{A‑C10} se elige como referencia para la discusión detallada (Sección \ref{sec:ac10}) ya que se logra un inicio de transición temprano ($t^* \approx 300$) que fue claramente inducida y además que se sostiene en el tiempo ($t^*>400$). 
 
 \begin{table}[H]
 \centering
