@@ -12,17 +12,19 @@ En contraste, para el conjunto B con Ri$_b$=1.06, las configuraciones considerad
 
 \section{Exploración de casos}
 
-Como se ha mencionado en los Capítulos \ref{cap:intro} y \ref{cap:modelo}, la convección mixta en canales ha sido investigada exhaustivamente debido a sus múltiples aplicaciones de interés. Sin embargo, la transición laminar-turbulenta en convección mixta apenas ha sido objeto de investigación. En la bibliografía reciente existen escasos trabajos como el de Chen y Chung \cite{chen2003direct}, donde se analiza el fenómeno de transición temporal.
+Como se ha mencionado en los Capítulos \ref{cap:intro} y \ref{cap:modelo}, la convección mixta en canales ha sido investigada exhaustivamente debido a sus múltiples aplicaciones de interés. Sin embargo, la transición laminar-turbulenta en convección mixta apenas ha sido objeto de investigación. En la bibliografía reciente existen escasos trabajos, uno de ellos es el de Chen y Chung \cite{chen2003direct}, donde se analiza el fenómeno de transición temporal.
 
-Por ello, se realiza primero una exploración numérica que permita identificar combinaciones de perturbaciones capaces de inducir la inestabilidad. Se seleccionan dos números de Richardson \textit{bulk} que corresponden a soluciones desarrolladas con diferentes características: una levemente afectada por la fuerza boyante y la otra con perfiles de velocidad y temperatura claramente influidos por la flotación. Estos corresponden a los casos A y B de la Tabla \ref{tab:cases}, respectivamente, y en ambos se considera Re$_o$=5000 y Pr=0.71.
+Por esta razón, se realiza primero una exploración numérica que permita identificar combinaciones de perturbaciones capaces de inducir la inestabilidad del flujo. Se seleccionan dos números de Richardson \textit{bulk} que corresponden a soluciones desarrolladas con diferentes características: una levemente afectada por la fuerza boyante y la otra con perfiles de velocidad y temperatura claramente influidos por la flotación. Estos corresponden a los casos A y B de la Tabla \ref{tab:cases}, respectivamente, y en ambos se considera Re$_o$=5000 y Pr=0.71.
 
-El mecanismo de inestabilización se construye a partir de condiciones iniciales de acuerdo a las ecuaciones \ref{eq:init_con_1} - \ref{eq:init_con_3} seleccionando distintos números de onda y amplitudes. Los autovalores, y sus autofunciones asociadas, se obtuvieron mediante el análisis de estabilidad lineal descrito en el Capítulo \ref{cap:modelo}. El espectro de autovalores y las autofunciones empleadas se encuentran disponibles en el Apéndice \ref{cap:transition_apendice}. Para decidir si una perturbación arbitraria es capaz de inestabilizar el flujo se estudia la evolución temporal de las siguientes magnitudes:
+El mecanismo de inestabilización se construye a partir de condiciones iniciales de acuerdo a las ecuaciones \ref{eq:init_con_1} - \ref{eq:init_con_3} seleccionando distintos números de onda y amplitudes (véase Sección \ref{sec:mecanismo}). Los autovalores, y sus autofunciones asociadas, se obtuvieron mediante el análisis de estabilidad lineal descrito en el Capítulo \ref{cap:modelo}, utilizando la herramienta OSMC descrita en el Capítulo \ref{cap:numerico}. El espectro de autovalores y las autofunciones empleadas se encuentran disponibles en el Apéndice \ref{cap:transition_apendice}. Por otro lado, para decidir si una perturbación arbitraria es capaz de inestabilizar el flujo se estudia la evolución temporal de las siguientes magnitudes:
 
 \begin{itemize}
-  \item la energía cinética turbulenta, TKE, definida en el Capítulo \ref{cap:modelo}: 
+  \item la energía cinética turbulenta, TKE o $k$, definida en el Capítulo \ref{cap:modelo}: 
   	\begin{equation*}
-  		k = \frac{1}{2} \left[ \langle u^{* \prime}_x u^{* \prime}_x \rangle + \langle u^{* \prime}_y u^{* \prime}_y \rangle + \langle u^{* \prime}_z u^{* \prime}_z \rangle \right], 
+  		k = \frac{1}{2} \left[ \langle u^{* \prime}_x u^{* \prime}_x \rangle + \langle u^{* \prime}_y u^{* \prime}_y \rangle + \langle u^{* \prime}_z u^{* \prime}_z \rangle \right] \ 
   	\end{equation*}
+  	
+  
 
   \item y el número de Reynolds de fricción
         \[
@@ -46,20 +48,34 @@ B & 1.06 & 17750 \\
 \label{tab:cases}
 \end{table}
 
+\textit{\textbf{Aclaración Importante.}} En las siguientes secciones, el lector hallará gráficas con la evolución temporal de las magnitudes  Re$_{\tau}$, TKE, varianza de la temperatura, número de Nusselt (Nu) y factor de fricción de Darcy ($f$). En ellas, aparecen representados valores constantes mediante lineas a trazos cuyas etiquetas contienen los subíndices ``Init'' y ``Dev''. El primer subíndice corresponde al cálculo de las magnitudes antes mencionadas empleando los perfiles de las condiciones iniciales ($t^*=0$); el segundo corresponde al cálculo de las magnitudes empleando los perfiles del flujo turbulento completamente desarrollado, presentados en el Capítulo \ref{cap:desarrollado}. 
+
+Dado que los perfiles en $t^*=0$ son muy similares a los perfiles del flujo base laminar, los valores de Re$_{\tau}$, Nu y $f$ calculados con la condición inicial son equivalentes a los calculados en el régimen laminar\footnote{En efecto, este cálculo se realizo. Luego, se comparó el valor calculado de estas magnitudes utilizando la condición inicial por un lado, y la solución laminar, por el otro. Los resultados arrojados son completamente consistentes.}. Por otro lado, los valores de TKE y la varianza de la temperatura se aproximan utilizando las autofunciones $\lbrace \widehat{v_x}, \widehat{v_y}, \widehat{v_z}, \widehat{\theta} \hspace{0.3mm} \rbrace$ que aparecen en las expresiones de las perturbaciones. Esto surge de considerar lo siguiente: 
+
+$$\xi^{\prime} (x^*,y^*,z^*,t^* \simeq 0) \approx \widetilde{\xi}(x^*,y^*,z^*,t^*=0) =  \widehat{\xi}(y^*) e^{i (\alpha x^* + \beta z^*)} , $$
+donde $\widetilde{\xi}$ representa una perturbación arbitraria y $\widehat{\xi}$ su amplitud asociada. De esta manera, los valores de TKE y $\langle \theta^{* \prime} \theta^{* \prime} \rangle$ se estiman mediante las relaciones \ref{eq:tke-calc} y \ref{eq:varteta-calc} donde $\widetilde{\mathbf{v}}$ y $\widetilde{\varphi}$ estan dadas por las ecuaciones \ref{eq:init_con_2} y \ref{eq:init_con_3}, respectivamente.
+
+\begin{align}
+\text{TKE} &\simeq \frac{1}{2} \int \left[ \widetilde{\mathbf{v}} \cdot \widetilde{\mathbf{v}} \right] dx^* dy^* dz^* 
+\label{eq:tke-calc}\\
+\langle \theta^{* \prime} \theta^{* \prime} \rangle  &\simeq \int \left[ \widetilde{\varphi} \hspace{0.2mm} \right]^2 dx^* dy^* dz^* 
+\label{eq:varteta-calc}
+\end{align}  
+
 
 \subsection{Caso A (Ri$_b$=0.04)}
 
-En la Figura \ref{fig:case-A-Re5000-Pr071} se expone la evolución en el tiempo de TKE y Re$_{\tau}$ para las distintas condiciones iniciales consideradas. Los parámetros asociados a las perturbaciones de dichas condiciones se resumen en la Tabla \ref{tab:grupo1}. Adicionalmente, en dichas gráficas, se añaden los valores asociados al caso laminar\footnote{En el caso de TKE, las cantidades $\langle u^{* \prime}_i u^{* \prime}_i \rangle$ se aproximan por los valores de las perturbaciones $(\widetilde{v_i} \widetilde{v_i})$.} (linea a trazos negra) y los valores asociados al caso turbulento completamente desarrollado (linea a trazos roja).  
+En la Figura \ref{fig:case-A-Re5000-Pr071} se expone la evolución en el tiempo de TKE y Re$_{\tau}$ para las distintas condiciones iniciales consideradas. Los parámetros asociados a las perturbaciones de dichas condiciones se resumen en la Tabla \ref{tab:grupo1}. Adicionalmente, se añaden los valores asociados al caso turbulento completamente desarrollado (linea a trazos roja).  
 
-Las condiciones iniciales de los cuatro primeros ensayos, de A‑C1 a A‑C4, se construyen empleando únicamente una onda bidimensional y un mismo conjunto de autofunciones cuya parte imaginaria del autovalor es positiva (modo más inestable, $\lambda_{2D}$=1.212 + 0.037 j); no obstante, se varían las amplitudes 2D utilizadas. Al aumentar A$_\text{2D}$ del 1 \% al 6 \%  no se logra gatillar la transición. En su lugar, el efecto que se logra es la traslación (adelanto) del máximo en la TKE desde $t^* \approx 140$ hasta $t^* \approx 80$. En todos los casos, luego de crecer y alcanzar un valor máximo, la TKE retorna a niveles cercanos a su valor inicial en $t^*=0$ próximos a la referencia laminar. Por su parte, los valores de Re$_{\tau}$ permanecen practicamente constante hasta $t^* \approx 90$ donde comienza un descenso de la magnitud, y posteriormente, tiende a recuperarse y evolucionar, posiblemente, hacia su estado incial. Sin embargo, como lo que se busca es una transición del flujo, se opta por finalizar las simulaciones de estos ensayos.  
+Las condiciones iniciales de los cuatro primeros ensayos, de A‑C1 a A‑C4, se construyen empleando únicamente una onda bidimensional y un mismo conjunto de autofunciones cuya parte imaginaria del autovalor ($\lambda_{2D}$=1.212 + 0.037 j) es la cota superior\footnote{Esto  se conoce como modo más inestable \cite{schmid}.} de todo el espectro de autovalores asociado. Por otro lado, se varían las amplitudes 2D utilizadas: al aumentar A$_\text{2D}$ del 1 \% al 6 \% (Tabla \ref{tab:grupo1})  no se logra gatillar la transición. En su lugar, el efecto que se logra es la traslación (adelanto) del máximo en la TKE desde $t^* \approx 140$ hasta $t^* \approx 80$. En todos los casos, luego de crecer y alcanzar un valor máximo, la TKE retorna a niveles cercanos a su valor inicial ($t^*=0$). Por su parte, los valores de Re$_{\tau}$ permanecen practicamente constante hasta $t^* \approx 100$ donde comienza un descenso de la magnitud y posteriormentes tiende a recuperarse y evolucionar, aparentemente, hacia su estado inicial. Sin embargo, como lo que se busca es una transición temprana del flujo, se opta por finalizar las simulaciones de estos ensayos.  
 
-Por otro lado, se trata de inducir la inestabilidad empleando otras autofunciones. Se conserva la amplitud (6 \%) y se utilizan autofunciones de modos menos inestables (véase Tabla \ref{tab:grupo1}). En ambos ensayos, la TKE crece hasta un máximo absoluto, que continua con un segundo máximo local de menor intensidad y finaliza con una pequeña replica de aún menor intensidad (aproximadamente un órden de magnitud menor) para luego retornar a valores próximos al estado inicial. Sin embargo, si bien el comportamiento descrito es similar en ambos casos, debido a que la parte imaginaria del autovalor correspondiente a A-C7 es menor que el de A-C8, el dinámica del primero se retrasa. Esto se aprecia en los máximos absolutos de ambos: para A-C7 el máximo se encuentra en $t^* \approx 340$, mientras que para A-C8 está ubicado en  $t^* \approx 180$. Por su parte, el descenso de Re$_{\tau}$ se retrasa en ambos casos, siendo más extenso en el ensayo A-C7. Luego, en ambos casos, el sistema adquiere una nueva condición de flujo que, al menos hasta el tiempo simulado, es distinto del estado inicial. No obstante, no se ha encontrado indicios de que una transición temporal vaya a ocurrir.  
+Por otro lado, se trata de inducir la inestabilidad empleando otras autofunciones. Se conserva la amplitud (6 \%) y se utilizan autofunciones de modos menos inestables (véase Tabla \ref{tab:grupo1} y Apéndice \ref{cap:transition_apendice}). Estos casos corresponden a los ensayos A-C7 y A-C8. En ambos, la TKE crece hasta un máximo absoluto, que continua con un segundo máximo local de menor intensidad y finaliza con una pequeña replica de aún menor intensidad (aproximadamente un órden de magnitud menor) para luego retornar a valores próximos al estado inicial. El comportamiento descrito es similar en ambos casos, con la diferencia que en el ensayo A-C7 la dinámica se retrasa respecto a la de A-C8\footnote{ Esta cuestión coincide con el hecho de que la parte imaginaria del autovalor correspondiente a A-C7 es mayor que el de A-C8.}. El restraso en la dinámica se aprecia al comparar ambos máximos absolutos: para A-C7 el máximo se encuentra en $t^* \approx 340$, mientras que para A-C8 está ubicado en  $t^* \approx 180$. Por su parte, el descenso de Re$_{\tau}$ se retrasa en ambos casos, siendo más extenso en el ensayo A-C7. Luego, en ambos ensayos, el sistema adquiere una nueva condición de flujo que, al menos hasta el tiempo simulado, es distinto del estado inicial. No obstante, no se ha encontrado indicios de que una transición temporal temprana vaya a ocurrir.  
 
-El uso exclusivo de ondas bidimensionales resulta, aparentemente, insuficiente para desencadenar la transición del flujo. Por ello, resulta necesario buscar otra estrategia o herramienta que nos permita inestabilizar al mismo. Se procede entonces a emplear una combinación de ondas bidimensionales y tridimensionales para construir una perturbación que pueda reproducir la inestabilidad secundaria (Capitulo \ref{cap:modelo}). En este sentido, las condiciones iniciales de los ensayos A‑C9 y A‑C10 se construyen empleando una combinación de una onda 2D (A$_\text{2D}=6$ \% y mismas autofunciones de los casos A-C7 y A-C8, respectivamente) con dos ondas 3D oblicuas (A$_\text{3D}=1$ \%). 
+El uso exclusivo de ondas bidimensionales resulta, aparentemente, insuficiente para desencadenar la transición del flujo. Por ello, resulta necesario buscar otra estrategia o herramienta que nos permita inestabilizar al mismo. Se procede entonces a emplear una combinación de ondas bidimensionales y tridimensionales para construir una perturbación que pueda reproducir la inestabilidad secundaria (Sección \ref{sec:mecanismo}). En este sentido, las condiciones iniciales de los ensayos A‑C9 y A‑C10 se construyen empleando la combinación de una onda 2D (A$_\text{2D}=6$ \% y mismas autofunciones de los casos A-C7 y A-C8, respectivamente) con dos ondas 3D oblicuas (A$_\text{3D}=1$ \%). 
 
-En una primera etapa, tanto la energía cinética turbulenta como el Re$_{\tau}$ reproducen el mismo comportamiento que ocurre para los ensayos A‑C7 y A‑C8. Posteriormente, para $t^* \gtrsim 395$ (A-C9) y $t^* \gtrsim 340$ (A-C10), los casos se despegan y experimentan un crecimiento brusco seguido de un pico que luego se sostiene en el tiempo entorno al valor del caso completamente desarrollado; es decir, no decaen como en los casos anteriores. Esto indica el comienzo de la transición hacia un régimen turbulento, y para estos dos ensayos simulados, se observa que la combinación de ondas 2D y 3D resulta exitosa para inestabilizar el flujo. 
+En una primera etapa, tanto la energía cinética turbulenta como el Re$_{\tau}$ reproducen el mismo comportamiento que ocurre para los ensayos A‑C7 y A‑C8. Posteriormente, para $t^* \gtrsim 395$ (A-C9) y $t^* \gtrsim 340$ (A-C10), los casos se despegan y experimentan un crecimiento brusco seguido de un pico y un ligero descenso. Luego, las magnitudes se sostienen en el tiempo entorno al valor del caso completamente desarrollado; es decir, no decaen como en los casos anteriores. Esto indica el comienzo de la transición hacia un régimen turbulento, y para estos dos ensayos simulados, se observa que la combinación de ondas 2D y 3D resulta exitosa para inestabilizar el flujo. 
 
-\paragraph{Caso representativo.} El ensayo \textbf{A‑C10} se elige como referencia para la discusión detallada (Sección \ref{sec:ac10}) ya que se logra un inicio de transición temprano ($t^* \approx 300$) que fue claramente inducida y además que se sostiene en el tiempo ($t^*>400$). 
+\paragraph{Caso representativo.} El ensayo \textbf{A‑C10} se elige como referencia para la discusión detallada (Sección \ref{sec:ac10}) ya que se logra una transición temprana del flujo ($t^* \approx 300$) que fue claramente inducida y además que se sostiene en el tiempo ($t^*>400$). 
 
 \begin{table}[H]
 \centering
@@ -99,14 +115,22 @@ A-C10 & 1.12 & 2.1  & 6  & 1    & 0.385 - 0.124 j & 0.563 - 0.095 j \\
 
 \subsection{Caso B (Ri$_b$=1.06)}
 
-Los parámetros de las perturbaciones se resumen en la Tabla \ref{tab:grupo2}. Los ensayos B‑C2 y B‑C3 utilizan únicamente la onda bidimensional con diferente autovalor, mientras que B‑C4 y B‑C5 añaden una componente tridimensional de pequeña amplitud (0.4 \%). En la Figura \ref{fig:case-B-Re5000-Pr071} se expone la evolución en el tiempo de TKE y Re$_{\tau}$ para las distintas condiciones.  
+Los parámetros de las perturbaciones utilizadas para la construcción de las condiciones iniciales, se resumen en la Tabla \ref{tab:grupo2}. Las condiciones iniciales de los ensayos B‑C2 y B‑C3 utilizan únicamente una onda bidimensional ($\text{A}_{\text{2D}}=2 \%$) con diferente autovalor y autofunción, mientras que B‑C4 y B‑C5 añaden una combinación de ondas oblicuas 3D de pequeña amplitud ($\text{A}_{\text{3D}}= 0\text{.}4\%$). En la Figura \ref{fig:case-B-Re5000-Pr071} se expone la evolución en el tiempo de TKE y Re$_{\tau}$ para las distintas condiciones iniciales consideradas.  
 
-Todas las perturbaciones provocan un crecimiento abrupto: Re$_{\tau}$ alcanza valores entre 400 y 520 en $t^*\lesssim 60$. En el ensayo B‑C4 (combinación de ondas 2D/3D) el crecimiento se dispara antes (pico a $t^*\approx 25$) y el máximo en la TKE es mayor ($\approx$ 0.22) que los casos puramente 2D.
+En los cuatro ensayos, todas las perturbaciones mencionadas gatillan la transición del flujo. Tanto la energía cinética tubulenta como el Re$_{\tau}$ experimentan un crecimiento abrupto en una etapa muy temprana de la transición. En el caso de Re$_{\tau}$, los máximos se alcanzan para $t^*\lesssim 60$. En particular, en el ensayo B‑C4, el pico se produce casi en la mitad del tiempo ($t^*\approx 25$) que en el resto de los ensayos. Esta cuestión coincide con el hecho de que la parte imaginaria del autovalor 2D es positiva en comparación al resto de casos que resulta negativa; es decir, se tiene un modo que es más inestable. Luego, para $t^* \gtrsim 150$, el Re$_{\tau}$ decae y mantiene entorno a un valor próximo a 270, lo que indica que se ha alcanzado un nuevo estado de flujo. De acuerdo a la linea a trazos (negra) graficada, correspondiente al flujo turbulento del caso completamente desarrollado, se puede afirmar que el flujo transicionó hacia un regimen turbulento.  
 
-En todos los casos, para $t^* \gtrsim 150$ la TKE decae dos órdenes de magnitud y se observa que tiende a un valor disntinto de cero ($k \approx$ 0.002) y que, por lo tanto, se encuentra en un nuevo estado de flujo, presuntamente, un régimen turbulento. Una situación completamente análoga ocurre con Re$_{\tau}$, para $t^* \gtrsim 150$, su valor permanece próximo a 270. Para el tiempo adimensional indicado todas las curvas colapsan: la dinámica final depende poco del modo inicial, a diferencia del Caso A donde la combinación de ondas 2D/3D mantenía un estado turbulento sostenido.
+%Por otro lado, se puede destacar que, mientras que para los ensayos del Caso A (que se lograron inestabilizar y por tanto transicionan) el Re$_{\tau}$ aumenta, alcanza un pico, luego desciende ligeramente y se mantiene entorno a un valor mayor al del estado inicial, lo contrario ocurre para los ensayos del Caso B, donde el Re$_{\tau}$ aumenta, alcanza un pico y luego desciende considerablemente hasta un valor menor al del estado inicial.
 
-\paragraph{Caso representativo.} El ensayo B‑C2 se elige como referencia para el análisis detallado posterior porque para su transición alcanzó con una onda 2D y eso nos permite comparar con el caso A-C10 (donde si fue necesario la combinación de ondas). Ademas, debido a que su estado asintótico coincide con los demás casos, las conclusiones son generalizables.
+Por otro lado, cabe destacar que en los ensayos del Caso A (que lograron inestabilizarse y, por lo tanto, transicionar) el Re${\tau}$ aumenta inicialmente, alcanza un valor máximo, luego desciende ligeramente y finalmente se estabiliza en torno a un valor superior al del estado inicial. En cambio, en los ensayos del Caso B, el Re${\tau}$ también crece y alcanza un pico, pero posteriormente desciende de manera considerable hasta situarse por debajo del valor inicial.
 
+Por su parte, la evolución de la TKE comparte ciertos rasgos a los descritos para Re$_{\tau}$. En el ensayo B-C4, el pico se alcanza casi en la mitad del tiempo que en el resto de casos ($t^*\approx 50$); para $t^* \gtrsim 100$, la energía cinética se reduce y permanece entorno a un valor constante, $k \approx 0\text{.}002$, próximo al valor del caso completamente desarrollado, corroborando que efectivamente el sistema ha alcanzado un estado de flujo turbulento. Un detalle interesante es que, mientras en la TKE el máximo alcanzado en el ensayo B-C4 supera al de los demás casos, en el Re$_{\tau}$ ocurre lo contrario: el pico correspondiente al caso B-C4 resulta menor que en los demás. Por último, para el tiempo adimensional considerado, todas las curvas colapsan, indicando que la dinámica final del sistema, en el estado estadísticamente estacionario, no depende de la perturbación inicial impuesta. 
+
+%Un detalle interesante es el hecho de que, mientras que en la TKE el máximo asociado al ensayo B-C4 es mayor que el resto de casos, lo contrario ocurre en el Re$_{\tau}$, donde el pico asociado al caso B-C4 es menor que en el resto de casos.   
+
+%En todos los casos, para $t^* \gtrsim 150$ la TKE decae dos órdenes de magnitud y se observa que tiende a un valor disntinto de cero ($k \approx$ 0.002) y que, por lo tanto, se encuentra en un nuevo estado de flujo, presuntamente, un régimen turbulento. Una situación completamente análoga ocurre con Re$_{\tau}$, para $t^* \gtrsim 150$, su valor permanece próximo a 270. 
+
+
+\paragraph{Caso representativo.} En todos los ensayos del Caso B se logra que el sistema transicione al régimen turbulento. En cada uno se observa un crecimiento, un pico y un decaimiento que tiende al estado turbulento. Se elige el ensayo B‑C2 ya que su transicion se alcanza con una perturbacion bidimensional únicamente.   
 
 \begin{table}[H]
 \centering
@@ -138,107 +162,41 @@ B‑C5 & 1.12 & 2.1 & 2 & 0.4 & 2.853 - 0.107 j & 1.550 + 0.023 j \\
   \label{fig:case-B-Re5000-Pr071}
 \end{figure}
 
-%\section{Análisis detallado del caso A-C10} \label{sec:ac10}
-%
-%\paragraph{TKE y Varianza de la Temperatura Adimensional.}
-%En la Figura \ref{fig:tke-ac10} y \ref{fig:tetavar-ac10} se presenta la evolución temporal de la energía cinética turbulenta y de la varianza de la temperatura adimensional. En dicha evolución se identifican 4 zonas que resulta útil para el análisis:
-%
-%\begin{itemize}
-%	
-%\item \textbf{Zona I.} En el primer tramo, 0 $<$ $t^*$ $<$ 150 se observa una reducción de las magnitudes, que para TKE la magnitud se mantiene próxima al valor obtenido para $t^* =0$, denominado con el subíndice ``\textit{Lam}'', obtenido a partir de la perturbación $\widetilde{\mathbf{v}}$ de la ecuación \ref{eq:init_con_2} remarcada en ambos gráficos con linea punteada en verde. Sin embargo, si se compara la magnitud $\langle \theta^{* \prime} \theta^{* \prime}\rangle$ con aquel calculado con $\widetilde{\mathbf{\varphi}}$ (ecuación \ref{eq:init_con_3}) se observa dicha magnitud decrece casi 3 ordenes de magnitud y luego se recupera e incluso supera el valor $\langle \theta^{* \prime} \theta^{* \prime}\rangle_{Lam}$.  
-%
-%\item \textbf{Zona II.} En el intervalo 150 $\lesssim$ $t^*$ $\lesssim$ 234 se produce un crecimiento y posterior descenso en ambas magnitudes donde surgen dos máximos locales en $t^* \approx$ 186 y $t^* \approx$ 206.
-%
-%\item \textbf{Zona III.} Posteriormente, entre $t^* \simeq 234$ y $t^* \simeq 338$, se tiene una región de crecimiento con un cambio de pendiente en $t^* \approx 276$ que culmina en un máximo absoluto (ambas curvas) en $t^* \simeq 338$, con $k_{max} \approx$0.0041 y $\langle \theta^{* \prime} \theta^{* \prime}\rangle_{max} \approx$1.7 $\times 10{4}$, antes de producirse un descenso en ambas magnitudes.
-% 
-%\item \textbf{Zona IV.} Para $t^* \gtrsim 338$ el valor de TKE cae y se recupera entre $t^* \simeq 400$ y $t^* \simeq 500$ para luego fluctuar dentro de un rango de valores entre 2.5 $\times 10^{-3}$ y 3.5 $\times 10^{-3}$ entorno al valor medio TKE$_{Dev}$ para el caso desarrollado de convección mixta y en general, por debajo del valor asociado al caso forzado (``TKE$_{\text{Dev}}$ (CF)'' en el sub-gráfico de la Figura \ref{fig:tke-ac10}). Por otro lado, la varianza de la temperatura tiende a disminuir progresivamente hasta valores muy próximos al caso de flujo desarrollado en convección mixta, sin embargo, se aprecia que sigue siendo necesario más tiempo de simulación.     	
-%	
-%\end{itemize}
-%
-%\begin{figure}[H]
-%  \centering  
-%  \subfloat[]{
-%    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_tke.png}
-%    \label{fig:tke-ac10}}
-%  \subfloat[]{
-%    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_tetavar.png}
-%    \label{fig:tetavar-ac10}}
-%  \caption{Evolución temporal de \textbf{(a)} la energía cinética turbulenta y \textbf{(b)} la varianza de la temperatura, para el caso A-C10.}
-%  \label{fig:ac10-2}
-%\end{figure}
-%
-%\paragraph{Perfiles de velocidad y temperatura.}
-%En la Figura \ref{fig:uxs-ac10} y \ref{fig:phis-ac10} se muestran los perfiles de velocidad y temperatura adimensional, respectivamente, para los instantes $t^*=$2, 186, 206, 338, 750, 1500 (de izquierda a derecha) donde además, se muestran, como referencia, los perfiles de los flujos completamente desarrollados del caso de convección forzada y mixto (``FC'' Y ``MC'', respectivamente). Los mismos corresponden a la primera etapa laminar ($t^*=$ 2), a los máximos locales ($t^* \approx 186$, 206), al máximo absoluto, y a dos instantes donde el flujo ya se inestabilizó y se encuentra en un estado turbulento. 
-%
-%Se observa, por un lado, que la perturbación impuesta modifica los perfiles de velocidad, en un principio con su característica forma en ``M''\footnote{Como se vió en el Capítulo [3] en las validaciones de perfiles laminares en convección mixta.}. Conforme evolucionan en el tiempo, en $t^* \approx$ 186 y 206, se mantiene la simetría de los mismos, luego entorno $t^* \approx$ 338, el perfil pierde su simetría pero para tiempos posteriores, donde el régimen ya es turbulento, se observa que que los perfiles se acercan bastante al caso completamente desarrollado. Por su parte los perfiles de temperatura adimensional experimentan una evolución, con una deformación pero persistencia en su simetría que momentaneamente se pierde en $t^* \approx$ 338. Posteriormente los perfiles tienden hacia los perfiles de los casos desarrollados.
-%
-%\begin{figure}[H]
-%  \centering  
-%  \subfloat[]{
-%    \includegraphics[width=1.05\textwidth]{figures/cap6/A-C10/ux_profiles_mosaic.png}
-%    \label{fig:uxs-ac10}}
-%  
-%  \subfloat[]{
-%    \includegraphics[width=1.05\textwidth]{figures/cap6/A-C10/phi_profiles_mosaic.png}
-%    \label{fig:phis-ac10}}
-%  \caption{Perfiles de \textbf{(a)} velocidad y \textbf{(b)} temperatura adimensional para distintos instantes $t^*$ correspondiente al caso A-C10.}
-%  \label{fig:mosaico-ac10}
-%\end{figure}
-%
-%En la Figura \ref{fig:darcy-ac10} se muestra la evolución temporal del factor de Darcy. En la Zona I dicha magnitud se mantiene constante e igual al valor laminar (marcado por la linea punteada verde). En las Zonas II, III y los primeros 10 $t^*$ de la Zona IV (aproximadamente) se aprecia una leve disminución del Darcy hasta un valor $f=$ 0.0167 en $t^* \approx$ 270 acompañado por aumento pronunciado del mismo hasta un máximo absoluto de $f \approx$ 0.037 en $t^* \approx$ 352. A continuación de ese pico, en el resto de la Zona IV, el factor de Darcy decrece y se mantiene acotado dentro de un rango de valores entre 0.0275 y 0.033 próximo a los valores de los casos completamente desarrollado. En esta gráfica se parecia claramente, al igual que con la TKE, la etapa transitoria y su posterior estado turbulento donde permanece.
-%
-%Por su parte, la Figura \ref{fig:nu-ac10} muestra la evolución temporal del número de Nusselt. Se aprecia que el valor Nu permanece practicamente constante e igual al valor obtenido con la solución laminar hasta $t^* \approx$ 300 y a partir de ahí experimenta un crecimiento monótono hasta el último instante de tiempo simulado. Además, se observa que si bien su tendencia es hacia el caso completamente desarrollado en convección mixta, se requiere más tiempo de simulación para que este valor converja. Una situación análoga se encontró para la varianza de la temperatura y además, esta cuestión también se aprecia en el perfil de temperatura para $t^*=$ 1500 donde es claro que el intervalo de tiempo adimensional de simulación es insuficiente para que las magnitudes asociadas a la temperatura adimensional converjan. 
-%
-%
-%
-%
-%\begin{figure}[H]
-%  \centering  
-%  \subfloat[]{
-%    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_darcy.png}
-%    \label{fig:darcy-ac10}}
-%  \subfloat[]{
-%    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_nussel.png}
-%    \label{fig:nu-ac10}}
-%  \caption{Evolución temporal de \textbf{(a)} factor de fricción de Darcy y \textbf{(b)} número de Nusselt, para el caso A-C10.}
-%  \label{fig:ac10-1}
-%\end{figure}
-
 
 \section{Análisis detallado del caso A-C10} \label{sec:ac10}
 
-
-
-\paragraph{TKE y Varianza de la temperatura adimensional.}
-En las Figuras \ref{fig:tke-ac10} y \ref{fig:tetavar-ac10} se observan cuatro zonas bien diferenciadas en la evolución temporal conjunta de ambas magnitudes (curva roja), que se comparan con los valores de referencia indicados en las leyendas. Los valores TKE$_{\text{Lam}}$=6.52$\times10^{-5}$ y $\langle \theta^{* \prime} \theta^{* \prime} \rangle_{\text{Lam}}$=3.22$\times10^{2}$ se calculan a partir de la perturbación $\widetilde{\mathbf{v}}$ (ecuación \ref{eq:init_con_2}) y $\widetilde{\boldsymbol{\varphi}}$ (ecuación \ref{eq:init_con_3}), respectivamente.
+\subsection{TKE y Varianza de la temperatura adimensional}
+En las Figuras \ref{fig:tke-ac10} y \ref{fig:tetavar-ac10} se observan cuatro zonas bien diferenciadas en la evolución temporal conjunta de ambas magnitudes (curva roja), que se comparan con los valores constantes asociados a la condición inicial y al flujo turbulento completamente desarrollado.
 
 \begin{itemize}
-\item \textbf{Zona I (0 $\lesssim$ $\mathbf{t^*}$ $\lesssim$ 150).} La magnitud TKE se mantiene cercana al valor laminar, practicamente constante, sin incrementos ni descensos. En cambio, $\langle \theta^{* \prime} \theta^{* \prime} \rangle$ desciende de manera continua desde valores iniciales altos hasta un mínimo de orden $10^{-1}$ alrededor de $t^*\approx50$, tras lo cual comienza a recuperarse. En este tramo, ambas magnitudes permanecen por debajo de los valores completamente desarrollados.
+\item \textbf{Zona I (0 $\lesssim$ $\mathbf{t^*}$ $\lesssim$ 150).} Ambas magnitudes experimentan un leve descenso al inicio, luego permanecen practicamente constantes, sin incrementos ni descensos, y posteriormente se produce un aumento hasta que recuperan sus valores iniciales. En este tramo, ambas magnitudes permanecen por debajo de los valores completamente desarrollados del caso turbulento correspondiente. 
 
-\item \textbf{Zona II (150 $\lesssim$ $\mathbf{t^*}$ $\lesssim$ 234)}. La energía cinética turbulenta presenta dos máximos locales bien definidos en torno a $t^*\approx186$ y $t^*\approx206$, separados por un valle intermedio. Por su parte, la varianza crece varios órdenes de magnitud y exhibe un máximo marcado dentro del mismo intervalo temporal; posteriormente desciende parcialmente.
+\item \textbf{Zona II (150 $\lesssim$ $\mathbf{t^*}$ $\lesssim$ 234)}. La energía cinética turbulenta presenta dos máximos locales bien definidos en torno a $t^*\approx186$ y $t^*\approx206$, separados por un valle intermedio. Por su parte, la varianza de la temperatura experimenta una evolución similar en el mismo intervalo temporal: crece tres órdenes de magnitud, presenta un máximo local, desciende hasta un valle y crece hasta un segundo máximo de menor intensidad. Luego, ambas magnitudes descienden parcialmente antes de volver a crecer.
 
-\item \textbf{Zona III (234 $\lesssim$ $\mathbf{t^*}$ $\lesssim$ 338).} EL valor de TKE crece de forma sostenida, con un cambio de pendiente alrededor de $t^*\approx276$, y alcanza un máximo global en $t^*\approx338$ (TKE$_{max}$ $\approx$ 4.1$\times 10^{-3}$). Asimismo, la magnitud $\langle \theta^{* \prime} \theta^{* \prime} \rangle$ se mantiene en valores elevados dentro del rango representado y muestra una oscilación con picos y valles, siempre muy por encima del valor laminar.
+\item \textbf{Zona III (234 $\lesssim$ $\mathbf{t^*}$ $\lesssim$ 338).} Tanto la TKE, como $\langle \theta^{* \prime} \theta^{* \prime} \rangle$ crecen de forma sostenida, con un cambio de pendiente que ocurre alrededor de $t^*\approx276$. Luego, la TKE alcanza un máximo absoluto entorno a $t^*\approx338$ ($k_{max} \approx 4\text{.}1 \times 10^{-3}$) y la varianza alcanza su máximo absoluto cerca de $t^*\approx320$ con un valor alrededor de $\langle \theta^{* \prime} \theta^{* \prime} \rangle \approx 2 \times 10^{4}$.
 
-\item \textbf{Zona IV ($\mathbf{t^*} \gtrsim 338$).} TKE desciende desde el máximo y oscila alrededor de los valores completamente desarrollados (``CM'' y ``CF'') acotado en el rango (2.5-3.5)$\times 10^{-3}$. La varianza muestra una disminución gradual aproximándose a los valores de referencia desarrollados; la pendiente con la que decae es más pronunciada en $400\lesssim t^*\lesssim900$ y menor para $t^*\gtrsim900$.
+\item \textbf{Zona IV ($\mathbf{t^*} \gtrsim 338$).} En una primera etapa, la energía cinética turbulenta desciende desde su valor máximo hasta quedar por debajo del valor constante del caso turbulento completamente desarrollado; posteriormente, aumenta y oscila entorno a dicho valor, dentro del rango (2.5-3.5)$\times 10^{-3}$. Por su parte, la varianza de la temperatura desciende de manera gradual, acercándose al valor de referencia del caso turbulento desarrollado. La tasa de decrecimiento es más pronunciada en el intervalo $400 \lesssim t^* \lesssim 800$, mientras que se atenúa para $t^* \gtrsim 800$.
 \end{itemize}
 
 
 \begin{figure}[H]
   \centering  
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_tke.png}
+    \includegraphics[width=0.9\textwidth]{figures/cap6/A-C10/Cases_Comp_tke.png}
     \label{fig:tke-ac10}}
+    
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_tetavar.png}
+    \includegraphics[width=0.9\textwidth]{figures/cap6/A-C10/Cases_Comp_tetavar.png}
     \label{fig:tetavar-ac10}}
   \caption{Evolución temporal de \textbf{(a)} la energía cinética turbulenta y \textbf{(b)} la varianza de la temperatura, para el caso A-C10.}
   \label{fig:ac10-2}
 \end{figure}
 
-\paragraph{Perfiles de velocidad y temperatura.}
-En las Figuras \ref{fig:uxs-ac10} y \ref{fig:phis-ac10} se muestran, respectivamente, los perfiles de velocidad y de temperatura adimensional para $t^*=2$, $186$, $206$, $338$, $750$, $1500$ (de izquierda a derecha). Como referencia, se incluyen los perfiles de los flujos completamente desarrollados de convección forzada y mixta (``FC'' y ``MC'') correspondientes. Los instantes elegidos abarcan la etapa laminar inicial ($t^*=2$), los máximos locales ($t^* \approx 186$ y $t^* \approx 206$), el máximo global y dos tiempos en los que el flujo ya es turbulento.
+\subsection{Perfiles de velocidad y temperatura}
 
-La perturbación impuesta modifica inicialmente los perfiles de velocidad en forma de ``M''\footnote{Como se vio en el Capítulo [3] en las validaciones de perfiles laminares en convección mixta.}. A medida que evoluciona el flujo, en $t^* \approx 186$ y $t^* \approx 206$ los perfiles conservan la simetría aunque su forma característica inicial. En torno a $t^* \approx 338$, dicha simetría se pierde y, posteriormente, en régimen turbulento, se aproximan a los perfiles completamente desarrollados. Los perfiles de temperatura adimensional siguen una evolución análoga: se deforman manteniendo su simetría, que se pierde momentáneamente en $t^* \approx 338$, para luego tender hacia los perfiles de los casos desarrollados. La pérdida de simetría en ambos perfiles en el máximo global está asociado con la producción máxima de turbulencia. 
+En las Figuras \ref{fig:uxs-ac10} y \ref{fig:phis-ac10} se muestran, respectivamente, los perfiles de velocidad y temperatura adimensional para $t^*=2$, $186$, $206$, $338$, $750$, $1500$ (de izquierda a derecha). A modo de referencia, se incluye el perfil correspondiente al flujo turbulento completamente desarrollado. Los instantes elegidos abarcan la etapa laminar inicial ($t^*=2$), los máximos locales ($t^* \approx 186$ y $t^* \approx 206$), el máximo absoluto de la TKE y dos tiempos en los que el flujo ya es turbulento.
+
+La perturbación impuesta modifica el perfil de velocidad que en un inicio tiene forma de ``M'' (véase Sección \ref{sec:mix-laminar}). A medida que el flujo evoluciona, se observa que en $t^* \approx 186$ y $t^* \approx 206$, si bien los perfiles conservan la simetría, no mantienen su forma característica inicial. Asimismo, próximo a $t^* \approx 338$, se observa una aparente pérdida en la simetría del perfil. En una etapa ya turbulenta, los perfiles se aproximan al perfil del flujo completamente desarrollado. Los perfiles de temperatura adimensional siguen una evolución análoga: se deforman manteniendo su simetría, la cuál parece desvanecerse momentáneamente en $t^* \approx 338$, para luego tender hacia el perfil del caso desarrollado. Una cuestion importante, al inspeccionar los perfiles de velocidad y temperatura, recae en el hecho de que el desarrollo de la parte hidrodinámica pareciera estar ligeramente acelerado con respecto a desarrollo térmico.
 
 \begin{figure}[H]
   \centering  
@@ -251,20 +209,78 @@ La perturbación impuesta modifica inicialmente los perfiles de velocidad en for
     \label{fig:phis-ac10}}
   \caption{Perfiles de \textbf{(a)} velocidad y \textbf{(b)} temperatura adimensional para distintos instantes $t^*$ correspondiente al caso A-C10.}
   \label{fig:mosaico-ac10}
-\end{figure}
+\end{figure} 
 
-\paragraph{Factor de fricción de Darcy y número de Nusselt.}
-En la Figura \ref{fig:darcy-ac10} se presenta la evolución temporal del factor de fricción de Darcy. En la \textbf{Zona I} (0 < $t^*$ < 150), $f$ permanece prácticamente constante y coincide con el valor laminar (línea verde punteada). En las \textbf{Zonas II y III}, y parte de la \textbf{Zona IV} (aproximadamente los primeros $12$ $t^*$), se observa primero una disminución suave hasta un mínimo de $f=0.0167$ en $t^*\approx270$, seguida de un incremento pronunciado que alcanza un máximo global de $f$ $\approx$ 0.037 en $t^*\approx352$. A partir de ese pico, y en el resto de la \textbf{Zona IV} (es decir, para $t^*\gtrsim352$), $f$ desciende y se estabiliza dentro del intervalo 0.0275-0.033, próximo a los valores de referencia de los casos completamente desarrollados (líneas de trazo negro y azul). Esta secuencia permite distinguir con claridad la etapa transitoria y el posterior establecimiento de un régimen turbulento persistente.
+Con el fin de entender la aparente pérdida de simetría observada en los perfiles del instante $t^* = 338$, resulta ilustrativo examinar las estructuras de vórtices del flujo. Dichas estructuras se obtienen mediante el ``Criterio Q'' \cite{hunt1988eddies}; cabe destacar, que el próximo análisis tiene un enfoque cualitativo. En la Figura \ref{fig:mosaico2-ac10} se exponen capturas para tres tiempos distintos: $t^* = 186$ (Figuras \ref{fig:t186-xy-ac10} y  \ref{fig:t186-zy-ac10}),  $t^* = 338$  (Figuras \ref{fig:t338-xy-ac10} y  \ref{fig:t338-zy-ac10}) y  $t^* = 1500$  (Figuras \ref{fig:t1500-xy-ac10} y  \ref{fig:t1500-zy-ac10}). En el primero, se observa una estructura coherente y ordenada, asociada las ondas TS; esto es consistente con el hecho de los que perfiles en la condición inicial, y antes del máximo absoluto de la TKE, tengan una simetría respecto a la dirección $Y$. El segundo instante, la capturas revelan una asimetría, esto es, se aprecia claramente que los vórtices cerca de la pared inferior (correspodiente a $y^*=-1$) son diferentes de aquellos en la pared superior (correspodiente a $y^*=+1$); también se observa que una mayor disposición de estructuras en la pared superior respecto a la inferior, esta asimetría en las estructuras da sustento a esa pérdida en la simetría de los perfiles de velocidad y temperatura antes mencionada. Un detalle particular es que si bien las estructuras son antisimétricas respecto a la dirección $Y$, también se aprecia que son simétricas respecto a la dirección $Z$: en este sentido se puede considerar que el flujo conserva cierto grado de orden. En el último instante, donde el flujo ya se ha desarrollado y se encuentra en estado estadísticamente estacionario, se observa que las estructuras han dejado de ser coherentes y además, estas tienden a organizarse cerca de las paredes, en consistencia con los perfiles simétricos característicos de los flujos turbulentos completamente desarrollados.
 
-Por último, la Figura \ref{fig:nu-ac10} presenta la evolución temporal del número de Nusselt. El valor se mantiene prácticamente constante y coincidente con la solución laminar hasta $t^* \approx 300$. A partir de allí, crece de manera monótona hasta el final de la simulación. Aunque la tendencia apunta al valor del caso completamente desarrollado en convección mixta, el tiempo simulado no resulta aún suficiente para garantizar la convergencia. Esta misma situación se observa en la varianza de la temperatura y en el perfil de temperatura para $t^*=1500$, lo que sugiere que sería necesario extender la simulación para que las magnitudes térmicas alcancen su estado desarrollado.
+Por último, es claro que las perturbaciones impuestas en la condición inicial desencadenan la acción de la turbulencia, que erosiona el estado ordenado del flujo laminar y favorece su transición hacia un flujo turbulento completamente desarrollado.
 
 \begin{figure}[H]
   \centering  
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_darcy.png}
-    \label{fig:darcy-ac10}}
+    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/screenshots_times/t186_xy.png}
+    \label{fig:t186-xy-ac10}}  
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/Cases_Comp_nussel.png}
+    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/screenshots_times/t186_zy.png}
+    \label{fig:t186-zy-ac10}}
+    
+  \subfloat[]{  
+    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/screenshots_times/t338_xy.png}
+    \label{fig:t338-xy-ac10}}  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/screenshots_times/t338_zy.png}
+    \label{fig:t338-zy-ac10}}
+  
+  \subfloat[]{ 
+    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/screenshots_times/t1500_xy.png}
+    \label{fig:t1500-xy-ac10}}  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/screenshots_times/t1500_zy.png}
+    \label{fig:t1500-zy-ac10}}
+  \caption{Capturas de las estructuras de vórtices para tres instantes de tiempo: $t^* =186$ con $Q=0\text{.}1$ (\textbf{(a)} y \textbf{(b)}), $t^* =338$ con $Q=0\text{.}5$ (\textbf{(c)} y \textbf{(d)}) y $t^* = 1500$ con $Q=0\text{.}5$ (\textbf{(e)} y \textbf{(f)}). Aquí $Q$ hace referencia al parámetro del Criterio Q.}
+  \label{fig:mosaico2-ac10}
+\end{figure}
+
+
+%\begin{figure}[H]
+%  \centering  
+%  \subfloat[]{
+%    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/1500t_v2.png}
+%    \label{fig:estruc1-t1500-ac10}} 
+%  \subfloat[]{
+%    \includegraphics[width=0.49\textwidth]{figures/cap6/A-C10/1500t_xy.png}
+%    \label{fig:estruc2-t1500-ac10}}
+%  \caption{Estructuras de vórtices ($Q=0\text{.}5$) para $t^* \approx 1500$}
+%  \label{fig:estruc-t1500-ac10}
+%\end{figure}
+
+
+%\begin{figure}[H]
+%  \centering  
+%  \subfloat[]{
+%    \includegraphics[width=1.05\textwidth]{figures/cap6/A-C10/ux_t338_mosaic.png}
+%    \label{fig:ux-t338-ac10}}
+%  
+%  \subfloat[]{
+%    \includegraphics[width=1.05\textwidth]{figures/cap6/A-C10/phi_t338_mosaic.png}
+%    \label{fig:phi-t338-ac10}}
+%  \caption{}
+%  \label{fig:estructs-ac10}
+%\end{figure}
+
+\subsection{Factor de fricción de Darcy y número de Nusselt}
+En la Figura \ref{fig:darcy-ac10} se presenta la evolución temporal del factor de fricción de Darcy. En la \textbf{Zona I} (0 < $t^*$ < 150), $f$ permanece prácticamente constante y coincide con el valor inicial/laminar (línea a trazos azul). En las \textbf{Zonas II y III}, y parte de la \textbf{Zona IV} ($150 \lesssim t^* \lesssim 352 $), se observa primero una disminución suave hasta un mínimo de $f=0.0167$ en $t^*\approx270$, seguida de un incremento pronunciado que alcanza su máximo en $t^*\approx352$ ($f \approx 0\text{.}037$). A partir de ese pico, y en el resto de la \textbf{Zona IV} ( $t^*\gtrsim352$), $f$ desciende y se estabiliza en el intervalo $\left[ 0\text{.}0275, 0\text{.}033 \right]$, próximo al valor de referencia del caso completamente desarrollado (línea a trazos negra). De esta forma, es posible distinguir con claridad la etapa transitoria y el posterior establecimiento de un régimen turbulento persistente.
+
+Por último, la Figura \ref{fig:nu-ac10} presenta la evolución temporal del número de Nusselt. El valor se mantiene prácticamente constante y coincidente con la solución laminar\footnote{Recuérdese que aquí el valor de Nu para la solución laminar y el obtenido con la condición incial son equivalentes.} hasta $t^* \approx 300$. A partir de allí, crece de manera monótona hasta el final de la simulación. La tendencia apunta claramente al valor del caso turbulento completamente desarrollado en convección mixta; sin embargo, el tiempo físico simulado no resulta suficiente para garantizar la convergencia. Esta misma situación puede observarse en la varianza de la temperatura y en el perfil de temperatura para $t^*=1500$ aunque no de manera tan marcada como en el caso de Nu. Esto sugiere que se requiere extender la simulación para que las magnitudes térmicas alcancen su estado estadísticamente estacionario.
+
+\begin{figure}[H]
+  \centering  
+  \subfloat[]{
+    \includegraphics[width=0.9\textwidth]{figures/cap6/A-C10/Cases_Comp_darcy.png}
+    \label{fig:darcy-ac10}}
+    
+  \subfloat[]{
+    \includegraphics[width=0.9\textwidth]{figures/cap6/A-C10/Cases_Comp_nussel.png}
     \label{fig:nu-ac10}}
   \caption{Evolución temporal de \textbf{(a)} factor de fricción de Darcy y \textbf{(b)} número de Nusselt, para el caso A-C10.}
   \label{fig:ac10-1}
@@ -275,16 +291,16 @@ Por último, la Figura \ref{fig:nu-ac10} presenta la evolución temporal del nú
 \newpage
 \section{Análisis detallado del caso B‑C2} \label{sec:bc2}
 
-\paragraph{TKE y varianza de la temperatura adimensional.}
-En las Figuras \ref{fig:tke-bc2} y \ref{fig:tetavar-bc2} se muestra la evolución temporal de la energía cinética turbulenta (TKE) y de la varianza de la temperatura adimensional. En dicha evolución se distinguen tres regiones con dinámicas bien diferenciadas:
+\subsection{TKE y varianza de la temperatura adimensional}
+En las Figuras \ref{fig:tke-bc2} y \ref{fig:tetavar-bc2} se muestra la evolución temporal de la energía cinética turbulenta (TKE) y la varianza de la temperatura. En dicha evolución se distinguen tres regiones con dinámicas bien diferenciadas. Al igual que en el análisis anterior, se añaden valores constantes de referencia asociados al cálculo de dichas magnitudes empleando la condición inicial y el flujo turbulento en estado estadísticamente estacionario. 
 
 \begin{itemize}
 
-  \item \textbf{Zona I ($0 \lesssim \mathbf{t^*} \lesssim 32$).} La TKE se mantiene prácticamente constante y coincide con el valor de referencia laminar, TKE$_{\text{Lam}}$. Por el contrario, la varianza de la temperatura adimensional exhibe una caída pronunciada seguida de una rápida recuperación (del orden de tres órdenes de magnitud). En el intervalo breve $24 \lesssim t^* \lesssim 30$ la magnitud permanece aproximadamente constante, antes de volver a incrementarse.
+  \item \textbf{Zona I ($0 \lesssim \mathbf{t^*} \lesssim 32$).} Ambas magnitudes se mantienen prácticamente constante y coinciden con su valor de referencia asociado a la condición inicial.
 
-  \item \textbf{Zona II ($32 \lesssim \mathbf{t^*} \lesssim 100$).} La TKE alcanza su máximo global en $t^* \approx 46$ (TKE$_{\text{max}}$ $\approx$ 0.134), superando en dos órdenes de magnitud al registrado en el caso A-C10. A su vez, $\langle \theta^{*\prime}\theta^{*\prime}\rangle$ continúa creciendo hasta un máximo global en $t^* \approx 46$. A partir de entonces, ambas magnitudes decrecen sin retornar a los niveles previos al máximo.
+  \item \textbf{Zona II ($32 \lesssim \mathbf{t^*} \lesssim 100$).} La TKE alcanza su máximo absoluto en $t^* \approx 46$ ($k_{\text{max}}$ $\approx 0\text{.}134$), superando en dos órdenes de magnitud al registrado en el caso A-C10. Por su parte, la varianza de la temperatura continúa creciendo hasta que alcanza su máximo absoluto en el mismo instante de tiempo que la TKE, con un valor $\langle \theta^{*\prime} \theta^{*\prime}\rangle_{\text{max}} \approx 8700$, siendo casi un orden de magnitud menor que en el caso A-C10. A partir de allí, ambas magnitudes decrecen sin retornar a los valores iniciales y tienden hacia el estado estadísticamente estacionario del correspondiente flujo turbulento.
 
-  \item \textbf{Zona III ($\mathbf{t^*} \gtrsim 100$).} En esta etapa, ambas magnitudes fluctúan dentro de rangos acotados: entre $10^{-4}$ y $5 \times 10^{-4}$ para la TKE, y entre $700$ y $2000$ para la varianza de la temperatura. Hacia el final, se observa una tendencia a converger hacia los valores de referencia del régimen de convección mixta completamente desarrollado, lo que evidencia el establecimiento del régimen turbulento.
+  \item \textbf{Zona III ($\mathbf{t^*} \gtrsim 100$).} En esta etapa, ambas magnitudes fluctúan entorno a las magnitudes constantes de referencia. La tedencia es clara, hacia el final de la simulación, el sistema converge hacia un nuevo estado de flujo, esto es, un régimen turbulento. 
 
 \end{itemize}
 
@@ -292,35 +308,72 @@ En las Figuras \ref{fig:tke-bc2} y \ref{fig:tetavar-bc2} se muestra la evolució
 \begin{figure}[H]
   \centering  
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/Cases_Comp_tke.png}
+    \includegraphics[width=0.9\textwidth]{figures/cap6/B-C2/Cases_Comp_tke.png}
     \label{fig:tke-bc2}}
+    
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/Cases_Comp_tetavar.png}
+    \includegraphics[width=0.9\textwidth]{figures/cap6/B-C2/Cases_Comp_tetavar.png}
     \label{fig:tetavar-bc2}}
   \caption{Evolución temporal de \textbf{(a)} la energía cinética turbulenta y \textbf{(b)} la varianza de la temperatura, para el caso B-C2.}
   \label{fig:bc2-2}
 \end{figure}
 
-\paragraph{Perfiles de velocidad y temperatura.}
-En las Figuras \ref{fig:uxs-bc2} y \ref{fig:phis-bc2} se presentan, respectivamente, los perfiles de velocidad y de temperatura adimensional para $t^*$ = 2, 46, 160, 500, 1000 (de izquierda a derecha). Como referencia, se incluyen los perfiles correspondientes a los flujos completamente desarrollados de convección forzada y mixta (``FC'' y ``MC''). La selección de tiempos abarca el régimen laminar inicial ($t^* = 2$), el máximo global en $t^* \simeq 46$, el máximo local subsiguiente en $t^* \simeq 160$ y dos instantes en los que el flujo ya se encuentra en régimen turbulento.
+\subsection{Perfiles de velocidad y temperatura}
+En las Figuras \ref{fig:uxs-bc2} y \ref{fig:phis-bc2} se presentan, respectivamente, los perfiles de velocidad y de temperatura adimensional para $t^*$ = 2, 46, 160, 500, 1000 (de izquierda a derecha). Como referencia, se incluye el perfil correspondiente al flujo completamente desarrollado en convección mixta. La selección de tiempos abarca el régimen laminar inicial ($t^* = 2$), el máximo absoluto en $t^* \simeq 46$, el máximo local subsiguiente de mucho menor intensidad, en $t^* \simeq 160$, y dos instantes posteriores en los que el flujo ya se encuentra en régimen turbulento.
 
-En la fase inicial de la evolución, los perfiles exhiben la simetría característica de la solución laminar con forma de ``M''. En torno al máximo global de la TKE, los perfiles se ensanchan y muestran una leve pérdida de simetría; además, las pendientes se incrementan ligeramente, siendo este cambio casi imperceptible en el perfil de velocidad y más notorio en el de temperatura. A medida que avanza el tiempo, los perfiles de ambas magnitudes convergen hacia las soluciones de referencia del flujo completamente desarrollado en convección mixta. En comparación con el caso A-C10, el mayor efecto de la fuerza boyante acelera la evolución del campo de temperaturas y favorece una convergencia más rápida hacia el régimen de convección mixta.
-
+En la etapa inicial, el perfil exhibe la simetría característica de la solución laminar en forma de ``M''. Entorno al máximo absoluto de la TKE, los perfiles se ensanchan levemente y muestran, nuevamente, una aparente pérdida de simetría. Asimismo, el valor de la pendiente en las paredes se incrementa ligeramente en ambas magnitudes, siendo este cambio casi imperceptible en el perfil de velocidad y más notorio en el perfil de temperatura. A medida que aumenta el tiempo, los perfiles de ambas magnitudes convergen hacia las soluciones de referencia del flujo completamente desarrollado en convección mixta. En comparación con el caso A-C10, el aumento de la fuerza boyante tiene por efecto acelerar la evolución del campo de temperaturas, favoreciendo una convergencia más rápida hacia el régimen de convección mixta.
 
 \begin{figure}[H]
   \centering  
   \subfloat[]{
-    \includegraphics[width=1.05\textwidth]{figures/cap6/B-C2/ux_profiles_mosaic.png}
+    \includegraphics[width=1.02\textwidth]{figures/cap6/B-C2/ux_profiles_mosaic.png}
     \label{fig:uxs-bc2}}
   
   \subfloat[]{
-    \includegraphics[width=1.05\textwidth]{figures/cap6/B-C2/phi_profiles_mosaic.png}
+    \includegraphics[width=1.02\textwidth]{figures/cap6/B-C2/phi_profiles_mosaic.png}
     \label{fig:phis-bc2}}
-  \caption{Evolución temporal de \textbf{(a)} factor de fricción de Darcy y \textbf{(b)} número de Nusselt, para el caso B-C2.}
+  \caption{Perfiles de \textbf{(a)} velocidad y \textbf{(b)} temperatura adimensional para distintos instantes $t^*$ correspondiente al caso B-C2.}
     \label{fig:mosaico-bc2}
 \end{figure}
 
-\paragraph{Factor de fricción de Darcy y número de Nusselt.}
+
+Otra vez, con la intención de entender la aparente pérdida de simetría de los perfiles en el instante $t^* = 46$ se analizan las estructuras de vórtices meadiante un enfoque cualitativo. En la Figura \ref{fig:mosaico2-bc2} se exponen capturas para tres tiempos distintos: $t^* = 2$ (Figuras \ref{fig:t2-xy-bc2} y  \ref{fig:t2-zy-bc2}),  $t^* = 46$  (Figuras \ref{fig:t46-xy-bc2} y \ref{fig:t46-zy-bc2}) y  $t^* = 500$  (Figuras \ref{fig:t500-xy-bc2} y \ref{fig:t500-zy-bc2}). En el primer instante, se observa una estructura coherente y ordenada, asociada las ondas TS; esto es consistente con la simetría de los que perfiles en la condición inicial, y además, dichas estructuras se encuentran en posiciones muy cercana a las pared al igual que ocurre con los máximos del perfil de velocidad. 
+
+Luego, en segundo tiempo considerado, se observa la ausencia total de cualquier estructura coherente; en este punto, la turbulencia producida ha disipado las estructuras de mayor tamaño que pudiesen haberse originado en instantes previos. Sin embargo, al menos visualmente, pareciera que hay mayor cantidad de estructuras cerca de la pared inferior ($y^*=-1$) respecto a la pared superior ($y^*=+1$). En este sentido, dado que una mayor cantidad de vórtices promueve la mezcla homogénea de las cantidades, podría entenderse, al menos conceptualmente, porque el máximo del perfil de velocidad en $y^*=+1$, es menor respecto al otro.   
+
+Por su parte, en el último instante de tiempo considerado, asociado a un régimen turbulento en estado estadísticamente estacionario, también se observa la ausencia de estructuras coherentes. Además, viendo la coloración de las estructuras, se puede apreciar que las velocidades a lo largo de toda la dirección $Y$ es homogénea, salvo en las paredes que es mayor, siendo consistente con el perfil de velocidad (Figura \ref{fig:uxs-bc2}).
+
+\begin{figure}[H]
+  \centering  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/screenshots_times/t2_xy.png}
+    \label{fig:t2-xy-bc2}}  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/screenshots_times/t2_zy.png}
+    \label{fig:t2-zy-bc2}}
+    
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/screenshots_times/t46_xy.png}
+    \label{fig:t46-xy-bc2}}  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/screenshots_times/t46_zy.png}
+    \label{fig:t46-zy-bc2}}
+  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/screenshots_times/t500_xy.png}
+    \label{fig:t500-xy-bc2}}  
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/screenshots_times/t500_zy.png}
+    \label{fig:t500-zy-bc2}}
+  \caption{Capturas de las estructuras de vórtices para tres instantes de tiempo: $t^* =2$ con $Q=0\text{.}0005$ (\textbf{(a)} y \textbf{(b)}), $t^* =46$ con $Q=10$ (\textbf{(c)} y \textbf{(d)}) y $t^* = 500$ con $Q=0\text{.}4$ (\textbf{(e)} y \textbf{(f)}). Aquí $Q$ también hace referencia al parámetro del Criterio Q.}
+  \label{fig:mosaico2-bc2}
+\end{figure}
+
+Resulta evidente que el efecto de la fuerza boyante impacta considerablemente en como el fluido evoluciona en el tiempo. Uno de los efectos más notables, como se menciona anterioremente, es la aceleración de la dinámica del sistema; esta se traduce en una convergencia al estado turbulento completamente desarrollado en menor tiempo.  
+
+
+
+\subsection{Factor de fricción de Darcy y número de Nusselt}
 La Figura \ref{fig:darcy-bc2} muestra la evolución temporal del factor de fricción de Darcy, $f$. En las \textbf{Zonas I y II}, desde el inicio y hasta $t^* \approx 20$, $f$ se mantiene próximo al valor laminar (línea verde punteada). Entre $t^* \approx 20$ y $t^* \approx 45$ se observan oscilaciones con picos sucesivos que culminan en un máximo global, $f_{\max}$ $\approx$ 0.174; a partir de ese punto, $f$ decrece de manera pronunciada y cruza transitoriamente por debajo del valor laminar. En la \textbf{Zona III}, la curva permanece por debajo de la referencia de convección mixta completamente desarrollada y converge lentamente hacia valores próximos a 5.1 $\times 10^{-2}$, aún muy por encima del correspondiente al flujo forzado desarrollado.
 
 La Figura \ref{fig:nu-bc2} indica que el número de Nusselt se mantiene cercano a la solución laminar (línea verde punteada) hasta $t^* \approx 46$, donde presenta un mínimo local en torno a 10.6. A partir de entonces, $\mathrm{Nu}$ crece de manera monótona y sostenida hasta aproximarse a la referencia de convección mixta completamente desarrollada, y permanece por debajo del valor asociado al flujo forzado desarrollado.
@@ -329,16 +382,17 @@ La Figura \ref{fig:nu-bc2} indica que el número de Nusselt se mantiene cercano 
 \begin{figure}[H]
   \centering  
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/Cases_Comp_darcy.png}
+    \includegraphics[width=0.9\textwidth]{figures/cap6/B-C2/Cases_Comp_darcy.png}
     \label{fig:darcy-bc2}}
+    
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap6/B-C2/Cases_Comp_nussel.png}
+    \includegraphics[width=0.9\textwidth]{figures/cap6/B-C2/Cases_Comp_nussel.png}
     \label{fig:nu-bc2}}
-  \caption{Perfiles de \textbf{(a)} velocidad y \textbf{(b)} temperatura adimensional para distintos instantes $t^*$ correspondiente al caso B-C2.}
+  \caption{Evolución temporal de \textbf{(a)} factor de fricción de Darcy y \textbf{(b)} número de Nusselt, para el caso B-C2.}
   \label{fig:bc2-1}
 \end{figure}
 
-\paragraph{Comparación: A-C10 vs B-C2.}
+\section{Comparación: A-C10 vs B-C2}
 Cabe destacar que, en el caso A-C10 (Ri$_b$ = 0.04), fue necesaria la combinación de ondas bidimensionales y tridimensionales para inducir la inestabilidad y conducir a la transición. En cambio, en el caso B-C2 (Ri$_b$ = 1.06) bastó una onda puramente bidimensional para inestabilizar el flujo.
 
 Por otra parte, los perfiles de velocidad y de temperatura del caso B-C2 muestran una convergencia más rápida que en A-C10, lo que indica que el aumento de la fuerza boyante acelera el desarrollo hidrodinámico y, en particular, el térmico. Una tendencia análoga se observa en las magnitudes globales TKE, $\langle \theta^{*\prime}\theta^{*\prime}\rangle$, el factor de fricción de Darcy $f$ y el número de Nusselt, cuyas respuestas temporales se aproximan más rápidamente a sus valores de referencia, o al menos próximos a él, en el casod e $f$.

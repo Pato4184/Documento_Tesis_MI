@@ -1,13 +1,34 @@
 \chapter{Modelo Matemático} \label{cap:modelo}
 
-Resumen del capítulo 2. Marco teórico (acotado) del contenido mínimo necesario para el entendimiento de los
-capitulos posteriores.
+En este capítulo se presenta el marco teórico que sustenta este trabajo. Se introduce brevemente el concepto de turbulencia y de simulaciones DNS. Luego, se describen las ecuaciones, junto con las condiciones de borde, empleadas para modelar el sistema físico bajo análisis: un canal de placas paralelas sometido a un flujo de calor constante en las paredes. Asimismo, se definen las magnitudes estadísticas necesarias para el tratamiento de los datos obtenidos mediante simulaciones.
 
-\newpage
+Por otra parte, se incluye un breve resumen del análisis de estabilidad lineal que constituye la base teórica para el cálculo numérico de los autovalores y autofunciones empleados en la construcción de las perturbaciones utilizadas para inestabilizar flujos con convección mixta. Estas perturbaciones se aplican en el Capítulo \ref{cap:transicion}, donde se analiza la transición temporal laminar–turbulenta.
+
+\section{El concepto de turbulencia. Simulaciones Numéricas Directas (DNS)}
+
+Los flujos se clasifican, de manera general, en laminares, de transición y turbulentos. La mayoría de los flujos presentes en la naturaleza y en aplicaciones industriales son turbulentos, por lo que su estudio tiene un gran interés tanto en el ámbito científico como en el tecnológico. Algunos ejemplos de flujo turbulento se encuentran presentes en el movimiento de las nubes en el cielo, las corrientes oceánicas, el flujo sobre el ala de un avión o el flujo sobre el álabe de una turbina, entre muchos otros.
+
+Todos estos flujos presentan un comportamiento aparentemente aleatorio y caótico, lo cual se refleja en las variaciones espaciales y temporales de las variables del flujo, tales como la velocidad, la temperatura o la densidad. Las complejidades inherentes a la turbulencia dificultan su definición de forma concisa; por ello, en general, no es común dar una definición de turbulencia sino más bien presentar ciertos atributos canónicos \cite{smits2009lectures}:
+
+\begin{itemize}
+	
+	\item \textbf{Tridimensionalidad.} La turbulencia es un fenómeno inherentemente tridimensional. 
+	
+	\item \textbf{Naturaleza no estacionaria.} Los flujos turbulentos evolucionan en el tiempo y se caracterizan por variaciones inestables en magnitudes asociadas (velocidad, presión, temperatura, etc).
+	
+	\item \textbf{Carácter multiescala.} La turbulencia involucra una amplia gama de escalas en el espacio y en el tiempo. 
+	
+	\item \textbf{Difusividad.} Se tiene una mezcla eficaz\footnote{El término ``mezcla eficaz'' se refiere a la capacidad de un flujo turbulento para mezclar y dispersar las diferentes propiedades del fluido de manera rápida y homogénea.} de todas las propiedades del fluido (masa, velocidad, temperatura, concentración, etc.).
+
+\end{itemize}
+
+Por su relevancia práctica y su naturaleza aleatoria y compleja, este fenómeno ha sido objeto de un gran número de investigaciones teóricas y experimentales a lo largo de los últimos dos siglos. Incluso en la actualidad, se sigue estudiando con el objetivo de entender mejor su complejidad. En este contexto, el uso de la computación para resolver las ecuaciones que gobiernan la dinámica de fluidos ha adquirido un papel preponderante y se ha consolidado como una de las herramientas más utilizadas para el análisis de flujos turbulentos.
+
+El rápido progreso de las computadoras de alto rendimiento, permite que la simulación numérica directa (\textit{Direct Numerical Simulation}, DNS) sea una herramienta fundamental para la investigación de la turbulencia \cite{moin1998direct}. Esta permite calcular la solución tridimensional y no estacionaria de las ecuaciones de conservación involucradas. Al resolverse sin recurrir a modelos de turbulencia, estas simulaciones requieren una precisión elevada para capturar todas las escalas del flujo \cite{pope2001turbulent}.
 
 \section{Descripción del sistema bajo estudio. Ecuaciones de Gobierno}
 
-Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=\pm d$. Esto constituye un canal de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
+Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde la dinámica de un fluido viscoso e incompresible sucede entre dos paredes paralelas e infinitas ubicadas en $y=\pm d$. Esto constituye un canal vertical de placas paralelas donde ambas paredes están sometidas a un flujo de calor constante $q''_w$.
 
 \begin{figure}[H]
  \centering
@@ -17,7 +38,7 @@ Se considera el sistema representado en la Figura \ref{fig:sistem_domain} donde 
     \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap2/domain2d.eps}
     \label{fig:dom2d}}  
- \caption{} 
+ \caption{Esquema del sistema físico bajo análisis.} 
  \label{fig:sistem_domain}
 \end{figure}
 
@@ -44,45 +65,47 @@ Un sistema físico cuyas dimensiones ``son muy grandes'' (o infinitas) constituy
 \label{eq:neumann}
 \end{equation}
 
-Debido a una limitación computacional evidente, nuestro modelo computacional no puede abarcar dicha extensión. En ese sentido, el ``dominio infinito'' se reemplaza con un dominio acotado de dimensiones $L_x \times L_y \times L_z$ (Figura \ref{fig:dom3d}) adoptando condiciones de borde periódicas (PBC) en la direcciones $X$ y $Z$:
+Debido a una limitación computacional evidente, nuestro modelo no puede abarcar dicha extensión. En ese sentido, el ``dominio infinito'' se reemplaza con un dominio acotado de dimensiones $L_x \times L_y \times L_z$ (Figura \ref{fig:dom3d}) adoptando condiciones de borde periódicas (PBC) en la direcciones $X$ y $Z$:
 \begin{align}
-\xi(x=0,y,z,t) &= \xi(x=L_x,y,z,t) \\ 
+\xi(x=0,y,z,t) &= \xi(x=L_x,y,z,t)
+\label{eq:pbc1} \\
 \xi(x,y,z=0,t) &= \xi(x,y,z=L_z,t)
+\label{eq:pbc2}
 \end{align}
 siendo $\xi$ un campo escalar arbitrario. Esto se puede interpretar como si las PBC crearan ``la ilusión'' de un dominio infinito, mediante la repetición de este dominio finito en el espacio.
 
-Por otra parte, en un flujo turbulento (véase Sección \ref{sec:turbu}), dado que este no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, algunos autores \cite{kasagi1992direct,tao1960} asumen que dichas fluctuaciones son pequeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Eso equivale a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con la coordenada $x$, y por lo tanto: 
+Por otra parte, como se ha mencionado, dado que un flujo turbulento no es estacionario, aparecen fluctuaciones del flujo de calor y de la temperatura sobre la superficie de la pared. En este contexto, algunos autores \cite{kasagi1992direct,tao1960} asumen que dichas fluctuaciones son pequeñas a fin de considerar que la temperatura en la pared es localmente isotérmica y que además, el flujo de calor no varía en la dirección de la corriente. Eso equivale a suponer que la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con la coordenada $x$, y por lo tanto: 
 
 $$
 \langle T_w \rangle = \mathcal{A} \hspace{0.5mm} x.
 $$
 
-Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que siga siendo válido las condiciones de borde periódicas, esto es, $\theta(x=0,y,z,t)=\theta(x=L_x,y,z,t)$. Dicha modificación introduce un término fuente en la ecuación de conservación de energía:
+Debido al crecimiento lineal de $\langle T_w \rangle$, es requerido realizar el cambio de variable $T(x,y,z,t) = \langle T_w \rangle - \theta(x,y,z,t)$ para que sigan siendo válidas las condiciones de borde periódicas (ecuaciones \ref{eq:pbc1} y \ref{eq:pbc1}). Dicha modificación introduce un término fuente en la ecuación de conservación de energía:
 
 \begin{equation}
 \frac{ \partial \theta }{ \partial t } + \mathbf{u} \cdot \nabla \theta = \alpha \nabla^2 \theta + \mathcal{A} \hspace{0.5mm} u_x 
 \label{eq:energy_pcb_source}
 \end{equation}
 
-\newpage
-Por su parte, el término $\rho(T) \mathbf{g}$ de la ecuación de momento se reescribe empleando la aproximación de Bousinessq \cite{incropera}, donde $\rho_o \equiv \rho(T_R)$:
-
-\begin{align}
-\rho(T) \mathbf{g} &\simeq \rho_o \left[ 1 - \beta (T - T_R) \right] \mathbf{g} \\
-				   &\simeq \rho_o \left[ 1 - \beta ( \hspace{0.5mm} (\langle T_w \rangle - \theta) - T_R) \right] \mathbf{g} \\
- 		           &\simeq \rho_o \beta \theta \mathbf{g} + \rho_w \mathbf{g}
-\label{eq:bussinesq}
-\end{align}
-siendo $\rho_w \equiv \rho(T=\langle T_w \rangle)$. Utilizando estas definiciones, la ecuación de momento se reescribe como se expresa en la ecuación \ref{eq:mom_rewrite} siendo $\mathbf{\hat{e_g}}=(-1,0,0)$.
+Asimismo, se emplea la aproximación de Bousinessq que supone que los cambios de densidad en el fluido pueden despreciarse, excepto donde la densidad está multiplicada por $\mathbf{g}$ \cite{kundu}. El término $\rho(T) \mathbf{g}$ de la ecuación de momento se reescribe según la expresión \ref{eq:bussinesq}, donde $\rho_o \equiv \rho(T_R)$ y $\rho_w \equiv \rho(T=\langle T_w \rangle)$ \cite{incropera}. Luego, la ecuación de momento queda reescrita como se expresa en la ecuación \ref{eq:mom_rewrite} siendo $\mathbf{\hat{e_g}}=(-1,0,0)$, $\rho_{w/2} \equiv \rho(T=\langle T_w \rangle / 2)$ y $C$ es una constante que no depende de $x$.
 
 \begin{equation}
-\frac{ \rho_o \hspace{0.5mm} \partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \left[ \text{p} + \rho_{w/2} \hspace{0.5mm} g \hspace{0.5mm} x + C \right] + \mu_o \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{0.5mm} \rho_o \hspace{0.5mm} \beta \hspace{0.5mm} \theta \hspace{0.5mm} \mathbf{\widehat{e_g}}
+\begin{aligned}
+\rho(T) \mathbf{g} &= \rho_o \left[ 1 - \beta (T - T_R) \right] \mathbf{g} \\
+				   &= \rho_o \left[ 1 - \beta ( \hspace{0.5mm} (\langle T_w \rangle - \theta) - T_R) \right] \mathbf{g} \\
+ 		           &= \rho_o \beta \theta \mathbf{g} + \rho_w \mathbf{g}
+\end{aligned}
+\label{eq:bussinesq}
+\end{equation}
+
+\begin{equation}
+\frac{ \rho_o \hspace{0.5mm} \partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \left[ \text{p} + \rho_{w/2} \hspace{0.5mm} g \hspace{0.5mm} x + C \right] + \mu_o \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{0.5mm} \rho_o \hspace{0.5mm} \beta \hspace{0.5mm} \theta \hspace{0.5mm} \mathbf{\widehat{e_g}},
 \label{eq:mom_rewrite}  
 \end{equation}
 %\rho_w \hspace{0.5mm} g \hspace{0.5mm} \mathbf{\widehat{e_g}}
-donde $\rho_{w/2} \equiv \rho(T=\langle T_w \rangle / 2)$ y $C$ es una constante que no depende de $x$. 
+ 
 
-Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible demostrar que $\mathcal{A} = \frac{q''_w}{\rho_o  c_p U_b d}$ siendo $d$ el semiancho del canal y $U_b$ la velocidad \textit{bulk} \cite{pope2001turbulent}. Luego, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$, la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $ y tomado $\text{p}^* = \left[ \text{p} + \rho_{w/2} \hspace{0.5mm} g \hspace{0.5mm} x + C \right] / \rho_o (U_o)^2$, el sistema de ecuaciones \ref{eq:gob_system} dimensional queda escrito en su forma adimensional como se muestra en el cuadro \ref{eq:gob_system_adim}. Los números adimensionales asociados a estas ecuaciones, se expresan en las relaciones \ref{eq:num_adim}: de izquierda a derecha, se tiene, el número de Reynolds, el número de Prandtl, el parámetro que acompaña al término boyante y al número de Richardson basado en el flujo de calor. 
+Mediante el balance de energía en el volumen de control $L_x \times L_y \times L_z$, es posible demostrar que $\mathcal{A} = \frac{q''_w}{\rho_o  c_p U_b d}$ siendo $d$ el semiancho del canal y $U_b$ la velocidad \textit{bulk} \cite{pope2001turbulent}. Luego, empleando la velocidad en el centro del canal $U_o$, el semiancho $d$, la temperatura $T_o = \mathcal{A} \hspace{0.3mm} d $ y tomado $\text{p}^* = \left[ \text{p} + \rho_{w/2} \hspace{0.5mm} g \hspace{0.5mm} x + C \right] / \rho_o (U_o)^2$, el sistema de ecuaciones dimensional \ref{eq:gob_system} queda escrito en su forma adimensional como se muestra en el cuadro \ref{eq:gob_system_adim}. Los números adimensionales asociados a estas ecuaciones, se expresan en las relaciones \ref{eq:num_adim}, de izquierda a derecha, se tiene: el número de Reynolds, el número de Prandtl, el parámetro que acompaña al término boyante y al número de Richardson basado en el flujo de calor. 
 
 Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por un caudal másico constante. Esta cuestión se encuentra representada por el término fuente $f \hspace{0.3mm} \mathbf{\widehat{e_x}}$, en la ecuación de momento, donde $f$ es una constante en el espacio y varía con el tiempo de manera que mantiene constante el caudal total. 
 
@@ -105,9 +128,9 @@ Otro detalle importante es el hecho de que el fluido de trabajo es impulsado por
 \end{equation}
 %siendo Ra, el número de Rayleigh.
 
-Asimismo, las condiciones de flujo de calor constante están expresadas en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante (fluctuaciones de temperatura despreciables) se obtiene: 
-$$T(x,y=0,z,t) = T(x,y=2d,z,t) = \langle T_w \rangle$$ 
-Éste tipo de aproximación se conoce en la literatura científica como \textit{Mixed Boundary Condition} \cite{straub2019influence} y su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. Por último, para las componentes de velocidad y el campo de presión, se adoptan condiciones de no deslizamiento y condiciones de Neumann homogéneas, respectivamente, en las paredes. 
+Las condiciones de flujo de calor constante en las paredes se expresean, en su forma adimensional, en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante (fluctuaciones de temperatura despreciables) se obtiene: 
+$$T(x,y=-d,z,t) = T(x,y=+d,z,t) = \langle T_w \rangle$$ 
+Éste tipo de aproximación se conoce en la literatura como \textit{Mixed Boundary Condition} \cite{straub2019influence} y su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. Por último, para las componentes de la velocidad y del campo de presión, se adoptan condiciones de no deslizamiento y condiciones de Neumann homogéneas, respectivamente, en las paredes. 
 
 \begin{align}
 \begin{array}{l}
@@ -166,7 +189,7 @@ A lo largo de este trabajo, particularmente para el análisis de estabilidad lin
 \end{equation}
 
 \begin{equation*}
-\varphi^* = -  \frac{\theta^*}{\text{Re}_o \hspace{0.5mm} \text{Pr}}  \quad ; \quad \mathbf{v^*} = \frac{2}{3} \mathbf{u^*} \quad ; \quad \text{Re}_b = \frac{2}{3} \text{Re}_o \quad ; \quad \text{Ra} = 
+\varphi^* = -  \frac{\theta^*}{\text{Re}_o \hspace{0.5mm} \text{Pr}}  \quad ; \quad \mathbf{v^*} = \frac{2}{3} \mathbf{u^*} \quad ; \quad \text{Re}_b = \frac{2}{3} \text{Re}_o
 \end{equation*}  
 
 \begin{equation}
@@ -174,30 +197,71 @@ A lo largo de este trabajo, particularmente para el análisis de estabilidad lin
 \label{eq:Rayleigh}
 \end{equation} 
 
-\newpage
 
-\section{Conceptos Elementales de Turbulencia} \label{sec:turbu}
-Definiciones y conceptos básicos de turbulencia.
+\section{Magnitudes estadísticas de flujos turbulentos} \label{sec:mag-stat}
 
-Acá tambíen hay que agregar sobre las magnitudes estadisticas etc (ver tesis de Szuban o Willi) donde ponen las forma de las correlaciones etc
+En flujos turbulentos, los campos como la velocidad son variables aleatorias \\ \cite{pope2001turbulent}. Supóngase que $\xi$ es un campo arbitrario asociado al sistema. Para una posición e instante determinados en un experimento (o simulación) repetible bajo las mismas condiciones, y sin dependencia entre repeticiones, el conjunto $\lbrace \xi^{(1)}, \xi^{(2)}, \cdots \rbrace$ puede considerarse de variables i.i.d. (independientes e idénticamente distribuidas). Entonces, el promedio en ensemble sobre $N$ repeticiones se define como 
 
-\newpage
+\begin{equation*}
+\langle \xi \rangle_N = \frac{1}{N} \sum^N_{n=1} \xi^{(n)} 
+\end{equation*}
+siendo $N$ muy grande. Si el sistema es estadísticamente estacionario, sus propiedades estadísticas no cambian con el tiempo; si es estadísticamente homogéneo, no varían con la posición; y si es ergódico \cite{moser2003}, el promedio en ensemble puede reemplazarse por el promedio en el tiempo y/o en el espacio (direcciones homogéneas). 
+
+En problemas de turbulencia, los promedios y las fluctuaciones de las variables de interés son importantes, por lo que la descomposición de Reynolds \cite{pope2001turbulent, kundu} de la variable instantánea arbitraria $\xi$ puede representarse como un valor promedio $\langle \xi \rangle$ y una fluctuación $\xi^{\prime}$:
+
+$$\xi = \langle \xi \rangle + \xi^{\prime}$$
+donde $\langle (\text{.}) \rangle$ denota el promedio estadístico y $(\text{.})^{\prime}$ denota la parte fluctuante. 
+
+Supongase entonces, que $\eta$ es otra magnitud instantánea del flujo. El promedio de la multiplicación  de las fluctuaciones de $\xi$ y $\eta$ son cantidades de interés para la construcción de modelos de turbulencia \cite{pope2001turbulent}. Dichas cantidades nos indican que tan correlacionadas están $\xi$ y $\eta$ entre sí. Estas se obtienen a partir del promedio de las magnitudes totales, ecuación \ref{eq:mag-cov}, donde se usa el hecho de que el promedio de una fluctuación es nulo y el promedio de otro promedio sigue siendo él mismo \cite{pope2001turbulent}. De esta manera, el promedio del producto de fluctuaciones $\langle \xi^{\prime} \eta^{\prime} \rangle$ queda expresado en la ecuación \ref{eq:fluct-corr}.
+
+\begin{equation}
+\begin{aligned}
+\langle \xi \eta \rangle &= \langle (\langle \xi \rangle + \xi^{\prime}) (\langle \eta \rangle + \eta^{\prime}) \rangle \\
+                         &= \langle \xi \rangle \langle \eta \rangle + \langle \xi^{\prime} \eta^{\prime} \rangle
+\end{aligned}
+\label{eq:mag-cov}
+\end{equation}
+
+\begin{equation}
+\langle \xi^{\prime} \eta^{\prime} \rangle = \langle \xi \eta \rangle - \langle \xi \rangle \langle \eta \rangle
+\label{eq:fluct-corr}
+\end{equation}
+
+Algunas cantidades importante que aparecen en las ecuaciones promediadas de conservación (ecuaciones RANS \cite{kundu}) son:
+
+\begin{itemize}
+	\item $\langle u^{\prime}_i u^{\prime}_j \rangle$: componentes del tensor de Reynolds con $i,j=x,y,z$;
+	\item $\langle \theta^{\prime} u^{\prime}_i \rangle$: flujos turbulentos de calor en la dirección $i$, con $i=x,y,z$;
+	\item $\langle \theta^{\prime} \theta^{\prime} \rangle$: varianza de la temperatura;
+
+	\item otra magnitud utilizada ampliamente a lo largo de este trabajo es la energía cinética turbulenta $k$ (o TKE) definida como proporcional a la traza del tensor de Reynolds, esto es, 
+
+\begin{equation}
+k = \frac{1}{2} \left[ \langle u^{\prime}_x u^{\prime}_x \rangle + \langle u^{\prime}_y u^{\prime}_y \rangle + \langle u^{\prime}_z u^{\prime}_z \rangle \right] \text{.}
+\label{eq:tke}
+\end{equation}
+
+\end{itemize}
+
+
 \section{Teoría de Estabilidad Lineal. Perturbaciones} \label{line_an}
 
-Para analizar la estabilidad lineal y prever de forma matemática cómo cambiará un flujo una vez perturbado, resulta indispensable aceptar que las perturbaciones actúan sobre un flujo base. Aquí se adopta como referencia el flujo laminar completamente desarrollado. En consecuencia, la evolución de las perturbaciones también queda condicionada por dicho estado inicial. \textcolor{red}{Esto habría que buscar quizas un mejor forma de escribirlo porque está medio choto. Además tratar de agregar alguna otra referencia quizas ...}
+La evolución de un flujo laminar a uno turbulento (transición laminar-turbulenta) es crucial en ingeniería ya que las características del mismo varían notablemente entre estos regímenes. Por ejemplo, los coeficientes de fricción y de convección aumentan considerablemente al pasar de un régimen laminar a uno turbulento \cite{machaca2024}. Las ecuaciones de Navier–Stokes admiten ambas soluciones bajo ciertos requisitos, lo que implica que el tipo de flujo y su evolución dependen de las perturbaciones y las condiciones impuestas sobre el sistema. 
+
+Para analizar la estabilidad lineal y prever de forma matemática cómo cambiará el flujo una vez perturbado, resulta indispensable conocer el flujo base sobre el que se añaden las perturbaciones para desencadenar las inestabilidades que dan paso a la transición. En este trabajo se adopta como flujo base al flujo laminar completamente desarrollado. %En consecuencia, la evolución de las perturbaciones también queda condicionada por dicho estado inicial. 
 
 
 
 \subsection{Flujo Base}
 
-Si el flujo está completamente desarrollado, tanto térmica como hidrodinámicamente, entonces el mismo sólo dependerá de la variable $y^*$. El sistema de ecuaciones \ref{eq:gob_system_res2} puede reducirse a la ecuación de momento en la dirección $X$ y a la ecuación de transporte del escalar pasivo, las cuales quedan expresadas de la forma 
+Si el flujo está completamente desarrollado, tanto térmica como hidrodinámicamente, entonces el mismo sólo dependerá de la variable $y^*$. El sistema de ecuaciones \ref{eq:gob_system_res2} puede reducirse a la ecuación de momento en la dirección $X$ y a la ecuación de energía \cite{chen1996linear}, las cuales quedan expresadas de la forma 
 
 \begin{align}
-&\frac{d \text{p}^* }{d x^*} = \frac{\text{Ra}}{\text{Re}_b } \Phi^* + \frac{1}{\text{Re}} \frac{d^2 V^*_x}{d {y^*}^2} \\
-&\frac{d^2 \Phi^*}{ d {y^*}^2 } =  V^*_x
+&\frac{d \text{p}^* }{d x^*} = \frac{\text{Ra}}{\text{Re}_b } \Phi^* + \frac{1}{\text{Re}} \frac{d^2 V^*_x}{d {y^*}^2}, \\
+&\frac{d^2 \Phi^*}{ d {y^*}^2 } =  V^*_x \text{.}
 \label{eq:base1}
 \end{align}
-El perfil de velocidad y de temperatura admiten las condiciones de borde $V^*_x({y^*}= \pm 1) = \Phi^* ({y^*}= \pm 1) = 0 $. Las soluciones para un flujo asistido por fuerzas boyantes están dadas por las expresiones \ref{eq:vel_asist_boyant} y \ref{eq:theta_asist_boyant}, mientras que para un flujo donde las fuerzas boyantes son opuestas, las soluciones quedan definidas por las ecuaciones \ref{eq:vel_opo_boyant} y \ref{eq:theta_opo_boyant} \cite{chen1996linear}. 
+El perfil de velocidad y de temperatura admiten las condiciones de borde \\  $V^*_x({y^*}= \pm 1) = \Phi^* ({y^*}= \pm 1) = 0 $. Las soluciones para un flujo asistido por fuerzas boyantes ($\text{Ra}>0$) están dadas por las expresiones \ref{eq:vel_asist_boyant} y \ref{eq:theta_asist_boyant}, mientras que para un flujo donde las fuerzas boyantes son opuestas ($\text{Ra}<0$), las soluciones quedan definidas por las ecuaciones \ref{eq:vel_opo_boyant} y \ref{eq:theta_opo_boyant} \cite{chen1996linear}. Obsérvese que el único parámetro relevante aquí es el número de Rayleigh.
 \small{
 \begin{equation}
 V^*_x = \frac{-E}{\sqrt{\text{Ra}}} \frac{\sinh(\kappa(1+y^*))\sin(\kappa(1-y^*)) + \sinh(\kappa(1-y^*))\sin(\kappa(1+y^*)) }{\cosh(2\kappa) + \cos(2\kappa)}
@@ -228,15 +292,10 @@ V_x = \frac{F}{2 m^2} \left( \frac{\cosh(m y^*)}{\cosh(m)} - \frac{\cos(m y^*)}{
 E= -2 \kappa \hspace{1mm} \text{Ra}^{1/2} \hspace{1mm} \frac{\cosh(2\kappa) + \cos(2\kappa)}{\sinh(2\kappa) - \sin(2\kappa)} 
 \end{equation*}
 }
-Obsérvese que el único parámetro aquí es el número de Rayleigh. En el Capitulo \ref{cap:validacion}, estas soluciones se utilizarán para la validación de la herramienta numérica \textit{OSMC}. 
 
-\subsection{Análsis de Estabilidad Lineal}
+\subsection{Análisis de Estabilidad Lineal} \label{sec:estabilidad}
 
-\textcolor{red}{REVISAR ESTOS PARRAFOS. ESTAN MEDIOS CRUDOS TODAVIA ...}
-
-La transición laminar-turbulenta, es decir, la evolución de un flujo laminar a uno turbulento, es crucial en ingeniería, ya que las características del flujo varían notablemente entre estos regímenes. Por ejemplo, los coeficientes de fricción y de convección aumentan considerablemente al pasar de un régimen laminar a uno turbulento [PHDTESIS MACHACA]. La ecuación de Navier–Stokes admite ambas soluciones bajo ciertos parámetros, lo que implica que el tipo de flujo y su evolución dependen de las perturbaciones y las condiciones impuestas en el sistema. Muchos fenómenos que cumplen exactamente las leyes de conservación resultan inobservables porque se inestabilizan ante las pequeñas perturbaciones inevitables en cualquier sistema real \cite{kundu}.
-
-El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave. Sin embargo, en ocasiones las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia estados de fluctuaciones caóticas, comúnmente descritos como turbulencia. Dos motivaciones principales para estudiar la estabilidad de los fluidos son comprender el proceso de transición de un flujo laminar a uno turbulento y predecir el inicio de dicha transición.
+El análisis de estabilidad lineal permite evaluar cómo se comporta un flujo ante perturbaciones, identificando los mecanismos que pueden inducir transiciones o estados de intermitencia. En el caso de flujos de fluidos, condiciones como un número de Reynolds inferior a un valor crítico garantizan la estabilidad de un flujo laminar suave \cite{drazin2004hydrodynamic}. Sin embargo, en ocasiones, las perturbaciones crecen hasta alcanzar amplitudes finitas y establecer nuevos equilibrios estacionarios, que pueden volverse inestables a su vez y evolucionar hacia un régimen turbulento. Dos motivaciones principales para estudiar la estabilidad de los fluidos son: comprender el proceso de transición de un flujo laminar a uno turbulento, y predecir el inicio de dicha transición.
 
 El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_res2} donde se han omitido los superíndices ``*''. La idea consiste en suponer que los campos solución ($\mathbf{v}$, $\text{p}$, $\varphi$) pueden descomponerse como un flujo base más una perturbación:
 
@@ -245,14 +304,14 @@ El enfoque parte de las ecuaciones de gobierno \ref{eq:gob_system_res2} donde se
 \text{p} &= P + \widetilde{p} \\
 \varphi &= \Phi + \widetilde{\varphi}
 \end{align}  
-donde las letras mayusculas hacen referencia al flujo base laminar y aquellas letras con $\widetilde{()}$ a las perturbaciones. %Se asume que $\mathbf{v}$, $p$, $\mathbf{V} = (V_x,V_y,V_z)$ y $\text{P}$ satisface el sistema de ecuaciones. 
+donde las letras mayusculas hacen referencia al flujo base laminar y aquellas letras con $\widetilde{(\text{.})}$ a las perturbaciones. 
 
 Despreciando términos de segundo orden, esto es, productos de perturbaciones, y asumiendo que los flujos bases son los flujos laminares desarrollados $\mathbf{V} = (V_x(y),0,0)$ y $\Phi \equiv \Phi(y)$ es posible expresar las ecuaciones que describen la dinámica de $\widetilde{\mathbf{v}}$, $\widetilde{p}$ y $\widetilde{\varphi}$ de la siguiente forma: 
 
 \begin{align}
 &\nabla \cdot \mathbf{\widetilde{v}} = 0
 \label{eq:pertub_continuity} \\
-&\partial_t \mathbf{\widetilde{v}} + V_x \hspace{1mm} \partial_x \mathbf{\widetilde{v}} + {\widetilde{v_y}} \partial_y V_x \hspace{1mm} \mathbf{\hat{e_x}} = - \nabla \widetilde{p} + \frac{1}{\text{Re}_b} \hspace{1mm} \nabla^2 \mathbf{\widetilde{v}} + \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \widetilde{\varphi} \hspace{1mm}  \mathbf{\hat{e_x}} 
+&\partial_t \mathbf{\widetilde{v}} + V_x \hspace{1mm} \partial_x \mathbf{\widetilde{v}} + {\widetilde{v_y}} \partial_y V_x \hspace{1mm} \mathbf{\hat{e_x}} = - \nabla \widetilde{p} + \frac{1}{\text{Re}_b} \hspace{1mm} \nabla^2 \mathbf{\widetilde{v}} + \frac{\text{Ra}}{\text{Re}_b} \hspace{1mm} \widetilde{\varphi} \hspace{1mm}  \mathbf{\widehat{e_x}} 
 \label{eq:pertub_momentum} \\
 &\partial_t {\widetilde{\varphi}} + V_x \hspace{1mm} \partial_x {\widetilde{\varphi}} + {\widetilde{v_y}} \partial_y \Phi \hspace{1mm} = \frac{1}{\text{Re}_b \hspace{1mm} \text{Pr}} \left[ \nabla^2 \widetilde{\varphi} - \widetilde{v_x} \right]
 \label{eq:pertub_energy} 
@@ -293,7 +352,7 @@ donde $c \equiv c_r + i \hspace{0.5mm} c_i$ es la velocidad de fase y $\omega \e
 \alpha \hspace{1mm}, \hspace{1mm} \beta \hspace{1mm} , \hspace{1mm} c_r \hspace{1mm} , \hspace{1mm} c_i \quad \epsilon \quad \mathbb{R}
 \end{equation*}
 
-En este sentido, se distinguen dos casos:
+En este sentido, dado que se busca y se estudia la transición temporal, se distinguen dos casos \cite{szuban2023}:
 
 \begin{itemize}
 \item[$\blacklozenge$] Si $\alpha c_i > 0$ entonces las perturbaciones crecen en el tiempo. El flujo se vuelve inestable.
@@ -325,6 +384,7 @@ a_{31} & a_{32} & a_{33}
 \widehat{\varphi} \\[4pt]
 \widehat{\eta}
 \end{bmatrix}
+\label{eq:eigensistem-general}
 \end{equation}
 
 \begin{align*}
@@ -333,20 +393,22 @@ a_{21} &= \frac{i \alpha}{\text{Re}_b \hspace{1mm} \text{Pr} \hspace{1mm} k^2} D
 a_{31} &= \beta D(V_x) \hspace{2mm} ; \hspace{2mm} a_{32} = - \beta \frac{\text{Ra}}{\text{Re}_b}  \hspace{2mm} ; \hspace{2mm} a_{33} = -\frac{1}{\text{Re}_b} \left[ D^2 - k^2 \right] + i \alpha V_x \\
 b_1    &= - \left[ D^2 - k^2 \right] \hspace{2mm} ; \hspace{2mm} k^2 = \alpha^2 + \beta^2 \\
 \end{align*}
-
-A partir de las condiciones de borde \ref{eq:bc_1} - \ref{eq:bc_5}, las autofunciones $\widehat{v_y}(y)$, $\widehat{\varphi}(y)$, $\widehat{\eta}(y)$ deben satisfacer las condiciones:
+donde $\widehat{\eta} = \beta \hspace{0.5mm} \widehat{v_x} - \alpha \hspace{0.5mm} \widehat{v_z}$. A partir de las condiciones de borde \ref{eq:bc_1} - \ref{eq:bc_5}, las autofunciones $\widehat{v_y}(y)$, $\widehat{\varphi}(y)$, $\widehat{\eta}(y)$ deben satisfacer las condiciones:
 
 \begin{equation}
 \widehat{v_y}(y) = D(\widehat{v_y}) = \widehat{\varphi}(y) = \widehat{\eta}(y) = 0 \quad \text{en} \quad y= \pm 1
+\label{eq:eigensis-ci}
 \end{equation} 
 
 La resolución de este problema de autovalores generalizado se realiza empleando una estrategia numérica la cuál se detalla en el Capítulo \ref{cap:numerico}. 
 
-\subsection{Mecanismos de Inestabilidad. Ondas TS e Inestabilidad Secundaria }
+\subsection{Mecanismos de Inestabilidad. Ondas TS e Inestabilidad Secundaria} \label{sec:mecanismo}
 
-\textcolor{red}{FALTA COMPLETAR. Esto es solo para poder citar las formulas en el capitulo 6 de resultados.}
+En el caso de un flujo Poiseuille entre placas paralelas, se tiene, según la teoría de estabilidad lineal, que el flujo es estable para números de Reynolds menores que $\text{Re}_{\text{crit}}=5772$ \cite{orszag1971accurate}. Sin embargo, los experimentos reales muestran que el flujo puede inestabilizarse para $\text{Re} < \text{Re}_{\text{crit}}$, como es el caso del experimento realizado por \cite{kao1970experimental}, quienes encontraron un número de Reynolds crítico igual a 975. 
 
-Para el estudio de la transición temporal es necesario introducir una condición inicial en el flujo de interés. En el presente trabajo, la perturbación impuesta en la condición inicial, siguiendo la metodología de Zang y Krist [1989], se calcula con las autofunciones asociadas a un autovalor elegido. La condición inicial adoptada tiene la forma siguiente: 
+En vista de que en los experimentos reales el flujo se inestabiliza a $\text{Re} < 5772$, muchos investigadores abarcaron el problema  de forma numérica. Por ejemplo, Orszag y Kells \cite{orszag1980transition} lograron inestabilizar el flujo para  $\text{Re} \approx 1000$ mediante la introducción de perturbaciones tridimensionales de pequeña amplitud. Estas perturbaciones tridimensionales dan lugar a lo que se conoce como inestabilidad secundaria.
+
+La teoría de inestabilidad secundaria se ocupa del análisis de estabilidad de estados estacionarios o cuasi-estacionarios que resultan de la inestabilidad primaria. Esta última aborda la primera etapa del proceso de transición: el crecimiento de las ondas bidimensionales (2D) de Tollmien–Schlichting (TS) \cite{tollmien1935, schlichting1933} que se propagan en la dirección de la corriente. Cuando la amplitud de la onda TS excede cierto umbral, las perturbaciones tridimensionales (3D) comienzan a amplificarse \cite{schmid}. \\ En este sentido, la condición inicial que se adopta tiene la forma de la ecuación \ref{eq:init_con_1} donde $\mathbf{V}=(V_x(y),0,0)$.
 
 \begin{equation}
 \begin{aligned}
@@ -355,8 +417,7 @@ Para el estudio de la transición temporal es necesario introducir una condició
 \end{aligned}
 \label{eq:init_con_1}
 \end{equation}
-
-donde $\mathbf{V}=(V_x(y),0,0)$ y también se tiene que:
+La condición inicial considerada para el crecimiento de la perturbación en el tiempo se construye como la suma del flujo base y la perturbación bidimensional compuesta por una ondas 2D tipo $\widehat{\xi}(y) \hspace{0.5mm} e^{i \hspace{0.5mm} \alpha_{2D} \hspace{0.5mm} x }$ (inestabilidad primaria). Luego se produce una saturación no lineal de la onda 2D mediante la adición de un par de ondas tridimensionales oblicuas tipo $\widehat{\xi}(y) \hspace{0.5mm} e^{i \hspace{0.5mm} \alpha_{3D} \hspace{0.5mm} x \pm \beta z  }$ (inestabilidad secundaria). Así, la forma funcional de las perturbaciones $\widetilde{\mathbf{v}}$ y $\widetilde{\mathbf{\varphi}}$ se expresan en las ecuaciones \ref{eq:init_con_2} y \ref{eq:init_con_3}, respectivamente. Allí, $A_{2D}$ corresponden a la amplitud de la perturbación bidimensional, $A_{3D}$ corresponde a la amplitud total del par de ondas tridimensionales. Las autofunciones $\widehat{\mathbf{v^{}_{2D}}}(y)$, $\widehat{\mathbf{v^{}_{3D}}}(y)$, $\widehat{\varphi^{}_{2D}}(y)$ y $\widehat{\varphi^{}_{3D}}(y)$ son calculadas con la herramienta $OSMC$ descrita en el Capítulo \ref{cap:numerico}. Los superíndices $+$ y $-$ representan las autofunciones calculadas para $+ \beta$ y $- \beta$, respectivamente ($\beta>0$). 
 
 \begin{equation}
 \begin{aligned}
