@@ -3,20 +3,32 @@
 
 El propósito de este capítulo es mostrar, vía simulaciones numéricas, cómo la flotabilidad o boyancia modifica un flujo turbulento plenamente desarrollado en un canal de placas paralelas. Se utiliza para esto simulaciones DNS que cubren un extenso espectro de números de Reynolds, Richardson y Prandtl, lo que permite examinar la evolución desde convección forzada hasta convección natural. Tras describir los casos y las variables adimensionales de referencia, se presentan (i) magnitudes estadísticas de primer y segundo orden, (ii) la influencia del número de Prandtl sobre las subcapas viscosa y térmica, (iii) el número de Nusselt y (iv) el factor de fricción de Darcy.
 
-La fuerza boyante convierte los perfiles de velocidad en forma de ``M'' y desplaza el máximo de $ \langle u^*_x \rangle$ hacia la pared. Para Ri$_b$ $>$ 1, la mezcla inducida aplana el perfil de temperatura adimensional y atenúa sus fluctuaciones en el núcleo. El efecto del Prandtl es claro: con Pr=0.071 la ley de pared $\langle \theta^{*} \rangle \simeq \text{Pr} y^+ $ se mantiene hasta $y^+ \approx 30$, mientras que con Pr=0.71 concluye en $y^+ \approx 7$, reflejando la influencia de Pr en la capa conductiva. 
+%La fuerza boyante convierte los perfiles de velocidad en forma de ``M'' y desplaza el máximo de $ \langle u^*_x \rangle$ hacia la pared. Para Ri$_b$ $>$ 1, la mezcla inducida aplana el perfil de temperatura adimensional y atenúa sus fluctuaciones en el núcleo. El efecto del Prandtl es claro: con Pr=0.071 la ley de pared $\langle \theta^{*} \rangle \simeq \text{Pr} y^+ $ se mantiene hasta $y^+ \approx 30$, mientras que con Pr=0.71 concluye en $y^+ \approx 7$, reflejando la influencia de Pr en la capa conductiva. 
+%
+%Existe un intervalo $10^{-6} \lesssim \text{Bo} \lesssim3 \times 10^{-5}$ donde Nu se degrada, fuera de él, la transferencia se recupera y supera el caso forzado. Esta caída de Nu coincide con una menor producción de turbulencia cerca de la pared. 
+%
+%Por último, la boyancia incrementa el gradiente de velocidad en la pared y eleva el factor de Darcy. La correlación propuesta reproduce con buena fidelidad los datos simulados y de referencia.
+%
+%
+%El propósito de este capítulo es mostrar, mediante simulaciones DNS, cómo la flotación (boyancia) modifica un flujo turbulento plenamente desarrollado en un canal de placas paralelas. Para ello se explora un amplio espectro de números de Reynolds, Richardson y Prandtl, abarcando la transición desde convección forzada hasta convección natural. Tras describir los casos y las variables adimensionales de referencia, se presentan: (i) magnitudes estadísticas de primer y segundo orden, (ii) la influencia del número de Prandtl sobre las subcapas viscosa y térmica, (iii) el número de Nusselt y (iv) el factor de fricción de Darcy.
 
-Existe un intervalo $10^{-6} \lesssim \text{Bo} \lesssim3 \times 10^{-5}$ donde Nu se degrada, fuera de él, la transferencia se recupera y supera el caso forzado. Esta caída de Nu coincide con una menor producción de turbulencia cerca de la pared. 
 
-Por último, la boyancia incrementa el gradiente de velocidad en la pared y eleva el factor de Darcy. La correlación propuesta reproduce con buena fidelidad los datos simulados y de referencia.
+Por un lado se analizan cantidades de primer y segundo orden, entre ellos los perfiles de velocidad y temperatura. Se observa que la fuerza boyante transforma los perfiles de velocidad hacia una morfología tipo “M” y desplaza el máximo de $\langle u_x^* \rangle$ hacia la pared. Luego, para flujos con $0 < \text{Ri}_b < 1$ los perfiles de temperatura adimensional se ubican por encima del caso puramente forzado y para $\text{Ri}_b>1$, la mezcla inducida por la flotación “aplana” el perfil medio adimensional de temperatura. Por su parte, el efecto del número de Prandtl se refleja en la ley de pared de temperatura: con $\text{Pr}=0\text{.}071$ se verifica $\langle \theta^{*} \rangle \simeq \text{Pr} \hspace{1mm} y^+$ hasta $y^+ \approx 30$, mientras que con $\text{Pr}=0\text{.}71$ concluye en $y^+ \approx 7$, lo que evidencia la influencia de $\text{Pr}$ en la capa conductiva. 
 
+Por otra parte, se analizan cantidades de interés en ingeniería, esto es, el número de Nusselt y el factor de fricción de Darcy.  Se observa la existencia un intervalo $10^{-6} \lesssim \text{Bo} \lesssim 3\times10^{-5}$ (donde Bo es el número de boyancia \cite{jackson1989studies}) en el que $\text{Nu}$ se reduce respecto al caso puramente forzado; fuera de él, la transferencia térmica se recupera y supera a la de convección forzada. Esta caída coincide con una menor producción de turbulencia cerca de las paredes. Por último, pese a la asistencia de la boyancia, el gradiente de velocidad en la pared aumenta y eleva el factor de friccoón de Darcy. Además, se propone una correlación del mismo en función del número de boyancia (Bo) y se observa que reproduce con buena fidelidad tanto los datos simulados como los de referencia.
+
+
+
+%De manera sintética, los principales hallazgos que guían el capítulo son los siguientes, en secuencia. Primero, se observa que la fuerza boyante transforma los perfiles de velocidad hacia una morfología tipo “M” y desplaza el máximo de $\langle u_x^* \rangle$ hacia la pared. Luego, para flujos con $0 < \text{Ri}_b < 1$ los perfiles de temperatura adimensional se ubican por encima del caso puramente forzado y para $\text{Ri}_b>1$, la mezcla inducida por la flotación “aplana” el perfil medio adimensional de temperatura. Tercero, el efecto del número de Prandtl se refleja en la ley de pared de temperatura: con $\text{Pr}=0\text{.}071$ se verifica $\langle \theta^{*} \rangle \simeq \text{Pr} \hspace{1mm} y^+$ hasta $y^+ \approx 30$, mientras que con $\text{Pr}=0\text{.}71$ concluye en $y^+ \approx 7$, lo que evidencia la influencia de $\text{Pr}$ en la capa conductiva. Cuarto, se observa la existencia un intervalo $10^{-6} \lesssim \text{Bo} \lesssim 3\times10^{-5}$ (donde Bo es el número de boyancia \cite{jackson1989studies}) en el que $\text{Nu}$ se reduce respecto al caso puramente forzado; fuera de él, la transferencia térmica se recupera y supera a la de convección forzada. Esta caída coincide con una menor producción de turbulencia cerca de las paredes. Por último, pese a la asistencia de la boyancia, el gradiente de velocidad en la pared aumenta y eleva el factor de Darcy. Se propone una la correlación del factor de fricción en función del número de boyancia Bo y se observa que reproduce con buena fidelidad tanto los datos simulados como los de referencia.
 
 \newpage
 
 \section{Casos simulados} 
 
-Los resultados de las simulaciones realizadas en este capítulo corresponden a un flujo completamente desarrollado tanto térmica como hidrodinámicamente. Se emplearon Re$_o$=2100, 3150, 4278, 5000, Pr=0.071, 0.71 y valores de Richardon en el rango 0.04 $\lesssim$ Ri$_b$ $\lesssim$ 106. Desde una perspectiva física, la interpretación de estos números adimensionales puede resumirse así: un aumento del número de Reynolds implica una menor viscosidad cinemática y, por tanto, una difusión más rápida del momento dentro del fluido; un incremento del número de Prandtl señala una reducción de la conductividad térmica; mientras que un mayor número de Richardson denota un crecimiento en el flujo de calor.
+Los resultados de las simulaciones realizadas en este capítulo corresponden a un flujo completamente desarrollado tanto térmica como hidrodinámicamente. Se emplearon Re$_o$=2100, 3150, 4278, 5000; Pr=0.071, 0.71; y valores de Richardon en el rango 0.04 $\lesssim$ Ri$_b$ $\lesssim$ 106. Para una simple conceptualización física, la variación de estos números adimensionales puede interpretarse de la siguiente manera: un aumento del número de Reynolds corresponde a un aumento del caudal; un incremento del número de Prandtl señala una reducción de la conductividad térmica; mientras que un mayor número de Richardson denota un crecimiento en el flujo de calor.
 
-En la Figura \ref{fig:map_flow_regime} se expone un ``mapa'' del régimen de flujo donde se gráfica el número de Reynolds \textit{bulk}\footnote{Número de Reynolds basado en la velocidad \textit{bulk} y el diámetro hidráulico: $\text{Re}^D_b = 8/3 \hspace*{1mm} \text{Re}_o$} versus el número de Richardson \textit{bulk}\footnote{Número de Richardson basado en la velocidad \textit{bulk} y el ancho del canal: $\text{Ri}_b = 9/2 \hspace*{1mm} \text{Ri}_o$} y se muestran las simulaciones realizadas en este trabajo. Es oportuno precisar que, como hipótesis inicial, se supone que ambos fenómenos actúan de forma independiente; no obstante, tal independencia no está necesariamente garantizada. Cabe destacar, además, que en este trabajo se analiza la transición de un régimen a otro, en el cual el flujo se vuelve inestable y puede manifestar intermitencia y/o turbulencia \cite{chen2003direct}. Aceptando provisionalmente que la interacción entre los fenómenos es despreciable y tomando como referencia el diagrama de Moody \cite{white}, se presenta lo siguiente:
+A modo de visualizar el tipo de simulaciones realizadas en este trabajo, en la Figura \ref{fig:map_flow_regime} se expone un ``mapa''  del régimen de flujo en función del número de Reynolds \textit{bulk}\footnote{Número de Reynolds basado en la velocidad \textit{bulk} y el diámetro hidráulico: $\text{Re}^D_b = 8/3 \hspace*{1mm} \text{Re}_o$} y el número de Richardson \textit{bulk}\footnote{Número de Richardson basado en la velocidad \textit{bulk} y el ancho del canal: $\text{Ri}_b = 9/2 \hspace*{1mm} \text{Ri}_o$}. Esta figura, que también muestra las simulaciones realizadas en este trabajo, supone que la convección natural no afecta la turbulencia del flujo y por tanto es indicativa, a priori, del tipo de flujos que caracterizarán nuestras simulaciones. Cabe destacar, además, que en el siguiente capítulo, se analiza la transición laminar-turbulenta, con lo cual el flujo se vuelve inestable y puede manifestar intermitencia y/o turbulencia \cite{chen2003direct}. Aceptando provisionalmente que la fuerza boyante no afecta la turbulencia del flujo y tomando como referencia el diagrama de Moody \cite{white}, se presenta lo siguiente:
+
 
 \begin{itemize}
 	\item para valores de Re$^D_b$ $<$ 2000 el régimen es laminar,
@@ -38,16 +50,15 @@ Por otra parte, el fenómeno de convección es \cite{incropera,cengelheat}:
   \label{fig:map_flow_regime}
 \end{figure}
 
-De esta manera, basados en el diagrama de Moody, la totalidad de casos se encuentra en un régimen de flujo turbulento. En su mayoría, los casos se encuentran en flujo de convección mixta, sin embargo, se cuenta con casos donde predomina la convección forzada, y otros donde domina la convección natural. Esto brinda un espectro amplio para el análisis del problema.
+En base a los resultados de nuestras simulaciones se confirma que la totalidad de casos simulados se encuentra en un régimen de flujo turbulento y, en su mayoría,  en flujo de convección mixta, con casos donde predomina la convección forzada, y otros donde domina la convección natural. Esto brinda un espectro amplio para el análisis y discusión del problema. 
 
 \section{Magnitudes de Primer y Segundo Orden}
 
-En esta sección se analiza la influencia de la fuerza boyante en las magnitudes estadísticas de primer y segundo orden. Para tal fin, se consideran, únicamente, los casos Re$_o$=5000 y Pr=0.71. El aumento de la fuerza boyante, o el número de Ri$_b$, equivale a aumentar el flujo de calor. En otras palabras, el aumento de la boyancia en el sistema físico puede interpretarse como aumentar la energía térmica que se le entrega a través de las paredes cuando el fluido es ascendente\footnote{También es equivalente a quitarle energía térmica (enfriar las paredes) cuando la dirección del flujo es descendente.}.
-
+En esta sección se analiza la influencia de la fuerza boyante en las magnitudes estadísticas de primer y segundo orden. Para tal fin y por simplicidad, se considera, únicamente, el caso Re$_o$=5000 y Pr=0.71. Nuevamente notamos que el aumento de la fuerza boyante, o el número de Ri$_b$, puede interpretarse como un aumento de la energía térmica que se le entrega al sistema a través de las paredes cuando el fluido es ascendente\footnote{También es equivalente a quitarle energía térmica (enfriar las paredes) cuando la dirección del flujo es descendente.}.
 
 \subsection{Perfiles de velocidad y de temperatura} \label{sec:velo_temp}
 
-En la Figura \ref{fig:ux-Re5000-Pr071} se presentan los perfiles medios de velocidad  \textit{streamwise}\footnote{Es decir, en la dirección de la corriente.} para distintos números de Richardson. En dichos perfiles pueden distinguirse con claridad los tres regímenes de convección. Conforme se intensifica la fuerza boyante, las curvas adoptan una configuración en ``M'', en concordancia con lo reportado por otros autores \cite{you2003direct, zhou2024direct}. A diferencia del caso de convección exclusivamente forzada, el máximo de velocidad deja de situarse en la línea central del canal y se desplaza progresivamente hacia la pared a medida que aumenta Ri$_b$,\cite{carr1973velocity, steiner1971reverse, zhou2024direct}, originando dos máximos locales en lugar del único pico característico del flujo puramente forzado. Este comportamiento puede interpretarse cualitativamente del siguiente modo: en las proximidades de la pared el fluido se encuentra a mayor temperatura lo que implica menor densidad; en consecuencia, la fuerza boyante acelera el flujo en esa región y, por conservación de masa, el fluido ubicado en la zona central experimenta una desaceleración.
+En la Figura \ref{fig:ux-Re5000-Pr071} se presentan los perfiles medios de velocidad  \textit{streamwise}\footnote{Es decir, en la dirección de la corriente.} para distintos números de Richardson. En dichos perfiles pueden distinguirse con claridad los tres regímenes de convección. Conforme se intensifica la fuerza boyante, las curvas adoptan una forma en ``M'', en concordancia con lo reportado por otros autores \cite{you2003direct, zhou2024direct}. A diferencia del caso de convección exclusivamente forzada, el máximo de velocidad deja de situarse en la línea central del canal y se desplaza progresivamente hacia la pared a medida que aumenta Ri$_b$,\cite{carr1973velocity, steiner1971reverse, zhou2024direct}, originando dos máximos locales en lugar del único pico característico del flujo puramente forzado. Este comportamiento puede interpretarse cualitativamente del siguiente modo: en las proximidades de la pared el fluido se encuentra a mayor temperatura lo que implica menor densidad; en consecuencia, la fuerza boyante acelera el flujo en esa región y, por conservación de masa, el fluido ubicado en la zona central experimenta una desaceleración.
 
 \begin{figure}[H]
   \centering
@@ -60,45 +71,22 @@ En la Figura \ref{fig:ux-Re5000-Pr071} se presentan los perfiles medios de veloc
   \caption{Perfiles medios adimensionales de \textbf{(a)} velocidad y \textbf{(b)} temperatura, para varios Ri$_b$.}
 \end{figure}
 
-Por otra parte, la Figura \ref{fig:phi-Re5000-Pr071} presenta los perfiles medios de temperatura adimensional. A diferencia de los perfiles de velocidad, estos no exhiben la configuración en ``M'' al igual que reportan otros autores \cite{you2003direct, steiner1971reverse}. Los casos pueden clasificarse, en primera instancia, en dos conjuntos:
+Por otra parte, la Figura \ref{fig:phi-Re5000-Pr071} presenta los perfiles medios de temperatura adimensional. A diferencia de los perfiles de velocidad, estos no exhiben la configuración en ``M'' pero sí un comportamiento no monótono con el incremento del Ri$_b$ \cite{you2003direct, steiner1971reverse}. Los casos pueden clasificarse, en primera instancia, en dos conjuntos:
 
 \begin{itemize}
 
 \item[\textbf{(I)}] valores de Ri$_b$ comprendidos entre 0.04 y 1.06,
 
-\item[\textbf{(II)}] valores de Ri$_b$ entre 5.33 y 106.5.
+\item[\textbf{(II)}] valores de Ri$_b$ entre 5.33 y 106.5;
 
 \end{itemize}
-Además, ambos conjuntos exhiben comportamientos físicos claramente diferenciados. Esta distinción se analizará en detalle a lo largo de la presente sección.
+que exhiben comportamientos físicos claramente diferenciados. Esta distinción se analizará en detalle a lo largo de la presente sección.
 
-En el primer conjunto se aprecia un aumento del perfil adimensional respecto al caso de conveccion forzada, lo que equivale a un descenso de la temperatura dimensional. Cuando la fuerza boyante se intensifica (conjunto \textbf{II}) la temperatura adimensional disminuye, lo que indica un aumento en la temperatura dimensional del fluido. Asimismo, en este segundo conjunto, los perfiles presentan una forma ``achatada'' en el seno del canal que puede interpretarse cualitativamente a partir de sus perfiles de velocidad: la diferencia de velocidades entre la región próxima a la pared y el centro del canal favorece la mezcla del fluido y, por consiguiente, conduce a una distribución térmica más homogénea.
-
-
+%En el primer conjunto se aprecia un aumento del perfil adimensional respecto al caso de conveccion forzada, lo que equivale a un descenso de la temperatura dimensional. Cuando la fuerza boyante se intensifica (conjunto \textbf{II}) la temperatura adimensional disminuye, lo que indica un aumento en la temperatura dimensional del fluido. Asimismo, en este segundo conjunto, los perfiles presentan una forma ``achatada'' en el seno del canal que puede interpretarse cualitativamente a partir de sus perfiles de velocidad: la diferencia de velocidades entre la región próxima a la pared y el centro del canal favorece la mezcla del fluido y, por consiguiente, conduce a una distribución térmica más homogénea.
 
 
-%################################################################################
-% MOSAICOS DE TEMPERATURE Y VELOCIDAD UX. 
-% Hasta no corregir todo lo demas, esto no se hace 
+En el primer conjunto se aprecia un aumento del perfil adimensional respecto al caso de conveccion forzada, lo que equivale a decir que aunque se aumente el flujo de calor, la diferencia de temperaturas entre el centro del canal y la pared se incrementa, sugiriendo una disminución de la eficiencia en la transferencia de calor. Cuando la fuerza boyante se intensifica (conjunto \textbf{II}) este efecto se revierte y la temperatura adimensional disminuye, lo que indica una menor diferencia entre la temperatura mínima y la temperatura de pared con el aumento del Ri$_b$. Asimismo, en este segundo conjunto, los perfiles presentan una forma más ``achatada'' en el seno del canal respecto al primer conjunto. Esto puede interpretarse cualitativamente a partir de los perfiles de velocidad: la diferencia de velocidades entre la región próxima a la pared y el centro del canal favorece la mezcla del fluido y, por consiguiente, conduce a una distribución térmica más homogénea \cite{pope2001turbulent}.
 
-%\newpage
-%
-%\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
-%  \centering
-%  \includegraphics[width=0.9\textwidth]{figures/cap5/phi_tessel.png}  
-%  \caption{}
-%  \label{fig:tesselphi}
-%\end{figure}
-%
-%\newpage
-%
-%\begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
-%  \centering
-%  \includegraphics[width=0.9\textwidth]{figures/cap5/ux_tessel.png}  
-%  \caption{}
-%  \label{fig:tesselphi}
-%\end{figure}
-
-%################################################################################
 
 
 
@@ -106,25 +94,27 @@ En el primer conjunto se aprecia un aumento del perfil adimensional respecto al 
 \newpage
 \subsection{Valores RMS de temperatura y velocidad} 
 
-Las Figuras \ref{fig:rms-phi-Re5000-Pr071} y \ref{fig:rms-ux-Re5000-Pr071} muestran los perfiles de las fluctuaciones de temperatura adimensional y de velocidad \textit{streamwise}, respectivamente. Partiendo del caso puramente forzado, el incremento de la fuerza boyante provoca evoluciones distintas en los conjuntos \textbf{I} y \textbf{II} considerados anteriormente. En el primero, se observa una disminución (incremento) de las fluctuaciones de velocidad (temperatura) seguida de una ligera recuperación (leve descenso). En el segundo, las fluctuaciones de velocidad crecen de manera sostenida a medida que la fuerza boyante se intensifica, mientras que las de temperatura tienden a reducirse. Tendencias análogas han sido descritas por otros autores \cite{you2003direct,carr1973velocity}.
+Las Figuras \ref{fig:rms-ux-Re5000-Pr071} y \ref{fig:rms-phi-Re5000-Pr071} muestran los perfiles de las fluctuaciones de velocidad \textit{streamwise} y temperatura adimensional, respectivamente. Partiendo del caso puramente forzado, el incremento de la fuerza boyante provoca evoluciones distintas en los conjuntos \textbf{I} y \textbf{II} considerados anteriormente. En el primero, se observa una disminución (incremento) de las fluctuaciones de velocidad (temperatura) seguida de una ligera recuperación (leve descenso). En el segundo, las fluctuaciones de velocidad crecen de manera sostenida a medida que la fuerza boyante se intensifica, mientras que las de temperatura tienden a reducirse. Tendencias análogas han sido descritas por otros autores \cite{you2003direct,carr1973velocity}.
+
 
 \begin{figure}[H]
   \centering
-  \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/phi_rms_profile.png}
-    \label{fig:rms-phi-Re5000-Pr071}}
+  
   \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/ux_rms_profile.png}
      \label{fig:rms-ux-Re5000-Pr071}}
+  \subfloat[]{
+    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071/phi_rms_profile.png}
+    \label{fig:rms-phi-Re5000-Pr071}}
     \caption{Fluctuaciones RMS: \textbf{(a)} velocidad en la dirección de la corriente y \textbf{(b)} temperatura adimensional.}
     \label{fig:rms-Re5000-Pr071}
 \end{figure}
 
-Como se aprecia en la Figura \ref{fig:rms-ux-Re5000-Pr071}, la aparicion de la fuerza boyante de baja intensidad realtiva produce primero una leve estabilización del flujo, evidenciada por una disminución de aproximadamente un 40$\%$ en los máximos de $(u^*_x)_{rms}$ próximos a las paredes. En contraste, las fluctuaciones de temperatura $T$ aumentan debido al incremento del flujo de calor impuesto y sus máximos se desplazan hacia el centro del canal, favorecidos por una relativa y débil redistribución causada por la turbulencia. Para Ri$_b$=5.33 la fuerza boyante adquiere mayor preponderancia y las fluctuaciones de velocidad crecen en todo el ancho del canal; por ejemplo, en el caso de Ri$_b$=10.65 el valor en el centro es un 100$\%$ mayor respecto al caso con Ri$_b$=1.06. Este incremento de la agitación dinámica redistribuye las fluctuaciones de temperatura, que disminuyen la magnitud adimensional respecto al caso de convección forzada (Figura \ref{fig:rms-phi-Re5000-Pr071}).
+Como se aprecia en la Figura \ref{fig:rms-ux-Re5000-Pr071}, la aparición de la fuerza boyante de baja intensidad relativa produce primero una leve estabilización del flujo, evidenciada por una disminución de aproximadamente un 40$\%$ en los máximos de $(u^*_x)_{rms}$ próximos a las paredes. En contraste, las fluctuaciones de temperatura dimensional aumentan y sus máximos se desplazan hacia el centro del canal debido al incremento del flujo de calor. Favorecidos por una redistribución del flujo (relativamente más débil) causada por la turbulencia, se generan perfiles de temperatura con mayor pendiente medida desde la pared. Para $\text{Ri}_b=5\text{.}33$ la fuerza boyante adquiere mayor preponderancia y las fluctuaciones de velocidad crecen en todo el ancho del canal; por ejemplo, en el caso de $\text{Ri}_b=10\text{.}65$ el valor en el centro es aproximadamente un 70$\%$ mayor respecto al caso con $\text{Ri}_b=1\text{.}06$. Este incremento de la agitación dinámica redistribuye las fluctuaciones de temperatura, que disminuyen la magnitud adimensional respecto al caso de convección forzada (Figura \ref{fig:rms-phi-Re5000-Pr071}).
 
 \subsection{Flujos turbulentos de calor} 
 
-En la Figura \ref{fig:uxphi_f-Re5000-Pr071} se expone el perfil de la correlación $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle$. Esta cantidad corresponde al flujo de calor turbulento \textit{streamwise} que surge a raíz del desarrollo de la ecuación de conservación de energía promediada \cite{kundu,pope2001turbulent}, y puede interpretarse como el calor transportado por las estructuras producidas por el flujo turbulento. 
+En la Figura \ref{fig:uxphi_f-Re5000-Pr071} se expone el perfil de la correlación $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle$. Esta cantidad corresponde al flujo de calor turbulento \textit{streamwise} que surge a raíz del desarrollo de la ecuación de conservación de energía promediada \cite{kundu,pope2001turbulent}, y puede interpretarse como el calor transportado por las estructuras producidas por el flujo turbulento.  
 
 \begin{figure}[H]
   \centering
@@ -134,40 +124,38 @@ En la Figura \ref{fig:uxphi_f-Re5000-Pr071} se expone el perfil de la correlaci�
   \subfloat[]{
     \includegraphics[width=0.46\textwidth]{figures/cap5/Re5000-Pr071/uxphif_esquema.eps}
      \label{fig:uxphi_esquema-Re5000-Pr071}}
-    \caption{\textbf{(a)} Flujo de calor turbulento en la dirección de la corriente. \textbf{(b)} Esquemá de perfiles de temperatura y velocidad para convección forzada y mixta. Aquí los desplazamientos $dy^*$ hacia la izquierda (derecha) están representados con flechas anaranjadas (negras).}
+    \caption{\textbf{(a)} Flujo de calor turbulento en la dirección de la corriente. \textbf{(b)} Esquema de perfiles de temperatura y velocidad para convección forzada y mixta. Aquí los desplazamientos $dy^*$ hacia la izquierda (derecha) están representados con flechas anaranjadas (negras).}
     \label{fig:rms-Re5000-Pr071}
 \end{figure}
 
-En el seno del canal se aprecia una diferencia marcada entre el caso forzado y aquellos muy próximos a este (Ri$_b$=0.04,0.11), y el resto de casos. Esta disparidad se puede entender cualitativamente a traves de los perfiles de $u^*_x$ y $\theta^*$. Para ello, en la Figura \ref{fig:uxphi_esquema-Re5000-Pr071} se muestran los perfiles esquemáticos de ambas magnitudes para los regímenes de conveción forzada y mixta:
+En el seno del canal se aprecia una diferencia marcada (signo del flujo de calor turbulento) entre el caso forzado y aquellos con fuerza boyante relativamente débil (Ri$_b$=0.04, 0.11), respecto al resto de casos. Esta disparidad se puede entender cualitativamente a través de los perfiles de $u^*_x$ y $\theta^*$. Para ello, en la Figura \ref{fig:uxphi_esquema-Re5000-Pr071} se muestran los perfiles esquemáticos de ambas magnitudes para los regímenes de conveción forzada y mixta:
 
 \begin{itemize}
 
-\item \textbf{Cerca la pared:} analizando el caso forzado, si una partícula de fluido próxima a la pared (punto \textbf{(1)}) se desplaza un diferencial $dy^*$ a la izquierda, se produce una fluctuación negativa en la velocidad ($u^{* \prime}_x <0$), y esto ocasiona que la misma se traslade de una zona más fría a una más caliente, y por lo tanto, experimenta una fluctuación negativa en su temperatura adimensional ($\theta^{* \prime}<0$) que se traduce en una correlación positiva $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle > 0$. 
+\item \textbf{Cerca la pared:} analizando el caso forzado, si una partícula de fluido próxima a la pared se desplaza un diferencial $dy^*$ a la derecha debido a una fluctuación ($u^{* \prime}_y >0$), y arriba al punto \textbf{(1)}, se produce una fluctuación negativa en la velocidad \textit{streamwise} ($u^{* \prime}_x <0$), además, la misma se traslada de una zona más caliente a una más fría, y por lo tanto, experimenta una fluctuación negativa en su temperatura adimensional ($\theta^{* \prime}<0$) que se traduce en una correlación positiva $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle > 0$. 
 
-Por otro lado, si la partícula de fluido se desplaza un diferencial $dy^*$ a la derecha, se genera una fluctuación positiva en la velocidad ($u^{* \prime}_x >0$) y la misma se desplaza de una región caliente a una más fría, y en consecuencia $\theta^{* \prime}$ es positiva y se produce nuevamente una correlación positiva.
+Por otro lado, si la partícula de fluido llega al punto \textbf {(1)} al desplazarse un diferencial $dy^*$ a la izquierda ($u^{* \prime}_y <0$), se genera una fluctuación positiva en la velocidad \textit{streamwise}  ($u^{* \prime}_x >0$) y la misma se desplaza de una región fría a una más caliente, en consecuencia, $\theta^{* \prime}$ es positiva y se produce nuevamente una correlación positiva.
 
 La situación es completamente análoga para el caso de convección mixta.
 
-\item \textbf{Cerca del centro del canal:} En el caso de convección forzada la situación es idéntica: un desplazamiento $dy^*$ a la izquierda (derecha) desde una región cercana al centro (punto \textbf{(2)}) da lugar a una fluctuación negativa (positiva) de la velocidad y la partícula se traslada de una región más fría (caliente) a una más caliente (fría) y nuevamente la correlación resulta postiva. 
+\item \textbf{Cerca del centro del canal:} En el caso de convección forzada la situación es idéntica a la encontrada cerca de la pared.
 
 Por cuál, en el caso forzado se tiene una correlación positiva global que es consistente con lo que se observa en la Figura \ref{fig:uxphi_f-Re5000-Pr071}. 
 
-Sin embargo, si uno realiza el mismo análisis para el caso de convección mixta, ocurre lo contrario, en otras palabras, un desplazamiento $dy^*$ a la izquierda (derecha) produce una fluctuación positiva (negativa) de la velocidad y la partícula se traslada de una región más fría (caliente) a una más caliente (fría) que da como resultado una fluctuación negativa de la temperatura adimensional en ambas situaciones y por lo tanto, en el seno del canal, la correlación $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle$ es negativa en consonancia con los observado en los perfiles.
+Sin embargo, si uno realiza el mismo análisis para el caso de convección mixta, ocurre lo contrario, en otras palabras, debido a una fluctuación $u^{* \prime}_y >0$ ($u^{* \prime}_y <0$) ocurre un desplazamiento $dy^*$ a la derecha (izquierda), la partícula arriba al punto \textbf{(2)}, se produce una fluctuación positiva (negativa) de la velocidad \textit{streamwise}  y la partícula se traslada de una región más caliente (fría) a una más fría (caliente); esto da como resultado una fluctuación negativa de la temperatura adimensional en ambas situaciones y por lo tanto, en el seno del canal, la correlación $\langle u_x^{\ast \prime } \theta^{\ast \prime } \rangle$ es negativa en consonancia con los observado en los perfiles.
 \end{itemize}  
 
-A partir del análisis anterior, se puede afirmar, que la disparidad del comportamiento  entre ambos regímenes de convección es consecuencia del cambio de la concavidad del perfil de velocidad en el seno del canal, debido al aumento de la fuerza boyante.
+A partir del análisis anterior, se puede afirmar, que la disparidad del comportamiento  de la cantidad bajo análisis es consecuencia del cambio de la concavidad del perfil de velocidad en el seno del canal, debido al aumento de la fuerza boyante. Esta cantidad, el flujo de calor turbulento \textit{streamwise}, actúa como un término de producción en la ecuación de la energía cinética turbulenta y contribuye a su aumento cuando es negativo (véase Apéndice \ref{apen:budgets}).
 
 
 \begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
   \centering
   \includegraphics[width=0.5\textwidth]{figures/cap5/Re5000-Pr071/uyphif_profile.png}  
-  \caption{Flujo de calor turbulento en la dirección normal a la pared.}
+  \caption{Perfil del flujo de calor turbulento en la dirección normal a la pared donde la abcisa se encuentra expresada en unidades de pared (\textit{wall units}).}
   \label{fig:uyphi_f-Re5000-Pr071}
 \end{figure}
 
-Por último, en la Figura \ref{fig:uyphi_f-Re5000-Pr071} se expone el perfil del flujo de calor turbulento en la dirección normal a la pared: $-\langle u_y^{\ast \prime } \theta^{\ast \prime } \rangle$. Considerando nuevamente el conjunto \textbf{(I)}, se observa como los máximos cercanos a la pared tienden a desplazarse hacia el seno del canal. Un comportamiento similar se observa en otro trabajo \cite{you2003direct}. Por otro lado, en el conjunto \textbf{(II)}, los máximos tienden a desplazarse hacia la pared. Asimismo, muy próximo a la pared, para los casos con Ri$_b$=0, 0.04, 0.11, 10.65, 106.5 el perfil se comporta de forma monótona creciente, mientras que en el resto de casos (Ri$_b$=1.06, 5.33) se observa un máximo y un mínimos local. 
-
-
+Por último, en la Figura \ref{fig:uyphi_f-Re5000-Pr071} se expone el perfil del flujo de calor turbulento en la dirección normal a la pared: $-\langle u_y^{\ast \prime } \theta^{\ast \prime } \rangle$. Considerando nuevamente el conjunto \textbf{(I)}, se observa como los máximos cercanos a la pared tienden a desplazarse hacia el seno del canal. Un comportamiento similar se observa en \cite{you2003direct}. Por otro lado, en el conjunto \textbf{(II)}, los máximos tienden a desplazarse hacia la pared. Asimismo, muy próximo a la pared, para los casos con Ri$_b$=0, 0.04, 0.11, 10.65, 106.5 el perfil se comporta de forma monótona creciente, mientras que en el resto de casos (Ri$_b$=1.06, 5.33) se observa un máximo y mínimo local. 
 
 \section{Comparación entre casos de distinto Prandtl}
 
@@ -175,7 +163,7 @@ En esta sección se comparan los casos con Re$_o$=5000 y Pr= 0.071, 0.71. La Fig
 $$\langle u_x^+ \rangle \;\simeq\; y^+ + \mathcal{O} \left[(y^+)^{2} \right],$$
 según Pope \cite{pope2001turbulent}. Esta ley, conocida como ley de pared (\textit{Wall-Law}), se indica en la Figura \ref{fig:ux-wall-law-Re5000-Pr071} con la línea negra de referencia. En dicha región las tensiones de Reynolds son despreciables frente a las tensiones viscosas, de modo que el perfil depende casi exclusivamente de la distancia normalizada a la pared. Como puede verse, todos los casos, independientemente del número de Prandtl y de la fuerza boyante, siguen de cerca esta aproximación lineal, lo que confirma la validez de la ley en la subcapa viscosa. 
 
-Por otra parte, en la región logarítmica (\textit{log-law region}), en condiciones de convección forzada, la velocidad media en la dirección de la corriente se alinea perfectamente con la ley logarítmica clásica \cite{kawamura2000dns} como s observa en la Figura \ref{fig:ux-log-law-Re5000-Pr071}. Sin embargo, esta ley ya no es válida al considerar la flotabilidad tal como señalan otros autores \cite{zhou2024direct}. 
+Por otra parte, en la región logarítmica (\textit{log-law region}), en condiciones de convección forzada, la velocidad media en la dirección de la corriente se alínea perfectamente con la ley logarítmica clásica \cite{kawamura2000dns} como se observa en la Figura \ref{fig:ux-log-law-Re5000-Pr071}. Sin embargo, esta ley ya no es válida en flujos con flotabilidad \cite{zhou2024direct}. 
 
 \begin{figure}[H]
   \centering
@@ -193,7 +181,7 @@ La Figura \ref{fig:phi-plus-Re5000-Pr071} muestra los perfiles de temperatura ad
 \begin{equation*}
 \langle \theta^* \rangle \simeq \text{Pr}\hspace{0.5mm} y^+ ,
 \end{equation*}
-representada en la Figura \ref{fig:phi-wall-law-Re5000-Pr071} con líneas negras. Los resultados confirman esta ley para ambos números de Prandtl, aunque con distintos alcances: para el caso de Pr=0.071 la validez se extiende hasta $y^{+}\approx 30$, en concordancia con el trabajo de Zhou et al. \cite{zhou2024direct}. Sin embargo, para Pr=0.71 se reduce a $y^{+}\approx 7$. La diferencia recae en que, en fluidos con menor difusividad térmica (Prandtl más bajo), el transporte de calor por conducción domina durante una mayor distancia normalizada desde la pared, retrasando la aparición del régimen convectivo predominante \cite{abregu2023dns}.
+representada en la Figura \ref{fig:phi-wall-law-Re5000-Pr071} con líneas negras. Los resultados confirman esta ley para ambos números de Prandtl, aunque con distintos alcances: para el caso de Pr=0.071 la validez se extiende hasta $y^{+}\approx 30$, en concordancia con el trabajo de Zhou et al. \cite{zhou2024direct}. Sin embargo, para Pr=0.71 se reduce a $y^{+}\approx 7$. La diferencia recae en que, en fluidos con mayor difusividad térmica (Prandtl más bajo), el transporte de calor por conducción domina durante una mayor distancia normalizada desde la pared, retrasando la aparición del régimen convectivo predominante \cite{abregu2023dns}.
 
 \begin{figure}[H]
   \centering
@@ -231,7 +219,7 @@ En la Figura \ref{fig:parity} se presenta un gráfico de paridad entre $\text{Nu
 A partir de la Figura \ref{fig:nu_vs_bo} se distinguen tres regiones:
 
 \begin{itemize}
-  \item[$\bullet$] Bo $\lesssim 3.5 \times 10^{-6}$: Nu se mantiene muy próximo al valor de Nu$_{fc}$; el efecto de la fuerza boyante es despreciable y domina la convección forzada  \cite{li2021development}.
+  \item[$\bullet$] Bo $\lesssim 3\text{.}5 \times 10^{-6}$: Nu se mantiene muy próximo al valor de Nu$_{fc}$; el efecto de la fuerza boyante es despreciable y domina la convección forzada  \cite{li2021development}.
   \item[$\bullet$] $10^{-6} \lesssim$ Bo $\lesssim 3 \times 10^{-5}$: Nu desciende y luego se recupera, indicando una zona donde la transferencia de calor empeora respecto al caso puramente forzado.
   \item[$\bullet$] Bo $\gtrsim 3 \times 10^{-5}$: Nu crece de forma marcada, impulsado por la mayor relevancia de la convección natural.
 \end{itemize}
@@ -251,7 +239,7 @@ A partir de la Figura \ref{fig:nu_vs_bo} se distinguen tres regiones:
 \begin{figure}[H]
   \centering
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap5/nusselt_corr/Nu_vs_Bo_Jackson.png}
+    \includegraphics[width=0.49\textwidth]{figures/cap5/nusselt_corr/nu_corr.eps}
     \label{fig:nu_vs_bo}}
   \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap5/nusselt_corr/jackson_parity.png}
@@ -260,34 +248,36 @@ A partir de la Figura \ref{fig:nu_vs_bo} se distinguen tres regiones:
   \label{fig:nusselt}
 \end{figure}
 
+La disminución de Nu al aumentar la fuerza boyante puede entenderse a partir del perfil de velocidad en la dirección del flujo. Como se menciona en la sección \ref{sec:velo_temp}, cuando la convección natural y forzada actúan en la misma dirección, el fluido se acelera junto a las paredes y, por conservación de masa, se desacelera en la región central. En virtud de esta premisa, es posible acercarse a un entendimiento cualitativo. De acuerdo al modelo de Prandtl \cite{Prandtl1942}, la transferencia de calor se divide en dos mecanismos principales que actúan en serie: (i) conducción en la subcapa viscosa y (ii) el transporte de energía desde el borde de la capa viscosa al seno del fluido por el efecto difusivo de la turbulencia, siendo este último el efecto predominante \cite{aicher1997}. Este transporte de energía hace referencia al flujo de calor turbulento normal a la pared, $q''_y = \langle u^{* \prime}_y \theta^{* \prime} \rangle$ (véase Figura \ref{fig:uyphi_f-Re5000-Pr071}). 
 
-
-La disminución de Nu al aumentar la fuerza boyante puede entenderse a partir del perfil de velocidad en la dirección del flujo. Como se menciona en la sección \ref{sec:velo_temp}, cuando la convección natural y forzada actúan en la misma dirección, el fluido se acelera junto a las paredes y, por conservación de masa, se desacelera en la región central. En virtud de esta premisa, es posible acercarse a un entendimiento cualitativo. De acuerdo al modelo de Prandtl \cite{Prandtl1942}, la transferencia de calor se divide en dos mecanismos principales: (i) conducción en la subcapa viscosa y (ii) flujo de calor turbulento normal a la pared, $q''_y = \langle u^{* \prime}_y \theta^{* \prime} \rangle$. Algunos autores \cite{aicher1997, hall1969laminarization} sugieren que en el borde de la subcapa viscosa,  $q''_y$ es proporcional a la producción de turbulencia, cuya principal contribución recae en la producción por cizalla $\mathcal{P}$ (\textit{Shear-Production}). Sin embargo, también debe considerarse (aunque en menor medida) la contribución de la producción por boyancia $\mathcal{B}$ (\textit{Buoyancy-Production}). Los términos $\mathcal{P}$ y $\mathcal{B}$ provienen del balance de energía cinética turbulenta $k$  (véase el Apéndice \ref{apen:budgets}). El primero puede relacionarse con la diferencia de velocidades entre el centro del canal y la zona próxima a la pared, es decir, a un gradiente de velocidades.
+Algunos autores \cite{aicher1997, hall1969laminarization} sugieren que en el borde de la subcapa viscosa,  $q''_y$ es proporcional a la producción de turbulencia, cuya principal contribución recae en la producción por cizalla $\mathcal{P}$ (\textit{Shear-Production}). Sin embargo, también debe considerarse (aunque en menor medida) la contribución de la producción por boyancia $\mathcal{B}$ (\textit{Buoyancy-Production}). Los términos $\mathcal{P}$ y $\mathcal{B}$ provienen del balance de energía cinética turbulenta $k$  (véase el Apéndice \ref{apen:budgets}). El primero puede relacionarse con la diferencia de velocidades entre el centro del canal y la zona próxima a la pared, es decir, a un gradiente de velocidades.
 
 Así, es posible apreciar un rango de Ri$_b$, correspondiente al intervalo $10^{-6}$ $\lesssim$ Bo $\lesssim$ $3 \times 10^{-5}$ en la Figura \ref{fig:nu_vs_bo}, para los cuales la aceleración inducida por la boyancia produce que esta diferencia de velocidades, o bien sea cero, o bien sea muy pequeña (Figura \ref{fig:ux-Re5000-Pr071}). Como consecuencia, disminuyen la producción turbulenta, el flujo de calor turbulento y, por lo tanto, Nu. Cuando la fuerza boyante continúa creciendo más allá de este intervalo, el gradiente de velocidad vuelve a incrementarse, la producción de turbulencia se intensifica y tanto $q''_y$ (Figura \ref{fig:uyphi_f-Re5000-Pr071}) como Nu aumentan nuevamente. 
 
-Esta última cuestión puede confirmarse al observar las Figuras \ref{fig:shear_prod} y \ref{fig:buoya_prod} donde se exponen los perfiles medios de $\mathcal{P}$ y $\mathcal{B}$, respectivamente, de los casos con Re$_o$=5000 y Pr=0.71. Se aprecia que para valores moderados bajos de Ri$_b$ los perfiles tienden a decaer cerca de la pared, reduciendo la producción de turbulencia. Además, en general, se observa que la magnitud $\mathcal{B}$ es al menos un orden de magnitud menor que la producción $\mathcal{P}$ y porque su rol no es tan relevante en la producción total de turbulencia.
+Esta última cuestión puede confirmarse al observar las Figuras \ref{fig:shear_prod} y \ref{fig:buoya_prod} donde se exponen los perfiles medios de $\mathcal{P}$ y $\mathcal{B}$, respectivamente, de los casos con Re$_o$=5000 y Pr=0.71. Se aprecia que para valores moderados bajos de Ri$_b$ los perfiles tienden a decaer cerca de la pared, reduciendo la producción de turbulencia. Además, en general, se observa que la magnitud $\mathcal{B}$ es relativamente menor que la producción $\mathcal{P}$ lo que cuál sugiere porque su rol, al menos para Ri$_b$ moderados (régimen de convección mixta), no es tan relevante en la producción total de turbulencia.
+
 \begin{figure}[H]
   \centering
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071-Ri1Em3_shear_prod.png}
+    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071-Ri1Em2_shear_prod.png}
     \label{fig:shear_prod}}
   \subfloat[]{
-    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071-Ri1Em3_buoya_prod.png}
+    \includegraphics[width=0.49\textwidth]{figures/cap5/Re5000-Pr071-Ri1Em2_buoya_prod.png}
     \label{fig:buoya_prod}}
   \caption{Producción de energía cinética turbulenta: \textbf{(a)} componente por cizalla $\mathcal{P}$ y \textbf{(b)} contribución de la fuerza boyante $\mathcal{B}$.}
   \label{fig:budgets_prod}
 \end{figure}
 
 En la definición de Nu, se puede apreciar su dependencia con el número de Reynolds y el número de Prandtl, y además, también es posible inferir su dependencia con la fuerza boyante. Para entender esto último, se retoma con los conjuntos definidos en la sección \ref{sec:velo_temp}. En el primer conjunto la transferencia de calor por convección se deteriora, mientras que en el segundo conjunto dicha transferencia se recupera e incluso mejora respecto al caso de convección forzada pura (véase los puntos representados con cuadrados rojos en la Figura \ref{fig:nu_vs_bo}). Estas observaciones, que no resultan intuitivas a primera vista, se esclarecen al examinar la Figura \ref{fig:uphi-Re5000-Pr071}, donde se representa el perfil medio $\langle u_x^{*}\theta^{*}\rangle$. El número de Nusselt es inversamente proporcional a $\langle\theta^{*}_b\rangle$ (ecuación \ref{eq:nu}), magnitud que depende del comportamiento de $\langle u_x^{*}\theta^{*}\rangle$. En consecuencia, con el aumento de la boyancia, la magnitud  $\langle u_x^{*}\theta^{*}\rangle$ tiende primero a aumentar (conjunto \textbf{(I)}) y luego a disminuir (conjunto \textbf{(II)}), lo que conduce a una reducción y posterior aumento de Nu, respectivamente. 
+
+%En términos equivalentes, al aparecer la fuerza boyante, esta actuá atenuando la intensidad de la turbulencia en la zona cercana a la pared. Esto se traduce en un aumento de la capa conductora y el efecto de difusión turbulenta no resulta tan eficiente (véase Figura \ref{fig:phi-log-law-Re5000-Pr071}). La diferencia de temperatura adimensonal entre la pared y el centro del canal crece dando lugar a una transferencia de calor menos eficiente (Figuras  \ref{fig:phi-Re5000-Pr071}, \ref{fig:phi-wall-law-Re5000-Pr071} y \ref{fig:nu_vs_bo}). Al aumentar la fuerza boyante, comienza a aumentar la intensidad de la turbulencia y se reduce el ancho de la capa conductora (Figura \ref{fig:phi-wall-law-Re5000-Pr071}), el perfil de velocidad streamwise incrementa su intensidad en la zona cercana a la pared (Figura \ref{fig:ux-wall-law-Re5000-Pr071}), donde el fluido se encuentra con mayor temperatura y se logra una transferencia de calor superior al caso forzado. 
+
 \begin{figure}[H] % usa [H] solo si necesitas anclarla y tienes \usepackage{float}
   \centering
   \includegraphics[width=0.6\textwidth]{figures/cap5/Re5000-Pr071/uxphi_profile.png}  
   \caption{Perfil de la magnitud media $\langle u^{*}_x\theta^{*}\rangle$.}
   \label{fig:uphi-Re5000-Pr071}
 \end{figure}
-
-%Los cambios descritos en las fluctuaciones de temperatura y en el flujo turbulento $\langle u_x'\theta'\rangle$ repercuten directamente en la transferencia global de calor. En particular, la reducción de este flujo en el núcleo del canal para Bo$\lesssim3\times10^{-5}$ anticipa la caída del número de Nusselt, mientras que su posterior aumento (resultado de la mezcla intensificada por la fuerza boyante) explica la recuperación de $Nu$ a valores superiores al caso puramente forzado.
 
 \newpage
 \section{Factor de Fricción de Darcy}
@@ -331,13 +321,13 @@ El incremento de $f$ con la boyancia parece, a priori, contraintuitivo: al actua
 
 \begin{itemize}
 
-\item \textbf{Perfiles de velocidad:} la fuerza boyante genera perfiles tipo ``M'' y desplaza el máximo de $\langle u_x\rangle$ hacia la pared.
+\item \textbf{Perfiles de velocidad:} la fuerza boyante genera perfiles tipo ``M'' y su incremento desplaza los máximos de $\langle u_x\rangle$ hacia la pared.
 
-\item \textbf{Perfiles de temperatura:} Para flujos con Ri$b$ $>1$  la mezcla inducida por la flotación tiende a ``aplanar'' el perfil de la temperatura media adimensional y reduce su fluctuaciones en el núcleo del canal.
+\item \textbf{Perfiles de temperatura:} Para flujos con $0 < \text{Ri}_b < 1$ los perfiles de temperatura adimensional se ubican por encima del caso puramente forzado. Para $\text{Ri}_b > 1$  la mezcla inducida por la flotación tiende a ``aplanar'' el perfil de la temperatura media adimensional.
 
-\item \textbf{Efecto del Prandtl:} para Pr=0.071 la ley de pared de temperatura, $\langle\theta^*\rangle \simeq \text{Pr} y^+$, se mantiene hasta $y^+ \approx 30$, mientras que para Pr=0.71 termina a $y^+ \approx 7$ mostrando la influencia de Pr en la capa conductiva.
+\item \textbf{Efecto del Prandtl:} para Pr=0.071 la ley de pared de temperatura, $\langle\theta^*\rangle \simeq \text{Pr} \hspace{1mm} y^+$, se mantiene hasta $y^+ \approx 30$, mientras que para Pr=0.71 termina a $y^+ \approx 7$ mostrando la influencia de Pr en la capa conductiva.
 
-\item \textbf{Degradación y mejora de Nu:} existe un intervalo $10^{-6} \lesssim \text{Bo} \lesssim 3 \times 10^{-5}$ donde Nu se reduce, y fuera de él, la transferencia se recupera y supera al caso puramente forzado.
+\item \textbf{Degradación y mejora de Nu:} existe un intervalo $10^{-6} \lesssim \text{Bo} \lesssim 3 \times 10^{-5}$ donde Nu se reduce respecto al caso puramente forzado, y fuera de él, la transferencia se recupera y lo supera.
 
 \item \textbf{Mecanismo energético:} la caída de Nu coincide con una disminución en la producción de turbulencia cerca de la pared.
 
