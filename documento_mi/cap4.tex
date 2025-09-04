@@ -1,18 +1,18 @@
 \chapter{Validación de Herramientas Numéricas} \label{cap:validacion}
 
 
-En este capítulo se pretende validar y asegurar el correcto funcionamiento de las herramientas numéricas utilizadas. El mismo, se divide dos partes. Una primera parte que se centra en validar la herramienta de simulaciones DNS, XCompact3D. Para tal fin se emplean diferentes mallas (o resoluciones) espaciales y pasos temporales según se requiera. En la segunda parte de este capítulo se valida la herramienta generadora de autovalores y autofunciones, OSMC.
+En este capítulo se pretende validar y asegurar el correcto funcionamiento de las herramientas numéricas utilizadas. El mismo, se divide dos partes. Una primera parte que se centra en validar la herramienta de simulaciones DNS, Xcompact3D. Para tal fin se emplean diferentes mallas (o resoluciones) espaciales y pasos temporales según se requiera. En la segunda parte de este capítulo se valida la herramienta generadora de autovalores y autofunciones, OSMC.
 
 Se emplean tres situaciones diferentes para validar XC3D: (i) un canal de placas paralelas en régimen turbulento con flujo de calor constante en las paredes, donde se analizan aspectos hidrodinámicos y térmicos para convección forzada \cite{moser1999, kawamura2000dns}; (ii) mismo sistema físico que el caso anterior pero en régimen laminar, teniendo en cuenta el acople de las ecuaciones de conservación debido al término de fuerza boyante \linebreak \cite{chen1996linear}; (iii) canal vertical de placas paralelas isotérmicas a distinta temperatura entre sí, en régimen  turbulento con convección mixta \cite{guo2022direct}. En los casos turbulentos se analiza la convergencia en malla y la opción computacionalmente más económica que satisfaga una precisión aceptable.
 
-La corroboración de la herramienta numérica OSMC, se realiza en tres etapas: (i) se ratifica que OSCM arroje los autovalores correctos, para eso se considera la variación de la parte imaginaria del autovalor más inestable en función del número de onda \cite{chen1996linear}; (ii) se corrobora que las autofunciones entregadas por el código sean correctas y para ello se utiliza como referencia autofunciones asociadas a ondas 2D y 3D \cite{chen2003direct}; (iii) las predicciones arrojadas por la teoría de estabilidad lineal sobre la evolución temporal de ciertas magnitudes se comparan con resultados obtenidos vía simulaciones DNS; se encuentra un excelente acuerdo para los dos casos simulados.
+La corroboración de la herramienta numérica OSMC, se realiza en tres etapas: (i) se ratifica que OSCM arroje los autovalores correctos, para eso se considera la variación de la parte imaginaria del autovalor más inestable en función del número de onda \cite{chen1996linear}; (ii) se corrobora que las autofunciones entregadas por el código sean correctas y para ello se utiliza como referencia autofunciones asociadas a ondas 2D y 3D \cite{chen2003direct}; (iii) las predicciones arrojadas por la teoría de estabilidad lineal sobre la evolución temporal de ciertas magnitudes se comparan con resultados obtenidos vía simulaciones DNS; se encuentra un muy buen acuerdo para los dos casos simulados.
 
 
 \newpage
  
 \section{Primera Parte: Xcompac3D}
 
-En esta sección se presentan los resultados obtenidos con la herramienta numérica XCompact3D (XC3D) para un canal de placas paralelas en flujo completamente desarrollado. Para la validación de XC3D se consideran las siguientes situaciones de flujo: 
+En esta sección se presentan los resultados obtenidos con la herramienta numérica Xcompact3D (XC3D) para un canal de placas paralelas en flujo completamente desarrollado. Para la validación de XC3D se consideran las siguientes situaciones de flujo: 
 
 \begin{itemize}
 
@@ -52,7 +52,7 @@ M4 & $256 \times 257 \times 256$ & (0.031, 0.022, 0.015)  & 0.001 \\
 \label{tab:meshes}
 \end{table}
 
-Algunos resultados, presentes en esta primera parte, se encuentran adimencionalizados en unidades de pared (indicadas con el superíndice ``+'') basadas en el semiancho del canal, la velocidad de fricción $u_{\tau}$ y la temperatura de fricción $T_{\tau}$:
+Algunos resultados, presentes en esta primera parte, se encuentran adimencionalizados en unidades de pared (indicadas con el superíndice ``+'') basadas en el semiancho del canal $d$, la velocidad de fricción $u_{\tau}$ y la temperatura de fricción $T_{\tau}$:
 
 \begin{itemize}
 	\item Esfuerzo de Corte: $\tau_w= \mu_o \partial u_x / \partial y$ (evaluada en $y=\pm d$)  
@@ -80,7 +80,7 @@ En esta sub-sección se exponen los resultados del canal turbulento considerando
     \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap4/kim/up_vp.png}
     	\label{fig:kim-uxuy}} 
- \caption{Perfiles de \textbf{(a)} velocidad media \textit{streamwise}, \textbf{(b)} fluctuaciones RMS de la velocidad en $\langle u^+_x \rangle$, \textbf{(c)} fluctuaciones RMS de la velocidad $\langle u^+_y \rangle$ y \textbf{(d)} componente \textit{XY} del tensor de Reynolds. } 
+ \caption{Perfiles de \textbf{(a)} velocidad media \textit{streamwise}, \textbf{(b)} fluctuaciones RMS de la velocidad en $\langle u^+_x \rangle$, \textbf{(c)} fluctuaciones RMS de la velocidad $\langle u^+_y \rangle$ y \textbf{(d)} componente $xy$ del tensor de Reynolds. } 
  \label{fig:kim_1}
 \end{figure}
 
@@ -162,7 +162,7 @@ Nuevamente, se observa que la malla M2 resulta en un compromiso adecuado entre p
 
 \subsection{Situación III. Canal turbulento en régimen laminar con convección mixta y $q''_w$ constante} \label{sec:mix-laminar}
 
-Hasta aquí, la herramienta numérica XC3D se ha validado en aspectos hidrodinámicos y térmicos bajo convección forzada. Como punto de partida hacia el régimen de convección mixta, se realizan simulaciones considerando un régimen laminar con Re$_o$=100, Pr=1 y distintos números de Rayleigh (Ra = -25, -100, 75, 150, 250) a fin de evaluar el desempeño de XC3D frente a la influencia de la fuerza boyante. En todas las simulaciones se utiliza la malla M0. A diferencia de los apartados anteriores, en estas simulaciones no se impone ninguna condición adicional en el flujo con la intención de acelerar el paso al régimen turbulento ya que estamos tratando con soluciones laminares.
+Hasta aquí, la herramienta numérica XC3D se ha validado en aspectos hidrodinámicos y térmicos bajo convección forzada. Como punto de partida hacia el régimen de convección mixta, se realizan simulaciones considerando un régimen laminar con Re$_o$=100, Pr=1 y distintos números de Rayleigh (Ra = -25, -100, 75, 150, 250) a fin de evaluar el desempeño de XC3D frente a la influencia de la fuerza boyante. En todas las simulaciones se utiliza la malla M0. A diferencia de los apartados anteriores, en estas simulaciones no se impone ninguna condición adicional en el flujo con la intención de acelerar el paso al régimen turbulento, ya que estamos tratando con soluciones laminares.
 
 Se comparan los perfiles de velocidad \textit{streamwise} y de temperatura adimensional con las soluciones analíticas de Chen y Chung \cite{chen1996linear}, dadas por las ecuaciones \ref{eq:vel_asist_boyant} - \ref{eq:theta_opo_boyant}. Los mismos se encuentran en la forma adimensional descrita en el Capítulo \ref{cap:modelo}. En las Figuras \ref{fig:chen-ux} y \ref{fig:chen-theta}, las soluciones analíticas se muestran con anillos negros; asimismo, se incluye el caso con $\text{Ra}=0$ ($\Pi=0$) como referencia (linea azul a trazos). Se aprecia una excelente concordancia entre las soluciones analíticas y las simulaciones DNS, tanto para flujo descendente ($\text{Ra}<0$) como para flujo ascendente ($\text{Ra}>0$). En consecuencia, la malla M0 (la opción computacionalmente más económica) reproduce con alta fidelidad la soluciones laminares de Chen y Chung. 
 
@@ -206,17 +206,17 @@ Se comparan los perfiles de velocidad \textit{streamwise} y de temperatura adime
     \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap4/guo/Rib05/mct_up_thetap.png}
     	\label{fig:guo-05-ux-theta}}  
- \caption{Perfiles de \textbf{(a)} temperatura adimensional media, \textbf{(b)} fluctuaciones RMS de la temperatura adimensional, \textbf{(c)} velocidad media \textit{streamwise}, \textbf{(d)} fluctuaciones RMS de la velocidad \textit{streamwise}, \textbf{(e)} componente XY del tensor de Reyndols, $\langle -u^+_x u^+_y \rangle$, y \textbf{(f)} flujo de calor turbulento en la dirección X, $\langle -u^+_x \theta^+ \rangle$.} 
+ \caption{Perfiles de \textbf{(a)} temperatura adimensional media, \textbf{(b)} fluctuaciones RMS de la temperatura adimensional, \textbf{(c)} velocidad media \textit{streamwise}, \textbf{(d)} fluctuaciones RMS de la velocidad \textit{streamwise}, \textbf{(e)} componente $xy$ del tensor de Reyndols, $\langle -u^+_x u^+_y \rangle$, y \textbf{(f)} flujo de calor turbulento en la dirección X, $\langle -u^+_x \theta^+ \rangle$.} 
  \label{fig:guo-05}
 \end{figure}
 
 Cuando se tiene en cuenta la fuerza boyante, es decir $\Pi \neq 0$, el término asociada a ella en la ecuación de momento produce un acople entre las tres ecuaciones de conservación (ecuaciones \ref{eq:gob_system_adim}) y por lo tanto, la parte hidrodinámica del flujo influye en la parte térmica del mismo y visceversa. 
 
-Se realizan simulaciones empleando las mallas M0 - M4 para analizar su convergencia en malla. En este sentido, se consideran los números adimensionales Re$_o$=3500, Pr=0.025 y Ri$_b$=0.5 para tal fin. Las Figuras \ref{fig:guo-05-theta} - \ref{fig:guo-05-ux-theta} exponen, respectivamente, los perfiles de las siguientes magnitudes\footnote{Nótese que solo se representa un semiancho del canal, esto es, [-1, 0].}: temperatura adimensional, fluctuaciones de temperatura, velocidad \textit{streamwise}, fluctuaciones de velocidad, componente $xy$ del tensor de Reynolds y flujo de calor turbulento en la dirección $X$. Los datos de magnitudes propias se comparan con aquellos datos obtenidos por Guo \textit{et al.} \cite{guo2022direct}. Las mismas se encuentran expresadas en la forma adimnesional: $\mathbf{u^*} = \mathbf{u} / U_b$ y $\theta^* = \theta / \Delta T_{hc}$, siendo $U_b$ la velocidad \textit{bulk} y $\Delta T_{hc}$ la diferencia de temperatura entre las paredes.
+Se realizan simulaciones empleando las mallas M0 - M4 para analizar su convergencia en malla. En este sentido, se consideran los números adimensionales Re$_o$=3500, Pr=0.025 y Ri$_b$=0.5 para tal fin. Las Figuras \ref{fig:guo-05-theta} - \ref{fig:guo-05-ux-theta} exponen, respectivamente, los perfiles de las siguientes magnitudes\footnote{Nótese que solo se representa un semiancho del canal, esto es, $-1 \leqslant y^* \leqslant 0$.}: temperatura adimensional, fluctuaciones de temperatura, velocidad \textit{streamwise}, fluctuaciones de velocidad, componente $xy$ del tensor de Reynolds y flujo de calor turbulento en la dirección $X$. Los datos de magnitudes propias se comparan con aquellos datos obtenidos por Guo \textit{et al.} \cite{guo2022direct}. Las mismas se encuentran expresadas en la forma adimnesional: $\mathbf{u^*} = \mathbf{u} / U_b$ y $\theta^* = \theta / \Delta T_{hc}$, siendo $U_b$ la velocidad \textit{bulk} y $\Delta T_{hc}$ la diferencia de temperatura entre las paredes.
 
 Se observa que las Figuras \ref{fig:guo-05-theta} y \ref{fig:guo-05-ux} verifican una buena convergencia en malla de las  magnitudes de primer orden, es decir, perfiles de velocidad media y temperatura media. Sin embargo, se puede identificar por simple observación, que las diferencias entre nuestras mallas M3 y M4 son, en algunas posiciones del canal, menores a las diferencias entre los datos de referencia y nuestros datos para M4. Esto sugiere que posteriores refinamientos no producirán soluciones más próximas a la referencia. 
 
-Adicionalmente, al comparar magnitudes de segundo orden asociadas a la temperatura adimensional, como la fluctuación de temperatura (Figura \ref{fig:guo-05-theta-rms}) o el flujo de calor turbulento (Figura \ref{fig:guo-05-ux-theta}) , se puede destacar una clara diferencia cuantitativa entre nuestros datos para M4 y la referencia en algunas posiciones del semiancho, como por ejemplo en el centro del canal. Por otro lado, en las magnitudes de segundo orden asociadas a la velocidad como las fluctuaciones (Figura \ref{fig:guo-05-ux-rms}) o la tensión de Reynolds (Figura \ref{fig:guo-05-uxuy}), la discrepancia cuantitativa entre los datos obtenidos con M4 y aquellos de referencia sigue siendo apreciable en el centro del canal; sin embargo, es menor que la registrada para la temperatura.
+Adicionalmente, al comparar magnitudes de segundo orden asociadas a la temperatura adimensional, como la fluctuación de temperatura (Figura \ref{fig:guo-05-theta-rms}) o el flujo de calor turbulento (Figura \ref{fig:guo-05-ux-theta}), se puede destacar una clara diferencia cuantitativa entre nuestros datos para M4 y la referencia en algunas posiciones del semiancho, como por ejemplo en el centro del canal. Por otro lado, en las magnitudes de segundo orden asociadas a la velocidad como las fluctuaciones (Figura \ref{fig:guo-05-ux-rms}) o la componente $xy$ de la tensión de Reynolds (Figura \ref{fig:guo-05-uxuy}), la discrepancia cuantitativa entre los datos obtenidos con M4 y aquellos de referencia sigue siendo apreciable en el centro del canal; sin embargo, es menor que la registrada para la temperatura.
 
 Se especula que los aspectos más relevantes para explicar las diferencias encontradas en los perfiles de las magnitudes de segundo orden, están asociados al tamaño del dominio simulado. Guo \textit{et al.} utilizan un dominio ampliamente mayor ($L_x \times L_y \times L_z = 31\text{.}42 \times 2 \times 12\text{.}57$) que el empleado en este trabajo. Debido a la periodicidad en $x$, los puntos del plano medio $x = L_x/2$ están parcialmente influidos por los puntos en los planos $x=0$ y $x=L_x$. Dicho de otra manera, los mismos podrían no encontrarse descorrelacionados. Este hecho no permite capturar con presición todas las escalas que presenta la solución del problema o hace que la solución numérica aún sea dependiente del tamaño del dominio simulado. Otra cuestión adicional que puede influir, es que Guo \textit{et al.} emplean menor resolución (espaciado mayor) en las direcciones $X$ y $Z$, e idéntico en la dirección $Y$: $(\Delta x^*,\Delta y^*_{\text{max}},\Delta z^*) = (0\text{.}061, 0\text{.}022, 0\text{.}024)$. Por lo tanto, luego de esta discusión y del análisis de los resultados presentados en las Figuras \ref{fig:guo-05-theta} - \ref{fig:guo-05-ux-theta} consideramos que las mallas propuestas, M2-M4, nos dan resultados con una presición razonable y permiten llevar adelante el trabajo con la capacidad de cálculo existente. 
 
@@ -237,7 +237,7 @@ En esta segunda parte se exponen los resultados obtenidos con la herramienta OSM
 
 \subsection{Autovalores}
 
-Basados en el proyecto integrador de Pablo Szuban \cite{szuban2023}, se emplea la variación de la parte imaginaria del autovalor más inestable\footnote{Esto es, la parte imaginaria de la cota superior del espectro de autovalores calculado con OSMC para un determinado conjunto de parámetros $\lbrace \alpha, \beta, \text{Re}_o, \text{Pr}, \text{Ra} \rbrace$.}, $c_i$, en función del número de onda en la dirección $X$, $\alpha$, para validar los autovalores obtenidos con OSMC. La Figura \ref{fig:eigenval_alpha} muestra $c_i(\alpha)$ para $\mathrm{Re}_o=322$ y $\mathrm{Re}_o=750$, con $\beta=0$ y Pr = 0.7. Los valores de $\mathrm{Ra}$ se seleccionan de modo que $c_i=0$ para algún $\alpha$ dentro del intervalo considerado: $\mathrm{Ra}=32$.$65$ para $\mathrm{Re}_o=322$ y $\mathrm{Ra}=37$.$6$ para $\mathrm{Re}_o=750$. Los resultados se comparan con los de Chen y Chung \cite{chen1996linear}, observándose un muy buen acuerdo.
+Basados en el proyecto integrador de Pablo Szuban \cite{szuban2023}, se emplea la variación de la parte imaginaria del autovalor más inestable\footnote{Esto es: la parte imaginaria de la cota superior del espectro de autovalores calculado con OSMC para un determinado conjunto de parámetros $\lbrace \alpha, \beta, \text{Re}_o, \text{Pr}, \text{Ra} \rbrace$.}, $c_i$, en función del número de onda en la dirección $X$, $\alpha$, para validar los autovalores obtenidos con OSMC. La Figura \ref{fig:eigenval_alpha} muestra $c_i(\alpha)$ para $\mathrm{Re}_o=322$ y $\mathrm{Re}_o=750$, con $\beta=0$ y Pr = 0.7. Los valores de $\mathrm{Ra}$ se seleccionan de modo que $c_i=0$ para algún $\alpha$ dentro del intervalo considerado: $\mathrm{Ra}=32$.$65$ para $\mathrm{Re}_o=322$ y $\mathrm{Ra}=37$.$6$ para $\mathrm{Re}_o=750$. Los resultados se comparan con los de Chen y Chung \cite{chen1996linear}, observándose un muy buen acuerdo.
 
 \begin{figure}[H]
 	 \centering
@@ -250,29 +250,28 @@ Basados en el proyecto integrador de Pablo Szuban \cite{szuban2023}, se emplea l
 \subsection{Autofunciones}
 
 \paragraph{Normalización.}
-Sea $\{y_j\}_{j=1}^{N}$ la malla discreta en la dirección $Y$ y las autofunciones discretas
-$\{\widehat{v_x}(y_j),\widehat{v_y}(y_j),\widehat{v_z}(y_j),\widehat{\theta}(y_j)\}_{j=1}^{N}$. El índice donde el módulo de $\widehat{v_x}$ alcanza su valor máximo se expresa de la siguiente forma:
+Sea $\{y_j\}_{j=1}^{N}$ la malla discreta en la dirección $Y$, las autofunciones discretas $\{\widehat{v_x}(y_j),\widehat{v_y}(y_j),\widehat{v_z}(y_j),\widehat{\theta}(y_j)\}_{j=1}^{N}$ se normalizan localizando el índice donde el módulo de $\widehat{v_x}$ alcanza su valor máximo. Dicho índice se expresa de la siguiente forma:
 $$
 j_\star \;=\; \arg\max_{1\le j\le N}\,\big|\widehat{v_x}(y_j)\big|, 
 \qquad 
 \max_{1\le j\le N}\big|\widehat{v_x}(y_j)\big| \;=\; \big|\widehat{v_x}(y_{j_\star})\big|.
 $$
-Sea $u_\star=\widehat{v_x}(y_{j_\star})\neq 0$, se define el factor de normalización como
+Luego, sea $u_\star=\widehat{v_x}(y_{j_\star})\neq 0$, se define un factor de normalización $c \in \mathbb{C}$ de forma tal que $\mathbb{R}\text{e}[c \, \widehat{v_x}(y_{j_\star})]=1$ y $\mathbb{I}\text{m}[c \, \widehat{v_x}(y_{j_\star})]=0$. A partir de estas dos condiciones se llega a que $c$ debe tener la forma:
 $$
-c \;:=\; \frac{\overline{u_\star}}{|u_\star|^2} \;=\; \frac{1}{u_\star}.
+c \;:=\; \frac{\overline{u_\star}}{|u_\star|^2} \;=\; \frac{1}{u_\star}
 $$
-Con el mismo $c$ se escalan todas las autofunciones; para todo $j$,
+donde $\overline{(\text{.})}$ indica complejo conjugado. Con el mismo $c$ se escalan todas las autofunciones, para todo $j$, se tiene:
 $$
 \boldsymbol{\widehat{v}}_{\mathrm{norm}}(y_j)=c\,\boldsymbol{\widehat{v}}(y_j) \text{ ,} \quad
-\widehat{\theta}^{\mathrm{norm}}(y_j)=c\,\widehat{\theta}(y_j).
+\widehat{\theta}_{\mathrm{norm}}(y_j)=c\,\widehat{\theta}(y_j).
 $$
-Así, $c\,\widehat{v_x}(y_{j_\star})=1\in\mathbb{R}$ y $\max_j\big|c\,\widehat{v_x}(y_j)\big|=1$. Si $u_\star=0$, la normalización anterior no aplica. Esta normalización es la empleada por Zang y Krist en su trabajo \cite{zang1989numerical} y es la que se utiliza por conveción en la mayoría de la bibliografía.
+Nótese, que si $u_\star=0$, la normalización anterior no aplica. Esta normalización es la empleada por Zang y Krist en su trabajo \cite{zang1989numerical} y es la que se utiliza por conveción en la mayoría de la bibliografía.
 
 
 %\paragraph{Normalización.} Las autofunciones $\left\lbrace \widehat{v_x}(y),\widehat{v_y}(y),\widehat{v_z}(y), \widehat{\theta}(y) \right\rbrace_n$ se normalizan localizando el valor $y_i$ donde la norma de la autofunción $\widehat{v_x}$ es máxima, esto es: $\lVert \widehat{v_x} (y) \rVert = \max \lVert \widehat{v_x}(y_i) \rVert$; luego se elige un factor $c\in\mathbb{C}$ tal que $\operatorname{Re}\!\big[c\,\widehat{v_x}(y_i)\big]=1$ y $\operatorname{Im}\!\big[c\,\widehat{v_x}(y_i)\big]=0$. Con ese mismo factor $c$ se escalan todas las autofunciones: $\boldsymbol{\widehat{v}}_{\mathrm{norm}}=c\,\boldsymbol{\widehat{v}}$ y $\widehat{\theta}_{\mathrm{norm}}=c\,\widehat{\theta}$.
 
 
-En la Figura \ref{fig:eigenfun_valid} se presentan las autofunciones correspondientes al autovalor más inestable asociado a los parámetros $\text{Re}_o=1125$, $\text{Ra}=2500$ y Pr = 0.7. La Figura \ref{fig:eigenfun_2d} expone la autofunción de la velocidad \textit{streamwise} y de la temperatura para el caso de una onda 2D al considerar $\alpha=1$ y $\beta=0$. Por su parte, la Figura \ref{fig:eigenfun_3d} presenta las autofunciones de las mismas magnitudes para una onda 3D ahora considerando $\alpha=1$ y $\beta=1$. Ambos casos se comparan con las autofunciones calculadas por Chen y Chung \cite{chen2003direct}. Debe aclararse que los autores emplean una normalización distinta a la definida más arriba: cada una de las autofunciones $\left\lbrace \widehat{v_x}(y), \widehat{v_y}(y), \widehat{v_z}(y), \widehat{\theta}(y) \right\rbrace$ se normalizan de modo que el máximo de la parte real sea igual a uno y su fase sea nula. Al considerar esto y comparar las autofunciones obtenidas a partir OSMC, con aquellos obtenidos por Chen y Chung, es posible apreciar un excelente acuerdo.
+En la Figura \ref{fig:eigenfun_valid} se presentan las autofunciones correspondientes al autovalor más inestable asociado a los parámetros $\text{Re}_o=1125$, $\text{Ra}=2500$ y Pr = 0.7. La Figura \ref{fig:eigenfun_2d} expone la autofunción de la velocidad \textit{streamwise} y de la temperatura para el caso de una onda 2D al considerar $\alpha=1$ y $\beta=0$. Por su parte, la Figura \ref{fig:eigenfun_3d} presenta las autofunciones de las mismas magnitudes para una onda 3D ahora considerando $\alpha=1$ y $\beta=1$. Ambos casos se comparan con las autofunciones calculadas por Chen y Chung \cite{chen2003direct}. Debe aclararse que los autores emplean una normalización distinta a la definida más arriba: cada una de las autofunciones $\left\lbrace \widehat{v_x}(y), \widehat{v_y}(y), \widehat{v_z}(y), \widehat{\theta}(y) \right\rbrace$ se normalizan de modo que el máximo de la parte real sea igual a uno y su parte imagianria sea nula. Al considerar esto y comparar las autofunciones obtenidas a partir OSMC, con aquellos obtenidos por Chen y Chung, es posible apreciar un excelente acuerdo.
 
 \begin{figure}[H]
  \centering
@@ -288,9 +287,9 @@ En la Figura \ref{fig:eigenfun_valid} se presentan las autofunciones correspondi
 
 \subsection{Análisis de Estabilidad Lineal versus DNS}
 
-Como se menciona en la Sección \ref{line_an}, el análisis de estabilidad lineal predice a través de un modelo matemático la evolución temporal de pequeñas perturbaciones que son impuestas al flujo base. En esta sub-sección se pretende comparar dichas predicciones con los resultados arrojados por simulaciones realizadas con XC3D en escalas de tiempo donde las perturbaciones se mantienen relativamente acotadas lo que hace válida a la aproximación del modelo lineal. Las condiciones iniciales de la simulación se construyen como la suma del flujo laminar, ecuaciones \ref{eq:vel_asist_boyant} - \ref{eq:theta_opo_boyant}, y las perturbaciones \ref{eq:init_con_1} - \ref{eq:init_con_3}. 
+Como se menciona en la Sección \ref{line_an}, el análisis de estabilidad lineal predice a través de un modelo matemático la evolución temporal de pequeñas perturbaciones que son impuestas al flujo base. En esta sub-sección se pretende comparar dichas predicciones con los resultados arrojados por simulaciones realizadas con XC3D en escalas de tiempo donde las perturbaciones se mantienen relativamente acotadas (lo que hace válida a la aproximación del modelo lineal). Las condiciones iniciales de la simulación se construyen como la suma del flujo laminar, ecuaciones \ref{eq:vel_asist_boyant} - \ref{eq:theta_opo_boyant}, y las perturbaciones \ref{eq:init_con_1} - \ref{eq:init_con_3}. 
 
-Se comparan dos casos, denominados Rama Izquierda (RI) y Rama Derecha (RD), que corresponden a casos físicos donde se incrementa y se disminuye la amplitud de la perturbacion inicial, respectivamente. Esto matemáticamente equivale una parte imaginaria negativa (RI) y positiva (RD). Los números adimensionales empleados corresponden a $\text{Re}_o=750$, $\text{Pr}=0\text{.}7$ y $\text{Ra}=65$. Los parámetros de simulación de ambos casos se exponen en la Tabla \ref{tab:caseslineal-theor}. Observese que se utilizan perturbaciones compuestas únicamente de ondas bidimensionales. Las Figuras \ref{fig:Ra65RD-2d} (RD) y \ref{fig:Ra65RI-2d} (RI) muestran, de izquierda a derecha: (i) el espectro de autovalores (puntos celestes) con el autovalor seleccionado (punto rojo); (ii) las autofunciones de las componentes de la velocidad; y (iii) la autofunción de la temperatura. Las simulaciones DNS realizadas se corren un total de 20 unidades temporales.
+Se comparan dos casos, denominados Rama Izquierda (RI) y Rama Derecha (RD), que corresponden a casos físicos donde se incrementa y se disminuye la amplitud de la perturbacion inicial, respectivamente. Esto, matemáticamente, equivale una parte imaginaria negativa (RI) y positiva (RD). Los números adimensionales empleados corresponden a $\text{Re}_o=750$, $\text{Pr}=0\text{.}7$ y $\text{Ra}=65$. Los parámetros de simulación de ambos casos se exponen en la Tabla \ref{tab:caseslineal-theor}. Obsérvese que se utilizan perturbaciones compuestas únicamente de ondas bidimensionales. Las Figuras \ref{fig:Ra65RD-2d} (RD) y \ref{fig:Ra65RI-2d} (RI) muestran, de izquierda a derecha: (i) el espectro de autovalores (puntos celestes) con el autovalor seleccionado (punto rojo); (ii) las autofunciones de las componentes de la velocidad; y (iii) la autofunción de la temperatura. Las simulaciones DNS realizadas se corren un total de 20 unidades temporales.
 
 \begin{table}[H]
 \centering
@@ -307,14 +306,14 @@ RD & $2 \pi / \alpha \times 2 \times 2 \pi $ & $160 \times 161 \times 160$ & 0.0
 \label{tab:caseslineal-theor}
 \end{table}
 
-Para comprobar la predicción de la teoría de estabilidad lineal con aquella producida por las herramientas numéricas, se emplea la evolución temporal de la energía cinética turbulenta (TKE) y de la varianza de la temperatura. En XC3D, dichas magnitudes corresponden al promedio integral en $y^*$ de las correlaciones $( \langle u^{* \prime}_x u^{* \prime}_x \rangle + \langle u^{* \prime}_y u^{* \prime}_y  \rangle + \langle u^{* \prime}_z u^{* \prime}_z  \rangle) / 2$ y $\langle \theta^{* \prime} \theta^{* \prime} \rangle$, mientras que para teoría de estabilidad lineal dichas cantidades se aproximan utilizando las autofunciones $\left\lbrace \widehat{v_x}, \widehat{v_y}, \widehat{v_z}, \widehat{\theta} \right\rbrace$ y las expresiones tipo \ref{eq:waves3d} para obtener:
+Para comprobar la predicción de la teoría de estabilidad lineal con aquella producida por las herramientas numéricas, se emplea la evolución temporal de la energía cinética turbulenta (TKE) y de la varianza de la temperatura. En XC3D, dichas magnitudes corresponden al promedio integral en $y^*$ de las correlaciones $( \langle u^{* \prime}_x u^{* \prime}_x \rangle + \langle u^{* \prime}_y u^{* \prime}_y  \rangle + \langle u^{* \prime}_z u^{* \prime}_z  \rangle) / 2$ y $\langle \theta^{* \prime} \theta^{* \prime} \rangle$. En teoría de estabilidad lineal dichas cantidades se aproximan utilizando las autofunciones $\left\lbrace \widehat{v_x}, \widehat{v_y}, \widehat{v_z}, \widehat{\theta} \right\rbrace$ y las expresiones tipo \ref{eq:waves3d} para obtener:
 \begin{align}
-\text{TKE} &\simeq \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int \left[  ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} ) \cdot ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} )  \right] dy^* \\
-\int \langle \theta^{* \prime} \theta^{* \prime} \rangle dy^* &\simeq \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int (\widehat{\theta})^2 dy^*
+\text{TKE} &\simeq \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int \left[  ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} ) \cdot ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} )  \right] dy^* \text{ ,} \\
+\int \langle \theta^{* \prime} \theta^{* \prime} \rangle dy^* &\simeq \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int (\widehat{\theta})^2 dy^* \text{ .}
 \end{align}   
 En estas expresiones, si $c_i < 0$, las cantidades decaen y el flujo es estable. Pero por el contrario, si $c_i > 0$, la mismas crecen y el flujo base evoluciona en el tiempo, dando posiblemente, origen a la transición. Las afirmaciones anteriores son ciertas siempre que $\alpha$ sea positivo.
 
-En las Figuras \ref{fig:Ra65RD-tke} y \ref{fig:Ra65RD-tvar} muestran la evolución temporal de la TKE y de la varianza de la temperatura para el caso RD. Se observa un muy buen acuerdo entre la predicción teórica y los resultados obtenidos a partir de simulaciones DNS con las herramientas numéricas utilizadas. En este caso se aprecia que la perturbación introducida logra inestabilizar el flujo (pues $c_i>0$) y que si bien en una etapa temprana el acuerdo entre ambas metodologías coincide, si el flujo transiciona a un régimen turbulento, la consistencia entre ambos debería tender a desaparecer.  
+Las Figuras \ref{fig:Ra65RD-tke} y \ref{fig:Ra65RD-tvar} muestran la evolución temporal de la TKE y de la varianza de la temperatura para el caso RD. Se observa un muy buen acuerdo entre la predicción teórica y los resultados obtenidos a partir de simulaciones DNS con las herramientas numéricas utilizadas. En este caso se aprecia que la perturbación introducida logra inestabilizar el flujo (pues $c_i>0$) y que si bien en una etapa temprana el acuerdo entre ambas metodologías coincide, si el flujo transiciona a un régimen turbulento, la consistencia entre ambos debería tender a desaparecer.  
 
 De forma completamente análoga, las Figuras \ref{fig:Ra65RI-tke} y \ref{fig:Ra65RI-tvar} muestran la evolución temporal de la TKE y de la varianza de la temperatura para el caso RI. En este caso, dado que $c_i<0$, el análisis de estabilidad lineal predice que la perturbación impuesta tenderá a decaer y el flujo no se inestabilizará, esta predicción esta en completa consistencia con la simulación DNS realizada. Esto nos permite confirmar que la implementación de la condición inicial perturbada en XC3D es correcta.  
 
@@ -326,7 +325,7 @@ De forma completamente análoga, las Figuras \ref{fig:Ra65RI-tke} y \ref{fig:Ra6
   \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap4/osmc/Ra65_RamaDer/theta_var.png}
     	 \label{fig:Ra65RD-tvar}}  
- \caption{Evolución temporal de la varianza de la temperatura y de la TKE del caso RD.} 
+ \caption{Evolución temporal de la TKE y de la varianza de la temperatura del caso RD.} 
  \label{fig:Ra65R-DI}
 \end{figure}
 
@@ -338,7 +337,7 @@ De forma completamente análoga, las Figuras \ref{fig:Ra65RI-tke} y \ref{fig:Ra6
   \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap4/osmc/Ra65_RamaIzq/theta_var.png}
          \label{fig:Ra65RI-tvar}}  
- \caption{Evolución temporal de la varianza de la temperatura y de la TKE del caso RI.} 
+ \caption{Evolución temporal de la TKE y de la varianza de la temperatura del caso RI.} 
  \label{fig:Ra65R-DI}
 \end{figure}
 

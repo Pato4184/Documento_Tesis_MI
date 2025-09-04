@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.24">
-<info created="D:20250720195254" modified="D:20250824220345"/>
+<info created="D:20250720195254" modified="D:20250902135242"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -367,7 +367,7 @@ h
 272 784
 256 640 c
 </path>
-<path matrix="1 0 0 1 -24 48" stroke="brown" pen="ultrafat">
+<path matrix="1 0 0 1 -24.0811 47.9189" stroke="brown" pen="ultrafat">
 384 448 m
 368 480
 336 488
@@ -392,13 +392,13 @@ h
 304 480 l
 </path>
 <use name="mark/disk(sx)" pos="80 684" size="normal" stroke="turquoise"/>
-<use name="mark/disk(sx)" pos="111.721 709.975" size="normal" stroke="turquoise"/>
-<use name="mark/disk(sx)" pos="79.6988 552.054" size="normal" stroke="turquoise"/>
-<use name="mark/disk(sx)" pos="111.968 567.379" size="normal" stroke="turquoise"/>
+<use name="mark/disk(sx)" pos="111.721 709.975" size="normal" stroke="0 1 0"/>
+<use name="mark/disk(sx)" pos="79.6988 552.054" size="normal" stroke="green"/>
+<use name="mark/disk(sx)" pos="111.968 567.379" size="normal" stroke="green"/>
 <use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="272 520" size="normal" stroke="turquoise"/>
-<use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="304.052 534.692" size="normal" stroke="turquoise"/>
-<use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="271.879 733.618" size="normal" stroke="turquoise"/>
-<use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="304.052 724.576" size="normal" stroke="turquoise"/>
+<use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="304.052 534.692" size="normal" stroke="green"/>
+<use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="271.879 733.618" size="normal" stroke="green"/>
+<use matrix="1 0 0 1 -24 0" name="mark/disk(sx)" pos="304.052 724.576" size="normal" stroke="green"/>
 <text matrix="1 0 0 1 -0.210281 -5.04675" transformations="translations" pos="69.4057 766.981" stroke="black" type="label" width="18.356" height="11.806" depth="4.26" valign="baseline" size="LARGE" style="math">\mathbf{u^*_x}</text>
 <text matrix="1 0 0 1 169.446 -6.0986" transformations="translations" pos="69.4057 766.981" stroke="black" type="label" width="18.356" height="11.806" depth="4.26" valign="baseline" size="LARGE" style="math">\mathbf{u^*_x}</text>
 <text matrix="1 0 0 1 122.105 -143.188" transformations="translations" pos="69.4057 766.981" stroke="black" type="label" width="16.966" height="11.807" depth="3.35" valign="baseline" size="LARGE" style="math">\mathbf{y^*}</text>
@@ -638,11 +638,11 @@ h
 229.367 736.567 m
 238.917 735.919 l
 </path>
-<path stroke="darkcyan">
+<path stroke="seagreen">
 230.788 525.987 m
 238.748 524.549 l
 </path>
-<path stroke="darkcyan">
+<path stroke="seagreen">
 230.788 512.177 m
 245.173 511.793 l
 </path>
@@ -657,14 +657,25 @@ h
 <text matrix="1 0 0 1 209.211 -17.2107" transformations="translations" pos="64 792" stroke="blue" type="label" width="36.567" height="6.152" depth="0" valign="baseline" size="small">\textbf{MIXTA}</text>
 <text matrix="1 0 0 1 191.18 -6.12801" transformations="translations" pos="64 792" stroke="blue" type="label" width="74.475" height="8.394" depth="0" valign="baseline" size="small">\textbf{CONVECCIÓN}</text>
 <text matrix="1 0 0 1 32.4314 -6.12801" transformations="translations" pos="64 792" stroke="blue" type="label" width="74.475" height="8.394" depth="0" valign="baseline" size="small">\textbf{CONVECCIÓN}</text>
-<text matrix="1 0 0 1 -60.7753 -37.1167" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(1)}</text>
-<text matrix="1 0 0 1 -29.1734 -6.09485" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(2)}</text>
-<text matrix="1 0 0 1 107.198 15.6239" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(1)}</text>
-<text matrix="1 0 0 1 139.041 2.41214" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(2)}</text>
-<text matrix="1 0 0 1 -60.7589 -168.751" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(1)}</text>
-<text matrix="1 0 0 1 107.736 -201.083" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(1)}</text>
-<text matrix="1 0 0 1 -30.4255 -149.961" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(2)}</text>
-<text matrix="1 0 0 1 137.919 -182.254" transformations="translations" pos="144 720" stroke="red" type="label" width="9.727" height="3.741" depth="1.24" valign="baseline" size="tiny">\textbf{(2)}</text>
+<text matrix="1 0 0 1 -59.2147 -38.1733" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(1)}</text>
+<text matrix="1 0 0 1 -7.34125 -1.5667" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(2)}</text>
+<text matrix="1 0 0 1 107.635 12.5009" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(1)}</text>
+<text matrix="1 0 0 1 140.096 1.51957" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(2)}</text>
+<text matrix="1 0 0 1 -59.8102 -170.648" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(1)}</text>
+<text matrix="1 0 0 1 109.226 -203.102" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(1)}</text>
+<text matrix="1 0 0 1 -12.821 -143.952" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(2)}</text>
+<text matrix="1 0 0 1 137.189 -180.144" transformations="translations" pos="144 720" stroke="red" type="label" width="14.639" height="7.473" depth="2.49" valign="baseline">\textbf{(2)}</text>
 <text matrix="1 0 0 1 -53.2125 -20.0588" transformations="translations" pos="120 724" stroke="0" type="label" width="26.932" height="6.136" depth="1.99" valign="baseline" size="footnote" style="math">u^{* \prime}_x&lt;0</text>
+<path stroke="black" pen="0.6">
+113.131 711.186 m
+135.61 719.596 l
+</path>
+<use name="mark/disk(sx)" pos="80 684" size="normal" stroke="green"/>
+<use name="mark/disk(sx)" pos="248 520" size="normal" stroke="red"/>
+<use name="mark/disk(sx)" pos="248 520" size="normal" stroke="green"/>
+<path stroke="black" fill="green" pen="0.6">
+113.888 569.457 m
+130.761 575.467 l
+</path>
 </page>
 </ipe>
