@@ -42,8 +42,8 @@
 Dr. Pablo Garcia Martinez (Instituto Balseiro -- CNEA)\\ 
 Dr. César Venier (FCEIA -- SIMEC)\\}
 
-\palabrasclave{Flujo Turbulento,Convección Mixta}
-\keywords{Turbulent Flow, Mixed Convection}
+%\palabrasclave{Flujo Turbulento,Convección Mixta}
+%\keywords{Turbulent Flow, Mixed Convection}
 % Si queremos poner la fecha manualmente:
 % \date{Diciembre de 2099}
 
@@ -71,8 +71,68 @@ A todos mis seres queridos}
 %%% \'{I}ndices %%%%
 
 \begin{abreviaturas}
-$U_b$: Velocidad \textit{bulk}
-                             %Abreviaturas
+\begin{itemize}
+
+
+\item[] $\rho$: densidad del fluido 
+\item[] $\mu$: viscosidad cinemática del fluido 
+\item[] $\alpha_{T}$: difusividad térmica del fluido 
+\item[] $k$: conductividad térmica 
+\item[] $c_p$: calor específico a presión constante 
+\item[] $q''_w$: flujo de calor en la pared 
+\item[] $X,Y,Z$: direcciones de coordenadas cartesianas 
+\item[] $x,y,z$: variables de coordenadas cartesianas 
+\item[] $t$: tiempo 
+\item[] $d$: semiancho del canal 
+\item[] $\mathbf{u}$: campo vectorial de velocidades 
+\item[] $\text{p}$: campo escalar de presiones 
+\item[] $T$: campo escalar de temperaturas 
+\item[] $\mathbf{g}$: vector aceleración de la gravedad
+\item[] $g$: magnitud de la acelaración gravitacional 
+\item[] $L_x,L_y,L_z$: dimensiones del dominio de simulación 
+\item[] $\theta$: temperatura transformada por cambio de variable ($\langle T_w \rangle - T$)
+
+\item[] $U_o$: velocidad en el centro del canal 
+\item[] $U_b$: velocidad \textit{bulk} 
+\item[] $\mathcal{A}$: constante relacionada a la temperatura en la pared (véase Apéndice \ref{apen:constante-A}) 
+
+\item[] Re: número de Reynolds
+\item[] Pr: número de Prandtl
+\item[] Ri: número de Richardson
+
+\item[] $\alpha,\beta$: número de onda en la dirección $X$ y $Z$ 
+\item[] $c$: velocidad de fase
+\item[] $\omega$: frecuencia angular
+
+\item[] $\kappa$ o TKE: Energía Cinética Turbulenta
+
+\item[] $\tau_w$: tensión de corte en la pared 
+
+\item[] $(\text{.})_w$: magnitudes evaluadas en la pared
+\item[] $\langle \text{.} \rangle$: promedio estadístico en la dirección $X$ y $Z$ y/o en el tiempo
+\item[] $(\text{.})_b$: magnitudes en \textit{bulk}
+%\item[] $\widetilde{(\text{.})}$: indica perturbación asociada a cierta magnitud
+%\item[] $\widehat{(\text{.})}$: indica amplitud de una perturbación
+\item[] $(\text{.})^{\prime}$: indica fluctuación de cierta magnitud
+
+\item[] $(\text{.})^{*}$: forma adimensional de magnitudes empleando $d$, $U_o$ y $\mathcal{A} \hspace{0.1mm} d$ 
+\item[] $(\text{.})^{\star}$: forma adimensional de magnitudes empleando $d$, $U_b$ y $\text{Re} \hspace{0.1mm} \text{Pr} \hspace{0.1mm} \mathcal{A} \hspace{0.1mm} d $ 
+\item[] $(\text{.})_{\tau}$: indica unidades de fricción
+
+
+
+
+% SIGLAS
+\item[] DNS: \textit{Direct Numerical Simulation}
+\item[] PBC: \textit{Periodic Boundary Conditions} 
+\item[] MBC: \textit{Mixed Boudary Condition}
+\item[] RANS: \textit{Reynolds Averaged Navier-Stokes Equations}
+\item[] XC3D: abreviatura de Xcompact3D
+\item[] OSMC: \textit{Orr-Sommerfeld Mixed Conection}
+\item[] RHS: \textit{Right Hand Side}
+\item[] RLS: \textit{Right Left Side}
+
+\end{itemize}
 \end{abreviaturas}
 
 \tableofcontents                %\'{I}ndice
