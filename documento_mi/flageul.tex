@@ -1,6 +1,6 @@
 \chapter{Cálculo de la constante $\mathcal{A}$ (Capítulo 2)} \label{apen:constante-A}
 
-Como se menciona en el Capítulo \ref{cap:modelo} la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con la coordenada $x$, esto es, $\langle T_w \rangle = \mathcal{A} \hspace{0.5mm} x $. Se procede entonces con el cálculo de la constante $\mathcal{A}$. Esto se realiza mediante un balance de energía en el dominio de simulacion, es decir, $L_x \times L_y \times L_z$ (véase Figura \ref{fig:apendice-b}). 
+Como se menciona en el Capítulo \ref{cap:modelo}, la temperatura en la pared, promediada en el tiempo y en la dirección $Z$, crece linealmente con la coordenada $x$, esto es, $\langle T_w \rangle = \mathcal{A} \hspace{0.5mm} x $. Se procede entonces con el cálculo de la constante $\mathcal{A}$. Esto se realiza mediante un balance de energía en el dominio de simulación, es decir, $L_x \times L_y \times L_z$ (véase Figura \ref{fig:apendice-b}). 
 
 \begin{figure}[H]
   \centering  
@@ -8,9 +8,9 @@ Como se menciona en el Capítulo \ref{cap:modelo} la temperatura en la pared, pr
   \caption{Esquema del balance de energía.}
   \label{fig:apendice-b}
 \end{figure}
-De acuerdo a \cite{cengelheat}, dicho balance puede expresarse de la forma:
+De acuerdo con \cite{cengelheat}, dicho balance puede expresarse de la siguiente forma:
 $$ q'' S = c_p \dot{m} \left( T_{out} - T_{in} \right)$$
-donde $q''$ es el flujo externo de calor, $S$ es el área de sección transversal, $c_p$ es el calor específico a presión constante, $\dot{m}$ es el flujo másico, $T_{out}$ la temperatura del fluido a la salida ($x=L_x$) y $T_{in}$ la temperatura del fluido a la entrada ($x=0$). Considérese, por un lado, el cambio de variable realizado en la temperatura para satisfacer las condiciones de contorno períodicas (relaciones \ref{eq:pbc1} y \ref{eq:pbc2}), esto es, $T(x,y,z,t)= \langle T_w \rangle - \theta(x,y,z,t)$; y por el otro, que $T_{out}=T(x=L_x,y,z,t)$ y $T_{in}=T(x=0,y,z,t)$. Entonces, la diferencia de temperatura entre la entrada y la salida se puede escribir de la siguiente forma:
+donde $q''$ es el flujo externo de calor, $S$ es el área de sección transversal, $c_p$ es el calor específico a presión constante, $\dot{m}$ es el flujo másico, $T_{out}$ es la temperatura del fluido a la salida ($x=L_x$) y $T_{in}$ es la temperatura del fluido a la entrada ($x=0$). Considérese, por un lado, el cambio de variable realizado en la temperatura para satisfacer las condiciones de contorno periódicas (relaciones \ref{eq:pbc1} y \ref{eq:pbc2}), esto es, $T(x,y,z,t)= \langle T_w \rangle - \theta(x,y,z,t)$; y por el otro, que $T_{out}=T(x=L_x,y,z,t)$ y $T_{in}=T(x=0,y,z,t)$. Entonces, la diferencia de temperatura entre la entrada y la salida se puede escribir de la siguiente forma:
 
 \begin{equation*}
 \begin{aligned}

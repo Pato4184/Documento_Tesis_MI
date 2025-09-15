@@ -1,16 +1,16 @@
-\chapter{Ecuaciones Promediadas y TKE budgets } \label{apen:budgets}
+\chapter{Ecuaciones Promediadas y Balances de TKE } \label{apen:budgets}
 
 
 \section{Ecuaciones Promediadas}
 
 
-El primer paso para obtener las ecuaciones promediadas de conservación del sistema, consiste en descomponer los campos solución en una parte media, denotado por $\langle (\text{.}) \rangle$\footnote{Esta cantidad es calculada de acuerdo a lo considerado en la Sección \ref{sec:mag-stat}.}, más una parte fluctuante, denotado por $(\text{.})^{\prime}$. Esta separación entre la componente media y fluctuante se denomina \textit{Descomposición de Reynolds} \cite{kundu,pope2001turbulent}. Las mismas se representan en las relaciones \ref{eq:reynold_decomp} siendo $i=x,y,z$. 
+El primer paso para obtener las ecuaciones promediadas de conservación del sistema, consiste en descomponer los campos solución en una parte media, denotada por $\langle (\text{.}) \rangle$\footnote{Esta cantidad es calculada de acuerdo a lo considerado en la Sección \ref{sec:mag-stat}.}, más una parte fluctuante, denotada por $(\text{.})^{\prime}$. Esta separación entre la componente media y fluctuante se denomina \textit{Descomposición de Reynolds} \cite{kundu,pope2001turbulent}. Las mismas se representan en las relaciones \ref{eq:reynold_decomp} siendo $i=x,y,z$. 
 
 \begin{equation}
 u_i = \langle u_i \rangle + u^{\prime}_i \quad , \quad \text{p} = \langle \text{p} \rangle + \text{p}^{\prime} \quad , \quad \theta = \langle \theta \rangle + \theta^{\prime}
 \label{eq:reynold_decomp}
 \end{equation}
-Las ecuaciones de conservación que satisfacen el flujo medio se obtienen sustituyendo las descomposiciones de Reynolds de arriba en las ecuaciones de gobierno \ref{eq:gob_system_adim}, y luego tomando el promedio de las ecuaciones. Al realizar dichas acciones, reordenar los términos, y tener en cuenta que el promedio de un promedio sigue siendo él mismo, y que el promedio de una fluctuación es nulo \cite{pope2001turbulent}, se encuentran las siguientes ecuaciones \cite{kundu}:
+Las ecuaciones de conservación que satisfacen el flujo medio se obtienen sustituyendo las descomposiciones de Reynolds anteriores en las ecuaciones de gobierno \ref{eq:gob_system_adim}, y luego tomando el promedio de las ecuaciones. Al realizar dichas acciones, reordenar los términos, tener en cuenta que el promedio de un promedio sigue siendo el mismo, y que el promedio de una fluctuación es nulo \cite{pope2001turbulent}, se encuentran las siguientes ecuaciones \cite{kundu}:
 
 \begin{equation}
 \begin{aligned}
@@ -20,12 +20,12 @@ Las ecuaciones de conservación que satisfacen el flujo medio se obtienen sustit
 \label{eq:rans_adim_sis}
 \end{aligned}
 \end{equation} 
-Por simplicidad de notación, se han omitido los superíndices ``*''. En las ecuaciones precedentes: $i,j=x,y,z$; $\partial_{\alpha} = \frac{\partial}{\partial \alpha }$ siendo ${\alpha}=x,y,z,t$; $\hat{g}_i$ son las componentes del versor $\widehat{\mathbf{e_g}}$; $\langle u^{\prime}_j u^{\prime}_i \rangle$ son las componentes del \textbf{Tensor de Reyndols}; y $\langle u^{\prime}_j \theta^{\prime} \rangle$ es el \textbf{Flujo de Calor Turbulento} en la dirección j-ésima. El proceso para obtener estas ecuaciones se denomina \textit{Reynolds averaging} y el sistema de ecuaciones \ref{eq:rans_adim_sis} se conoce como ecuaciones RANS (\textit{Reynolds Averaged Navier-Stokes}).
+Por simplicidad de notación, se han omitido los superíndices ``*''. En las ecuaciones precedentes: $i,j=x,y,z$; $\partial_{\alpha} = \frac{\partial}{\partial \alpha }$ siendo ${\alpha}=x,y,z,t$; $\hat{g}_i$ son las componentes del versor $\widehat{\mathbf{e_g}}$; $\langle u^{\prime}_j u^{\prime}_i \rangle$ son las componentes del \textbf{Tensor de Reynolds}; y $\langle u^{\prime}_j \theta^{\prime} \rangle$ es el \textbf{Flujo de Calor Turbulento} en la dirección j-ésima. El proceso para obtener estas ecuaciones se denomina \textit{Reynolds averaging} y el sistema de ecuaciones \ref{eq:rans_adim_sis} se conoce como ecuaciones RANS (\textit{Reynolds Averaged Navier-Stokes}).
 
 
-\section{TKE \textit{budgets}}
+\section{Balances de TKE}
 
-A partir de las ecuaciones de gobierno adimensionales (relaciones \ref{eq:gob_system}), las ecuaciones RANS descritas en la sección anterior (ecuaciones \ref{eq:rans_adim_sis}) y la descomposición de Reyndols (relaciones \ref{eq:reynold_decomp}) es posible obtener\footnote{Véase las referencias \cite{pope2001turbulent, kundu, durbin}.} las ecuaciones que describen la dinámica de los budgets o balances de cantidades de segundo orden. Ejemplos de ello son: las componentes $\langle u'_i u'_j \rangle$ del tensor de Reyndols, la energía cinética turbulenta $\kappa$ (o TKE), los flujos de calor turbulento $\langle u'_j \theta' \rangle$ y la varianza de la temperatura $\langle \theta' \theta' \rangle$. En particular, en este trabajo se utiliza los budgets de la energía cinética turbulenta (Capítulo \ref{cap:desarrollado}), los cuales se expresan en la ecuación \ref{eq:tke-bud} donde $\kappa = \langle u'_i u'_i \rangle / 2$.  
+A partir de las ecuaciones de gobierno adimensionales (relaciones \ref{eq:gob_system_adim}), las ecuaciones RANS descritas en la sección anterior (ecuaciones \ref{eq:rans_adim_sis}) y la descomposición de Reynolds (relaciones \ref{eq:reynold_decomp}) es posible obtener\footnote{Véanse las referencias \cite{pope2001turbulent, kundu, durbin}.} las ecuaciones que describen la dinámica de los balances o \textit{budgets} de cantidades de segundo orden. Ejemplos de ello son: las componentes $\langle u'_i u'_j \rangle$ del tensor de Reyndols, la energía cinética turbulenta $\kappa$ (o TKE), los flujos de calor turbulento $\langle u'_j \theta' \rangle$ y la varianza de la temperatura $\langle \theta' \theta' \rangle$. En particular, en este trabajo se utilizan los \textit{budgets} de la energía cinética turbulenta (Capítulo \ref{cap:desarrollado}), los cuales se expresan en la ecuación \ref{eq:tke-bud} donde $\kappa = \langle u'_i u'_i \rangle / 2$.  
 
 \begin{equation}
 \partial_t \kappa + \langle u_n \rangle \partial_n \kappa = \mathcal{P} + \mathcal{T} + \Pi + \mathcal{D} + \mathcal{B} - \varepsilon
@@ -42,7 +42,7 @@ A partir de las ecuaciones de gobierno adimensionales (relaciones \ref{eq:gob_sy
 & \mathcal{P} = - \langle u'_i u'_n \rangle \partial_n \langle u_i \rangle \\[2mm]
 \mbox{\small Disipación:}\quad 
 & \mathcal{D} = - \frac{1}{\text{Re}_o} \langle \partial_n u'_i \partial_n u'_i \rangle \\[2mm]
-\mbox{\small Correlacion Vel - Grad Presión:}\quad 
+\mbox{\small Correlación Vel - Grad Presión:}\quad 
 & \Pi = - \langle \partial_i (u'_i \hspace{0.1mm} \text{p}') \rangle \\[2mm]
 \mbox{\small Prod-Boyante:}\quad 
 & \mathcal{B} = \text{Ri}_o \hspace{1mm} \hat{g}_i \hspace{1mm} \langle u'_i \theta' \rangle \\[2mm]
