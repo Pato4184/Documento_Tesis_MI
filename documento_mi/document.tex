@@ -42,8 +42,10 @@
 Dr. Pablo Garcia Martinez (IB-UNCuyo -- CNEA)\\ 
 Dr. César Venier (FCEIA-UNR -- SIMEC)\\}
 
-\palabrasclave{Convección Mixta, DNS, TRANSICIÓN LAMINAR-TURBULENTA}
-%\keywords{Turbulent Flow, Mixed Convection}
+
+
+\palabrasclave{Convección Mixta, DNS, TRANSICIÓN LAMINAR-TURBULENTA, Xcompact3D}
+\keywords{ Mixed Convection, DNS, Laminar-turbulent transition, Xcompact3D}
 % Si queremos poner la fecha manualmente:
 % \date{Diciembre de 2099}
 
@@ -72,7 +74,7 @@ A todos mis seres queridos \\}
 
 \begin{abreviaturas}
 \begin{itemize}
-\small{
+\small{ \small{
 
 \item[] $\rho$: densidad del fluido 
 \item[] $\mu$: viscosidad cinemática del fluido 
@@ -102,6 +104,7 @@ A todos mis seres queridos \\}
 \item[] Ri: número de Richardson
 \item[] Ra: número de Rayleigh
 \item[] Nu: número de Nusselt
+\item[] Bo: número de boyancia usado por Jackson \textit{et al.} \cite{jackson1989studies}
 \item[] $f$: factor de fricción de Darcy
 
 
@@ -135,11 +138,11 @@ A todos mis seres queridos \\}
 \item[] RANS: \textit{Reynolds Averaged Navier-Stokes Equations}
 \item[] XC3D: abreviatura de Xcompact3D
 \item[] OSMC: \textit{Orr-Sommerfeld Mixed Convection}
-\item[] RHS: \textit{Right Hand Side}
-\item[] RLS: \textit{Left Hand Side}
+%\item[] RHS: \textit{Right Hand Side}
+%\item[] RLS: \textit{Left Hand Side}
 \item[] RMS o rms: \textit{Root Mean Square}
 
-}
+}}
 \end{itemize}
 \end{abreviaturas}
 
@@ -183,23 +186,29 @@ A todos mis seres queridos \\}
 
 \begin{seccion}{Agradecimientos}
 
-%En primer lugar a mis padres (Adriana y Ernesto) y a mi hermana Daniela por todo su apoyo en toda la etapa que fue Balseiro. Ellos constituyen un soporte vital para mi vida
-%
-%A mis directores William y Federico, por haberme tenido paciencia y haberme enseñado muchas cosas. 
-%
-%A los integrantes de grupo MECOM por su calidez. Especial mención al director del grupo, Enzo Dari, por toda la ayuda que me dió a lo largo de toda la maestría. Su papel en el tema relacionado a la parte informática fue muy importante para la confección de este documento. 
-%
-%A todas las personas que pasaron por el Pabellón 6 y con los que conviví en estos dos años y pico. He conocido personas maravillosas y he construido experiencias y amistades que me llevo para toda mi vida.
-%
-%A mis amigos más intimos que me me brindaron su apoyo a distancias desde San Lorenzo
-%
-%A mi terapeuta Sandra. Ella me ayudo a abrazar todas las dificultades y desafios que se presentaron en estos dos años para utilizarlo como motor de cambio personal.
-%
-%Al Instituto Balseiro por darme la oportunidad de aprender y crecer tanto personal como profesionalmente. En particular agradezco a los vicedirectores Graciela Bertolino y Marcelo Kuperman por su ayuda y su excelente predispoción para con todo. siempre abiertos a ayudar en lo que sea posible
-%
-%Las instituciones no son solo la infraestrucutra, lo son las personas. La importancia de cuidarlo, valorarlo y sostenerlo es importante. Todas las oportunidades, desafios, adversidades que se presentaron fue gracias a la educacion universitaria estatal no arancelada.
-%
-%[PONER FOTO DE LA ESTAPILLA DE UNIVERSIDAD GRATUITA FEDERAL]  
+En primer lugar, a mis padres, Adriana y Ernesto, y a mi hermana Daniela, por su apoyo incondicional durante toda esta etapa en el Balseiro. Han sido un sostén fundamental en mi vida.
+
+A mis directores, William Machaca y Federico Teruel, por su paciencia, su guía y por todo lo que me enseñaron.
+
+Al Grupo MECOM por su calidez. Mención especial a su director, Enzo Dari, por la ayuda constante a lo largo de la maestría; su acompañamiento (en particular en los aspectos informáticos) fue clave para la elaboración de este trabajo.
+
+A todas las personas que pasaron por el Pabellón 6 y con quienes conviví a lo largo de estos dos años. Conocí gente maravillosa y construí experiencias y amistades que me llevo para toda la vida.
+
+A mis amigos más íntimos, que me brindaron su apoyo a la distancia desde San Lorenzo.
+
+A mi terapeuta, Sandra, quien me ayudó a abrazar las dificultades y desafíos de estos años y a transformarlos en un motor de cambio personal.
+
+Al Instituto Balseiro por darme la oportunidad de aprender y crecer, en lo personal y en lo profesional. En particular, agradezco a los vicedirectores Graciela Bertolino y Marcelo Kuperman por su ayuda y su excelente predisposición, siempre abiertos a colaborar en lo que fuera necesario.
+
+Las instituciones no son solo la infraestructura: son, sobre todo, las personas que las hacen posibles. Cuidarlas, valorarlas y sostenerlas es esencial. Las oportunidades y aprendizajes que viví fueron posibles gracias a la educación universitaria pública y no arancelada.
+
+A cada persona que hizo posible este proceso, mi más profunda gratitud.
+
+
+\begin{figure}[H]
+ \centering
+    \includegraphics[width=0.3\textwidth]{figures/universidad.jpeg}
+\end{figure}
 
 
 \end{seccion}

@@ -34,21 +34,21 @@ A lo largo de la etapa de validación, para las distintas simulaciones DNS reali
 
 Por otro lado, en cada simulación (según se requiera) se imponen los parámetros Re$_o$, Pr y/o Ri$_b$. Posteriormente, se deja evolucionar el sistema hasta que los campos asociados alcancen el estado estadísticamente estacionario. Una vez en dicho estado, se colecta estadística por al menos 500 unidades temporales. Para acelerar la obtención del estado turbulento, XC3D cuenta con la capacidad de introducir  ruido aleatorio, y/o también rotación\footnote{La rotación se logra agregando un término asociado a la fuerza de Coriolis en la ecuación de momento \cite{lamballais2014}, que viene implementada en el propio código.} en el propio flujo. 
 
-Las simulaciones se realizan en el \textit{cluster ``mecclust''} del grupo MECOM (CAB-CNEA). Dependiendo de la disponibilidad y de la exigencia demandada, cada simulación se puede \linebreak correr en un nodo individual de los veinte disponibles, los cuales emplean 2 procesadores \textit{Xeon E5 2660 V3 @2.6 GHz} con 10 \textit{cores} cada uno; o también, si se requiere, es posible utilizar cuatro nodos con conexión \textit{InfiniBand} que da un total de 80 \textit{cores}. Para aquellas simulaciones más demandantes, el número mínimo de pasos temporales por hora es aproximadamente 800, y el almacenamiento requerido puede alcanzar los 100 GB. Para dar una idea general del \textit{wall-clock} requerido, empleando 20 \textit{cores}, una simulación de 500 unidades temporales con la malla M0 (véase Tabla \ref{tab:meshes}) puede tardar del orden de 35 minutos mientras que una simulación idéntica con la malla M4 puede requerir del orden de 670 horas.       
+Las simulaciones se realizan en el \textit{cluster ``mecclust''} del grupo MECOM (CAB-CNEA). Dependiendo de la disponibilidad y de la exigencia demandada, cada simulación se puede \linebreak correr en un nodo individual de los veinte disponibles, los cuales emplean 2 procesadores \textit{Xeon E5 2660 V3 @2.6 GHz} con 10 \textit{cores} cada uno; o también, si se requiere, es posible utilizar cuatro nodos con conexión \textit{InfiniBand} que da un total de 80 \textit{cores}. Para aquellas simulaciones más demandantes, se tiene $\sim 800$ pasos temporales por hora de reloj ($\sim 4\text{.}5 \text{ } seg/\text{paso}$), y el almacenamiento requerido puede alcanzar los 100 GB. Para dar una idea general del \textit{wall-clock} requerido, empleando 20 \textit{cores}, una simulación de 500 unidades temporales con la malla M0 (véase Tabla \ref{tab:meshes}) puede tardar del orden de 35 minutos mientras que una simulación idéntica con la malla M4 puede requerir del orden de 670 horas.       
 
 
 \begin{table}[H]
 \centering
-\resizebox{0.7\textwidth}{!}{%
+\resizebox{0.75\textwidth}{!}{%
 \begin{tabular}{lcccc}
 \toprule
-Nomenclatura & N$_x \times$ N$_y \times$ N$_z$ & $(\Delta x^*,\Delta y^*_{\text{max}},\Delta z^*)$ & $\Delta t^*$ \\
+Nomenclatura & N$_x \times$ N$_y \times$ N$_z$ & $(\Delta x^*,\Delta y^*_{\text{min}},\Delta y^*_{\text{max}},\Delta z^*)$ & $\Delta t^*$ \\
 \midrule
-M0 & $64 \times 65 \times 64$    & (0.125, 0.087, 0.062) & 0.005 \\
-M1 & $128 \times 65 \times 64$   & (0.062, 0.087, 0.062) & 0.005 \\
-M2 & $128 \times 129 \times 128$ & (0.062, 0.044, 0.031) & 0.002 \\
-M3 & $160 \times 161 \times 160$ & (0.05,  0.035, 0.025)  & 0.001 \\
-M4 & $256 \times 257 \times 256$ & (0.031, 0.022, 0.015)  & 0.001 \\
+M0 & $64 \times 65 \times 64$    & (0.125, 0.011, 0.087, 0.062) & 0.005 \\
+M1 & $128 \times 65 \times 64$   & (0.062, 0.011, 0.087, 0.062) & 0.005 \\
+M2 & $128 \times 129 \times 128$ & (0.062, 0.006, 0.044, 0.031) & 0.002 \\
+M3 & $160 \times 161 \times 160$ & (0.05,  0.004, 0.035, 0.025)  & 0.001 \\
+M4 & $256 \times 257 \times 256$ & (0.031, 0.003, 0.022, 0.015)  & 0.001 \\
 \bottomrule
 \end{tabular}}
 \caption{Distintas resoluciones espaciales y temporales utilizadas en las simulaciones de validación. Debido a que la discretización en la dirección $Y$ es no uniforme, se reporta el máximo $\Delta y$ asociado.}
@@ -64,7 +64,7 @@ Algunos resultados, presentes en esta primera parte, se encuentran adimensionali
 \end{itemize}
 Por otro lado, los perfiles de las magnitudes seleccionadas se encuentran promediadas en la dirección X y Z, y en el tiempo.
 
-\subsection{Situación I. Canal turbulento (sólo hidrodinámica)}
+\subsection{Situación I. Canal turbulento hidrodinámico}
 
 En esta subsección se exponen los resultados del canal turbulento considerando los \linebreak aspectos hidrodinámicos únicamente. En este caso se impone Re$_o$=4200 y se realizan \linebreak simulaciones para las mallas M0, M1, M2 y M3.  
 
@@ -227,7 +227,7 @@ Se observa que las Figuras \ref{fig:guo-05-theta} y \ref{fig:guo-05-ux} verifica
 
 Adicionalmente, al comparar magnitudes de segundo orden asociadas a la temperatura adimensional, como la fluctuación de temperatura (Figura \ref{fig:guo-05-theta-rms}) o el flujo de calor turbulento (Figura \ref{fig:guo-05-ux-theta}), se puede destacar una clara diferencia cuantitativa entre nuestros datos para M4 y la referencia en algunas posiciones del semiancho, como por ejemplo en el centro del canal. Por otro lado, en las magnitudes de segundo orden asociadas a la velocidad como las fluctuaciones (Figura \ref{fig:guo-05-ux-rms}) o la componente $xy$ de la tensión de Reynolds (Figura \ref{fig:guo-05-uxuy}), la discrepancia cuantitativa entre los datos obtenidos con M4 y aquellos de referencia sigue siendo apreciable en el centro del canal; sin embargo, es menor que la registrada para la temperatura.
 
-Se especula que los aspectos más relevantes para explicar las diferencias encontradas en los perfiles de las magnitudes de segundo orden, están asociados al tamaño del dominio simulado. Guo \textit{et al.} utilizan un dominio ampliamente mayor ($L_x \times L_y \times L_z = 31\text{.}42 \times 2 \times 12\text{.}57$) que el empleado en este trabajo. Debido a la periodicidad en $x$, los puntos del plano medio $x = L_x/2$ están parcialmente influidos por los puntos en los planos $x=0$ y $x=L_x$. Dicho de otra manera, estos puntos ``fronterizos'' podrían no encontrarse descorrelacionados. Este hecho no permite capturar con presición todas las escalas que presenta la solución del problema o hace que la solución numérica aún sea dependiente del tamaño del dominio simulado. Otra cuestión adicional que puede influir, es que Guo \textit{et al.} emplean menor resolución (espaciado mayor) en las direcciones $X$ y $Z$, e idéntico en la dirección $Y$: $(\Delta x^*,\Delta y^*_{\text{max}},\Delta z^*) = (0\text{.}061, 0\text{.}022, 0\text{.}024)$. Por lo tanto, luego de esta discusión y del análisis de los resultados presentados en las Figuras \ref{fig:guo-05-theta} - \ref{fig:guo-05-ux-theta} se considera que las mallas propuestas, M2-M4, producen resultados con una precisión razonable para los objetivos buscados y permiten llevar adelante el trabajo con la capacidad de cálculo existente. 
+Se especula que los aspectos más relevantes para explicar las diferencias encontradas en los perfiles de las magnitudes de segundo orden, están asociados al tamaño del dominio simulado. Guo \textit{et al.} utilizan un dominio ampliamente mayor ($L_x \times L_y \times L_z = 31\text{.}42 \times 2 \times 12\text{.}57$) que el empleado en este trabajo. Debido a la periodicidad en $x$, los puntos del plano medio $x = L_x/2$ están parcialmente influidos por los puntos en los planos $x=0$ y $x=L_x$. Dicho de otra manera, estos puntos ``fronterizos'' podrían no encontrarse descorrelacionados. Este hecho no permite capturar con precisión todas las escalas que presenta la solución del problema o hace que la solución numérica aún sea dependiente del tamaño del dominio simulado. Otra cuestión adicional que puede influir, es que Guo \textit{et al.} emplean menor resolución (espaciado mayor) en las direcciones $X$ y $Z$, e idéntico en la dirección $Y$: $(\Delta x^*,\Delta y^*_{\text{max}},\Delta z^*) = (0\text{.}061, 0\text{.}022, 0\text{.}024)$. Por lo tanto, luego de esta discusión y del análisis de los resultados presentados en las Figuras \ref{fig:guo-05-theta} - \ref{fig:guo-05-ux-theta} se considera que las mallas propuestas, M2-M4, producen resultados con una precisión razonable para los objetivos buscados y permiten llevar adelante el trabajo con la capacidad de cálculo existente. 
 
 \paragraph{Elección de malla para simulaciones posteriores.}
 
@@ -269,7 +269,7 @@ Aquí, $\arg\max$ (argumento del máximo) denota el operador que devuelve el ín
 $$
 c \;:=\; \frac{\overline{u_\star}}{|u_\star|^2} \;=\; \frac{1}{u_\star}
 $$
-donde $\overline{(\text{.})}$ indica complejo conjugado. Con el mismo $c$ se escalan todas las autofunciones, para todo $j$, se tiene:
+donde $\overline{(\text{.})}$ indica complejo conjugado. Con el mismo $c$ se normalizan todas las autofunciones, para todo $j$, se tiene:
 $$
 \boldsymbol{\widehat{v}}_{\mathrm{norm}}(y_j)=c\,\boldsymbol{\widehat{v}}(y_j) \text{ ,} \quad
 \widehat{\theta}_{\mathrm{norm}}(y_j)=c\,\widehat{\theta}(y_j).
@@ -331,10 +331,10 @@ RD & $2 \pi / \alpha \times 2 \times 2 \pi $ & $160 \times 161 \times 160$ & 0.0
 
 Para comprobar la predicción de la teoría de estabilidad lineal con aquella producida por las herramientas numéricas, se emplea la evolución temporal de la energía cinética turbulenta (TKE) y de la varianza de la temperatura. En XC3D, dichas magnitudes corresponden al promedio integral en $y^*$ de las correlaciones $( \langle u^{* \prime}_x u^{* \prime}_x \rangle + \langle u^{* \prime}_y u^{* \prime}_y  \rangle + \langle u^{* \prime}_z u^{* \prime}_z  \rangle) / 2$ y $\langle \theta^{* \prime} \theta^{* \prime} \rangle$. En teoría de estabilidad lineal dichas cantidades se aproximan utilizando las autofunciones $\left\lbrace \widehat{v_x}, \widehat{v_y}, \widehat{v_z}, \widehat{\theta} \right\rbrace$ y las expresiones tipo \ref{eq:waves3d} para obtener:
 \begin{align}
-\text{TKE} &\simeq \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int \left[  ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} ) \cdot ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} )  \right] dy^* \text{ ,} \\
-\int \langle \theta^{* \prime} \theta^{* \prime} \rangle dy^* &\simeq \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int (\widehat{\theta})^2 dy^* \text{ .}
+\text{TKE} &= \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int \left[  ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} ) \cdot ( \widehat{v_x}, \widehat{v_y}, \widehat{v_z} )  \right] dy^* \text{ ,} \\
+\int \langle \theta^{* \prime} \theta^{* \prime} \rangle dy^* &= \frac{1}{2} (A_{2D})^2 \hspace*{0.5mm} e^{2 \alpha c_i t^*} \int (\widehat{\theta})^2 dy^* \text{ .}
 \end{align}   
-En estas expresiones, si $c_i < 0$, las cantidades decaen y el flujo es estable. Pero por el contrario, si $c_i > 0$, las mismas crecen y el flujo base evoluciona en el tiempo, dando posiblemente, origen a la transición. Las afirmaciones anteriores son ciertas siempre que $\alpha$ sea positivo.
+En estas expresiones, si $c_i < 0$, las cantidades decaen y el flujo es estable. Por el contrario, si $c_i > 0$, las mismas crecen y el flujo base evoluciona en el tiempo, dando posiblemente, origen a la transición. Las afirmaciones anteriores son ciertas siempre que $\alpha$ sea positivo.
 
 Las Figuras \ref{fig:Ra65RD-tke} y \ref{fig:Ra65RD-tvar} muestran la evolución temporal de la TKE y de la varianza de la temperatura para el caso RD. Se observa un muy buen acuerdo entre la predicción teórica y los resultados obtenidos a partir de simulaciones DNS con las herramientas numéricas utilizadas. En este caso se aprecia que la perturbación introducida logra inestabilizar el flujo (pues $c_i>0$) y que si bien en una etapa temprana el acuerdo entre ambas metodologías coincide, si el flujo transiciona a un régimen turbulento, la consistencia entre ambos debería tender a desaparecer.  
 
