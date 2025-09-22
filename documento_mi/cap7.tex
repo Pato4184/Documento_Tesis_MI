@@ -16,20 +16,9 @@ Para estudiar la transición temporal resulta necesario conocer el estado inicia
 
 \item A partir del conjunto de simulaciones se calculó el número de Nusselt en función del número de boyancia Bo y se lo comparó con la correlación de Jackson et al. \cite{jackson1989studies}, encontrándose un muy buen acuerdo. Se identificó además la existencia de un intervalo $10^{-6} \lesssim \text{Bo} \lesssim 3 \times 10^{-5}$ donde Nu se reduce respecto del caso puramente forzado, señalando una caída en la transferencia de calor que coincide con la disminución de la producción total de turbulencia, principalmente cerca de las paredes.
 
-\item Se calculó el factor de fricción de Darcy y, para el rango de parámetros considerado, se propuso una correlación tipo potencia que mostró buen acuerdo tanto con nuestras simulaciones como con datos reportados en \cite{you2003direct} y \cite{parlatan1996buoyancy}. Aún con la asistencia de la boyancia, el gradiente de velocidad en la vecindad de la pared aumenta, lo que incrementa el factor de fricción.%Pese a la asistencia de boyancia, el gradiente de velocidad aumenta en la vecindad de la pared y eleva el factor de fricción.
+\item Se calculó el factor de fricción de Darcy y, para el rango de parámetros considerado, se propuso una correlación tipo potencia que mostró buen acuerdo tanto con nuestras simulaciones como con datos reportados en \cite{you2003direct} y \cite{parlatan1996buoyancy}. Aún con la asistencia de la boyancia, el gradiente de velocidad en la vecindad de la pared aumenta, lo que incrementa el factor de fricción
 
-\end{itemize}
-
-
-% Primero se observó que para $\text{Ri}_b \geq 1\text{.}06$ los perfiles de velocidad adoptan una forma \linebreak característica en ``M'', en consistencia con otros trabajos \cite{you2003direct}, \cite{zhou2024direct}. 
-% 
-% Segundo, los perfiles de temperatura se distinguen en dos grupos según $\text{Ri}_b$: para $0 \lesssim \text{Ri}_b \lesssim 1$ se ubican por encima del caso puramente forzado, mientras que para $\text{Ri}_b \gtrsim 1$ quedan por debajo, debido a la mezcla inducida por la flotación. 
-% 
-% Tercero, manteniendo $\text{Re}_o=5000$, se analizó el efecto de $\text{Pr}$: para $\text{Pr}=0\text{.}071$ la ley de pared \cite{kawamura1998dns} es válida hasta $y^+ \approx 30$, y para $\text{Pr}=0\text{.}71$ hasta $y^+ \approx 7$, evidenciando la influencia de $\text{Pr}$ en la capa conductiva. 
-% 
-% Cuarto, a partir del conjunto de simulaciones se calculó el número de Nusselt en función del número de boyancia Bo y se lo comparó con la correlación de Jackson et al. \cite{jackson1989studies}, encontrándose un muy buen acuerdo. Se identificó además la existencia de un intervalo $10^{-6} \lesssim \text{Bo} \lesssim 3 \times 10^{-5}$ donde Nu se reduce respecto del caso puramente forzado, señalando una caída en la transferencia de calor que coincide con la disminución de la producción total de turbulencia, principalmente cerca de las paredes. Quinto, se calculó el factor de fricción de Darcy y, para el rango de parámetros considerado, se propuso una correlación tipo potencia que mostró buen acuerdo tanto con nuestras simulaciones como con datos reportados en \cite{you2003direct} y \cite{parlatan1996buoyancy}. Pese a la asistencia de boyancia, el gradiente de velocidad aumenta en la vecindad de la pared y eleva el factor de fricción.
-
-%Con el entendimiento de las soluciones laminares del flujo bajo análisis (conocidas como flujo base) \cite{chen1996linear, tao1960} y con el mecanismo de inestabilización (creado a partir de teoría de estabilidad lineal \cite{schlatter2005}) utilizado para transicionar el sistema, y con el estado final turbulento caracterizado, se abordó el estudio de la transición temporal laminar-turbulenta. 
+\end{itemize} 
 
 Tomando las soluciones laminares del flujo bajo análisis (véase Sección \ref{sec:fbase}) \cite{tao1960, chen1996linear}, considerando el mecanismo de inestabilización obtenido mediante teoría de estabilidad lineal \cite{schlatter2005} y con el estado final turbulento ya caracterizado, se estudió la transición temporal laminar–turbulenta. Dado que en la bibliografía reciente este fenómeno cuenta con escasa información, se realizó primero una exploración numérica para identificar combinaciones de perturbaciones capaces de inducir la inestabilidad. Se consideró $\text{Re}_o=5000$ y $\text{Pr}=0\text{.}71$, seleccionando dos valores moderados de $\text{Ri}_b$: $0\text{.}04$ para los Casos A y $1\text{.}06$ para los Casos B. Empleando el mecanismo de inestabilización descrito en el Capítulo \ref{cap:modelo} se construyeron distintas condiciones iniciales. A partir de la evolución temporal de la energía cinética turbulenta y del número de Reynolds de fricción se identificaron las condiciones que efectivamente transicionan el flujo y se eligieron dos ensayos para un análisis detallado: A-C10, cuya condición inicial combina ondas 2D/3D ($c_{\text{2D}}=0\text{.}385 - 0\text{.}124 j$ y $c_{\text{3D}}=0\text{.}563 - 0\text{.}095 j$), y B-C2, con una única onda 2D ($c_{\text{2D}}=0\text{.}800 - 0\text{.}495 j$). Este último resultado indica que la fuerza boyante incrementa la inestabilidad del sistema. 
 
@@ -37,9 +26,9 @@ En este punto, es importante destacar que se implementó satisfactoriamente una 
 
 \begin{itemize}
 
-\item El análisis temporal de la TKE, la varianza de temperatura, el número de Nusselt y el coeficiente de fricción de Darcy muestra estados transitorios no monótonos, con máximos y mínimos que superan los valores de la condición inicial y del estado turbulento desarrollado.
+\item La evolución temporal de la TKE, la varianza de temperatura, el número de Nusselt y el coeficiente de fricción de Darcy presentan estados transitorios no monótonos, con \linebreak máximos y mínimos que superan los valores de la condición inicial y del estado turbulento desarrollado.
 
-\item En el ensayo A-C10, Nu permanece cercano al valor del estado laminar y luego crece monótonamente. En cambio, el ensayo B-C2 presenta una caída brusca que coincide con el aumento de la TKE y el aplanamiento del perfil de velocidad en el mismo instante, fenómeno atribuible a la mayor difusión de momento por efecto de la turbulencia. 
+\item En el ensayo A-C10, Nu permanece cercano al valor del estado laminar y luego crece monótonamente. En cambio, en el ensayo B-C2, se presenta una caída brusca que \linebreak coincide con el aumento de la TKE y el aplanamiento del perfil de velocidad en el mismo instante, fenómeno atribuible a la mayor difusión de momento por efecto de la \linebreak turbulencia. 
 
 \item Al considerar ambas condiciones iniciales, el valor de Nu tiende al estado turbulento desarrollado pero no lo alcanza (al menos en la ventana de tiempo simulada). 
 
@@ -48,16 +37,5 @@ En este punto, es importante destacar que se implementó satisfactoriamente una 
 \item A lo largo de la evolución temporal de ambos ensayos, los perfiles de velocidad y temperatura exhiben pérdidas momentáneas de simetría asociadas a la distribución no homogénea de vórtices cerca de las paredes. Este efecto podría ser causado, posiblemente, por el tamaño del dominio empleado.
 
 \end{itemize}
-
-%
-%El análisis temporal de la TKE, la varianza de temperatura, el número de Nusselt y el coeficiente de fricción de Darcy muestra estados transitorios no monótonos, con máximos y mínimos que superan los valores de la condición inicial y del estado turbulento desarrollado. 
-%
-%En el ensayo A-C10, Nu permanece cercano al valor del estado laminar y luego crece monótonamente. En cambio, el ensayo B-C2 presenta una caída brusca de Nu que coincide con el aumento de la TKE y el aplanamiento del perfil de velocidad en el mismo instante, fenómeno atribuible a la mayor difusión de momento por efecto de la turbulencia. 
-%
-%Al considerar ambas condiciones iniciales, el valor de Nu tiende al estado turbulento desarrollado pero sin alcanzarlo (al menos en la ventana de tiempo simulada). 
-%
-%Por último, al comparar la evolución de $\text{Re}_{\tau}$ se observa que en el ensayo A-C10 el valor del estado turbulento desarrollado queda por encima del inicial, mientras que en B-C2 se encuentra por debajo. Esta diferencia se explica por la variación del gradiente de velocidad en la región próxima a la pared, vinculada al aplanamiento de los perfiles y al incremento súbito de turbulencia. 
-%
-%A lo largo de la evolución temporal de ambos ensayos, los perfiles de velocidad y temperatura exhiben pérdidas momentáneas de simetría asociadas a la distribución no homogénea de vórtices cerca de las paredes. Este efecto podría ser causado por el tamaño del dominio empleado.
 
 En síntesis, se llevaron a cabo simulaciones DNS de flujos en régimen de convección mixta con foco en la transición temporal en canales verticales y en su impacto sobre la \linebreak transferencia de calor bajo la acción de la boyancia. Los datos de los casos completamente \linebreak desarrollados pueden emplearse para el diseño de dispositivos termohidráulicos que eviten \linebreak operar en la región de reducción de transferencia de calor o, en su defecto, para considerar \linebreak dicho  comportamiento en su operación. Por su parte, los resultados de transición temporal constituyen un punto de partida para el estudio de este fenómeno complejo, aportan al entendimiento del proceso de transición y ofrece una base para contrastar y verificar correlaciones existentes o propuestas en un trabajo futuro.

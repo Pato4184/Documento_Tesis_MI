@@ -1,23 +1,12 @@
 \begin{resumen}%
 
-
 La convección mixta en conductos verticales está presente en numerosos sistemas de interés, entre ellos los intercambiadores de calor. Estos sistemas pueden presentar cambios de régimen (laminar-turbulento) durante su funcionamiento. Esto es relevante ya que el coeficiente de fricción ($f$) o el número de Nusselt (Nu) pueden experimentar grandes variaciones. En el presente trabajo se estudia la evolución temporal de magnitudes de interés durante la transición desde el régimen laminar hacia el turbulento, para un canal vertical de placas paralelas con flujo de calor constante en las paredes.
 
-%Para investigar la transición temporal se considera primero el estado laminar inicial y el estado turbulento final. 
+Para estudiar la transición temporal, primero resulta necesario conocer el estado inicial laminar y el estado final turbulento. En ese sentido, se analiza el flujo turbulento completamente desarrollado bajo la influencia de la fuerza boyante. Tanto el estudio del estado turbulento desarrollado como la transición temporal laminar-turbulenta se realiza mediante simulaciones DNS empleando Xcompact3D. 
 
-Tanto el estudio del estado turbulento desarrollado como la transición temporal laminar-turbulenta se realiza mediante simulaciones DNS empleando Xcompact3D. %Se estudian la energía cinética turbulenta (TKE), la varianza de la temperatura, el número de Nusselt (Nu) y el factor de fricción de Darcy ($f$).
-
-
-%Se analiza el régimen turbulento completamente desarrollado bajo la acción de la fuerza boyante a partir de simulaciones DNS con Xcompact3D. %, se estudian la energía cinética turbulenta (TKE), la varianza de la temperatura, el número de Nusselt (Nu) y el factor de fricción de Darcy ($f$).
-
-Las condiciones iniciales que inducen la inestabilidad se obtienen mediante análisis de estabilidad lineal, resolviendo el problema de autovalores y autofunciones derivado de las ecuaciones de Orr-Sommerfeld para convección mixta. Esta resolución se realiza con la herramienta OSMC desarrollada en el grupo MECOM. Las soluciones permiten desencadenar la transición para examinar su evolución temporal. % de las magnitudes de \linebreak interés.
-
-%(\href{https://github.com/Pato4184/OSMC-Repository}{OSMC-Repository})
+Las condiciones iniciales que inducen la inestabilidad se obtienen mediante análisis de estabilidad lineal, resolviendo el problema de autovalores y autofunciones derivado de las ecuaciones de Orr-Sommerfeld para convección mixta. Esta resolución se realiza con la herramienta OSMC desarrollada en el grupo MECOM. Las soluciones permiten desencadenar la transición para examinar su evolución temporal. 
 
 En el análisis del régimen turbulento desarrollado se consideran $2100 \leq \mathrm{Re}_o \leq 5000$, $\mathrm{Pr}=0\text{.}071,\,0\text{.}71$ y $0\text{.}04 \leq \mathrm{Ri}_b \leq 106\text{.}5$. Para $\mathrm{Re}_o=5000$ y $\mathrm{Pr}=0\text{.}71$ se \linebreak analizan perfiles de cantidades medias y fluctuaciones. Las estimaciones de Nu concuerdan con correlaciones de la literatura en los rangos estudiados. Se identifica una región ($10^{-6} \lesssim \text{Bo} \lesssim 3 \times 10^{-5}$) donde Nu disminuye respecto de la convección puramente forzada, asociado a una menor producción de turbulencia próxima a las  paredes. Se propone asimismo una correlación empírica para el factor de Darcy ($f$) con buen acuerdo frente a datos y referencias.
-
-
-%Se abordó la transición laminar-turbulenta con $\text{Re}_o=5000$ y $\text{Pr}=0\text{.}71$, considerando dos intensidades de la fuerza boyante caracterizadas por $\text{Ri}_b=0\text{.}04$ y $\text{Ri}_b=1\text{.}06$. Se diseñaron condiciones iniciales basadas en teoría de estabilidad lineal y se identificaron combinaciones de perturbaciones que efectivamente inducen la transición, mostrando que el aumento de la flotación incrementa la inestabilidad. Las magnitudes TKE, varianza de la temperatura, Nu y $f$ exhiben estados transitorios no monótonos. En el caso con mayor $\text{Ri}_b$ se observa una caída brusca de Nu, coincidente con un aumento de TKE y con el aplanamiento del perfil de velocidad producto de la difusión de momento por efecto de la turbulencia. Finalmente, el valor asociado al estado turbulento desarrollado de $\text{Re}_{\tau}$ culmina por encima del valor asociado al estado inicial en el caso de menor $\text{Ri}_b$ y por debajo en el de mayor $\text{Ri}_b$.
 
 La transición laminar-turbulenta se examina para $\mathrm{Re}_o=5000$, $\mathrm{Pr}=0\text{.}71$ y dos intensidades de boyancia ($\mathrm{Ri}_b=0\text{.}04$ y $\mathrm{Ri}_b=1\text{.}06$). Se identifican combinaciones de perturbaciones que inducen la transición y se observa que una mayor boyancia incrementa la inestabilidad del flujo. Las cantidades TKE, varianza de temperatura, Nu y $f$ muestran respuestas transitorias no monótonas; en el caso de mayor $\mathrm{Ri}_b$ se registra una caída pronunciada de Nu concurrente con aumento de TKE y el aplanamiento del perfil de velocidad por efecto de la turbulencia. Finalmente, se observa que el valor del estado turbulento desarrollado de $\mathrm{Re}_\tau$ se encuentra por encima del valor asociado al estado inicial en el caso de $\mathrm{Ri}_b$ menor y por debajo en el de $\mathrm{Ri}_b$ mayor.
 
@@ -25,7 +14,18 @@ La transición laminar-turbulenta se examina para $\mathrm{Re}_o=5000$, $\mathrm
 
 
 \begin{abstract}%
-\textcolor{red}{NOTA: Hasta que mis directores no le den el okay al resumen en español esta parte no la voy a escribir ...}
+
+Mixed convection in vertical ducts is present in numerous systems of interest, including heat exchangers. These systems may undergo regime changes (laminar–turbulent) during operation. This is relevant since the friction coefficient ($f$) or the Nusselt number (Nu) may exhibit large variations. In the present work, the temporal evolution of quantities of interest is studied during the transition from the laminar regime to the turbulent one, for a vertical parallel-plate channel with constant wall heat flux.
+
+To investigate the temporal transition, it is first necessary to characterize both the initial laminar state and the final turbulent state. In this regard, the fully developed turbulent flow under the influence of buoyancy is analyzed. Both the study of the developed turbulent state and the laminar–turbulent temporal transition are carried out through DNS simulations using Xcompact3D. 
+
+The initial conditions that trigger the instability are obtained by means of linear stability analysis, solving the eigenvalue and eigenfunction problem derived from the Orr–Sommerfeld equations for mixed convection. This resolution is performed with the OSMC tool developed in the MECOM group. The solutions allow the transition to be triggered in order to examine its temporal evolution. 
+
+In the analysis of the developed turbulent regime, the conditions $2100 \leq \mathrm{Re}_o \leq 5000$, $\mathrm{Pr}=0\text{.}071,\,0\text{.}71$ and $0\text{.}04 \leq \mathrm{Ri}_b \leq 106\text{.}5$ are considered. For $\mathrm{Re}_o=5000$ and $\mathrm{Pr}=0\text{.}71$, profiles of mean quantities and fluctuations are analyzed. The Nu estimates are consistent with correlations from the literature in the ranges studied. A region ($10^{-6} \lesssim \text{Bo} \lesssim 3 \times 10^{-5}$) is identified where Nu decreases with respect to purely forced convection, associated with a lower turbulence production near the walls. An empirical correlation is also proposed for the Darcy factor ($f$), showing good agreement with data and references.
+
+The laminar–turbulent transition is examined for $\mathrm{Re}_o=5000$, $\mathrm{Pr}=0\text{.}71$ and two buoyancy intensities ($\mathrm{Ri}_b=0\text{.}04$ and $\mathrm{Ri}_b=1\text{.}06$). Combinations of perturbations that induce the transition are identified, and it is observed that stronger buoyancy increases the flow instability. The TKE, temperature variance, Nu and $f$ exhibit non-monotonic transient responses; in the case of higher $\mathrm{Ri}_b$, a sharp drop in Nu is recorded, concurrent with an increase in TKE and the flattening of the velocity profile due to turbulence. Finally, it is observed that the value of the developed turbulent state of $\mathrm{Re}_\tau$ lies above the value associated with the initial state in the case of lower $\mathrm{Ri}_b$, and below in the case of higher $\mathrm{Ri}_b$.
+
+
 \end{abstract}
 
 
