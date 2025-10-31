@@ -3,12 +3,11 @@
 
 En este capítulo se pretende validar y asegurar el correcto funcionamiento de las \linebreak herramientas numéricas utilizadas. El mismo se divide en dos partes. Una primera parte que se centra en validar la herramienta de simulaciones DNS, Xcompact3D. Para tal fin se emplean diferentes mallas (o resoluciones) espaciales y pasos temporales según se requiera. En la segunda parte de este capítulo se valida la herramienta generadora de autovalores y autofunciones, OSMC. 
 
-Se emplean tres situaciones diferentes para validar XC3D: (i) un canal de placas paralelas en régimen turbulento con flujo de calor constante en las paredes, donde se analizan aspectos hidrodinámicos y térmicos para convección forzada \cite{moser1999, kawamura2000dns}; (ii) mismo sistema físico que el caso anterior pero en régimen laminar, teniendo en cuenta el acople de las ecuaciones de conservación debido al término de fuerza boyante \linebreak \cite{chen1996linear}; (iii) canal vertical de placas paralelas isotérmicas a distinta temperatura entre sí, en régimen  turbulento con convección mixta \cite{guo2022direct}. En los casos turbulentos se analiza la convergencia en malla y la opción computacionalmente más económica que satisfaga una precisión aceptable.
+\textcolor{black}{Se emplean cuatro situaciones diferentes para validar XC3D: (i) un canal de placas\linebreak paralelas en régimen turbulento, donde se valida el comportamiento puramente hidrodinámico \cite{moser1999}; (ii) un canal turbulento hidrodinámica y térmicamente desarrollado con flujo de calor constante en las paredes, donde se analizan aspectos hidrodinámicos y térmicos para convección forzada \cite{kawamura2000dns}; (iii) mismo sistema físico que el caso anterior pero en régimen laminar, teniendo en cuenta el acople de las ecuaciones de conservación debido al término de fuerza boyante \cite{chen1996linear}; (iv) canal vertical de placas paralelas isotérmicas a distinta temperatura entre sí, en régimen  turbulento con convección mixta \cite{guo2022direct}. En los casos turbulentos se analiza la convergencia en malla y la opción computacionalmente más económica que satisfaga una precisión aceptable.}
 
 La corroboración de la herramienta numérica OSMC se realiza en dos etapas: (i) se ratifica que OSMC genere los autovalores correctos, para eso se considera la variación de la parte \linebreak imaginaria del autovalor más inestable en función del número de onda \cite{chen1996linear}; (ii) se corrobora que las autofunciones entregadas por el código sean correctas y para ello se utiliza como referencia autofunciones asociadas a ondas 2D y 3D \cite{chen2003direct}.
 
 Adicionalmente, las predicciones producidas por la teoría de estabilidad lineal, sobre la evolución temporal de ciertas magnitudes de interés, se comparan con aquellos resultados obtenidos vía simulaciones DNS. En general, se observa que las herramientas empleadas \linebreak responden adecuadamente y son consistentes con los datos de referencia.
-
 
 
 \newpage
@@ -51,7 +50,7 @@ M3 & $160 \times 161 \times 160$ & (0.05,  0.004, 0.035, 0.025)  & 0.001 \\
 M4 & $256 \times 257 \times 256$ & (0.031, 0.003, 0.022, 0.015)  & 0.001 \\
 \bottomrule
 \end{tabular}}
-\caption{Distintas resoluciones espaciales y temporales utilizadas en las simulaciones de validación. Debido a que la discretización en la dirección $Y$ es no uniforme, se reporta el máximo $\Delta y$ asociado.}
+\caption{Distintas resoluciones espaciales y temporales utilizadas \textcolor{black}{(adimensionales)} en las simulaciones de validación. Debido a que la discretización en la dirección $Y$ es no uniforme, se reporta tanto el mínimo como el máximo $\Delta y$ asociado.}
 \label{tab:meshes}
 \end{table}
 
@@ -66,7 +65,9 @@ Por otro lado, los perfiles de las magnitudes seleccionadas se encuentran promed
 
 \subsection{Situación I. Canal turbulento hidrodinámico}
 
-En esta subsección se exponen los resultados del canal turbulento considerando los \linebreak aspectos hidrodinámicos únicamente. En este caso se impone Re$_o$=4200 y se realizan \linebreak simulaciones para las mallas M0, M1, M2 y M3.  
+%En esta subsección se exponen los resultados del canal turbulento considerando los \linebreak aspectos hidrodinámicos únicamente. Esto es, considerando el sistema mostrado en la Figura \ref{fig:sistem_domain} donde se considera en este caso particular, $q''_w=0$ En este caso se impone Re$_o$=4200 y se realizan \linebreak simulaciones para las mallas M0, M1, M2 y M3.  
+
+\textcolor{black}{En esta subsección se presentan los resultados del canal turbulento considerando únicamente los aspectos hidrodinámicos. Es decir, se analiza el sistema mostrado en la Figura \ref{fig:sistem_domain}, donde en este caso particular se toma $q''_w = 0$. Para esta configuración, se fija Re$_o = 4200$ y se realizan simulaciones utilizando las mallas M0, M1, M2 y M3.}
 
 En las Figuras \ref{fig:kim-ux} - \ref{fig:kim-uxuy} se presentan (respectivamente) algunas magnitudes de interés para este sistema: el perfil de velocidad \textit{streamwise} $\langle u^+_x \rangle$ y los perfiles de las componentes del tensor de Reynolds\footnote{Sea $R_{ij} = \langle u^{\prime}_i u^{\prime}_j \rangle$ el tensor de Reynolds, entonces: la raíz cuadrada de la componente diagonal $R_{ii}$ coincide con el valor rms de la fluctuación de velocidad en la dirección $i$-ésima. Esto es, $(u_i)_{rms} = \sqrt{R_{ii}}$.} $\sqrt{\langle u^{+ \prime}_x u^{+ \prime}_x \rangle}$, $\sqrt{\langle u^{+ \prime}_y u^{+ \prime}_y \rangle}$ y $\langle u^{+ \prime}_x u^{+ \prime}_y \rangle$. En estas gráficas se comparan las distintas mallas empleadas con el trabajo de Moser \textit{et al.} \cite{moser1999}. Al refinar la malla (M0$\rightarrow$M3), las cantidades de interés se estabilizan; entre M2 y M3 las diferencias son prácticamente despreciables. Por lo tanto, se considera alcanzada la independencia de malla. Con esa resolución, los resultados DNS de XC3D muestran buen acuerdo con los datos de referencia.
 
@@ -87,7 +88,7 @@ En las Figuras \ref{fig:kim-ux} - \ref{fig:kim-uxuy} se presentan (respectivamen
     \subfloat[]{
     \includegraphics[width=0.49\textwidth]{figures/cap4/kim/up_vp.png}
     	\label{fig:kim-uxuy}} 
- \caption{Perfiles de \textbf{(a)} velocidad media \textit{streamwise}, \textbf{(b)} fluctuaciones RMS de la velocidad en $\langle u^+_x \rangle$, \textbf{(c)} fluctuaciones RMS de la velocidad $\langle u^+_y \rangle$ y \textbf{(d)} componente $xy$ del tensor de Reynolds. } 
+ \caption{Perfiles de \textbf{(a)} velocidad media \textit{streamwise}, \textbf{(b)} fluctuaciones RMS de la velocidad en $\langle u^+_x \rangle$, \textbf{(c)} fluctuaciones RMS de la velocidad $\langle u^+_y \rangle$ y \textbf{(d)} componente $xy$ del tensor de Reynolds. \textcolor{black}{Estos perfiles corresponden al sistema mostrado en la Figura \ref{fig:sistem_domain} ($q''_w=0$).}} 
  \label{fig:kim_1}
 \end{figure}
 
@@ -297,7 +298,7 @@ En la Figura \ref{fig:eigenfun_valid} se presentan las autofunciones correspondi
 
 Como se menciona en la Sección \ref{line_an}, el análisis de estabilidad lineal predice a través de un modelo matemático la evolución temporal de pequeñas perturbaciones que son impuestas al flujo base. En esta sección, se realizan simulaciones DNS para un canal de placas paralelas, con flujo de calor constante en las paredes, cuya condición inicial se construye utilizando el autovalor más inestable y su autofunción asociada. En ese sentido, se pretende comparar las predicciones teóricas con los resultados arrojados por simulaciones realizadas con XC3D. Esto se realiza en escalas de tiempo donde las perturbaciones se mantienen relativamente acotadas (lo que hace válida a la aproximación del modelo lineal). Las condiciones iniciales de la simulación se construyen como la suma del flujo laminar, ecuaciones \ref{eq:vel_asist_boyant} - \ref{eq:theta_opo_boyant}, y las perturbaciones \ref{eq:init_con_1} - \ref{eq:init_con_3}. 
 
-Se comparan dos casos, denominados\footnote{Nótese que Rama Izquiera y Rama Derecha hacen referencia a las ``ramas'' o ``brazos'' del espectro de autovalores considerado (véase Figura \ref{fig:Ra65RD-2d} y/o \ref{fig:Ra65RI-2d}).} Rama Izquierda (RI) y Rama Derecha (RD), que corresponden a casos físicos donde se incrementa y se disminuye la amplitud de la perturbacion inicial, respectivamente. Esto, matemáticamente, equivale a una parte imaginaria negativa (RI) y positiva (RD). Los números adimensionales empleados corresponden a $\text{Re}_o=750$, $\text{Pr}=0\text{.}7$ y $\text{Ra}=65$. Los parámetros de simulación de ambos casos se exponen en la \linebreak Tabla \ref{tab:caseslineal-theor}. Obsérvese que se utilizan perturbaciones compuestas únicamente de ondas bidimensionales. Las Figuras \ref{fig:Ra65RD-2d} (RD) y \ref{fig:Ra65RI-2d} (RI) muestran, de izquierda a derecha: (i) el espectro de autovalores (puntos celestes) con el autovalor seleccionado (punto rojo); (ii) las autofunciones de las componentes de la velocidad; y (iii) la autofunción de la temperatura. Las simulaciones DNS realizadas se corren un total de 20 unidades temporales.
+Se comparan dos casos, denominados\footnote{Nótese que Rama Izquiera y Rama Derecha hacen referencia a las ``ramas'' o ``brazos'' del espectro de autovalores considerado (véase Figura \ref{fig:Ra65RD-2d} y/o \ref{fig:Ra65RI-2d}).} Rama Izquierda (RI) y Rama Derecha (RD), que corresponden a casos físicos donde se incrementa y se disminuye la amplitud de la perturbación inicial, respectivamente. Esto, matemáticamente, equivale a una parte imaginaria negativa (RI) y positiva (RD). Los números adimensionales empleados corresponden a $\text{Re}_o=750$, $\text{Pr}=0\text{.}7$ y $\text{Ra}=65$. Los parámetros de simulación de ambos casos se exponen en la \linebreak Tabla \ref{tab:caseslineal-theor}. Obsérvese que se utilizan perturbaciones compuestas únicamente de ondas bidimensionales. Las Figuras \ref{fig:Ra65RD-2d} (RD) y \ref{fig:Ra65RI-2d} (RI) muestran, de izquierda a derecha: (i) el espectro de autovalores (puntos celestes) con el autovalor seleccionado (punto rojo); (ii) las autofunciones de las componentes de la velocidad; y (iii) la autofunción de la temperatura. Las simulaciones DNS realizadas se corren un total de 20 unidades temporales.
 
 \begin{table}[H]
 \centering

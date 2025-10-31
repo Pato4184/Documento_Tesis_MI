@@ -12,19 +12,28 @@ Todos estos flujos presentan un comportamiento aparentemente aleatorio y caótic
 
 \begin{itemize}
 	
-	\item \textbf{Tridimensionalidad.} La turbulencia es un fenómeno inherentemente tridimensional. 
+	%\item \textbf{Tridimensionalidad.} La turbulencia es un fenómeno inherentemente tridimensional. 
+	
+	
+\item \textbf{Tridimensionalidad.} \textcolor{black}{La turbulencia constituye un fenómeno intrínsecamente tridimensional. Si bien, en principio, es posible observar flujos bidimensionales que manifiesten comportamientos turbulentos, tales casos representan situaciones excepcionales. En el caso del clima en la superficie terrestre, por ejemplo, la dinámica atmosférica puede aproximarse a un comportamiento bidimensional debido al carácter delgado de la capa atmosférica. Sin embargo, es importante destacar que los flujos turbulentos se desarrollan, en general, de manera plenamente tridimensional, rompiendo simetrías y generando un elevado grado de mezcla.}
+	
 	
 	\item \textbf{Naturaleza no estacionaria.} Los flujos turbulentos evolucionan en el tiempo y se caracterizan por variaciones en magnitudes asociadas (velocidad, presión, temperatura, etc.).
 	
-	\item \textbf{Carácter multiescala.} La turbulencia involucra una amplia gama de escalas en el espacio y en el tiempo. 
+	%\item \textbf{Carácter multiescala.} La turbulencia involucra una amplia gama de escalas en el espacio y en el tiempo. 
+	
+	\item \textbf{Carácter multiescala.} \textcolor{black}{En los flujos turbulentos se manifiesta una amplia gama de escalas tanto espaciales como temporales. En otras palabras, si una propiedad del flujo (como la energía cinética) se representa mediante una serie o transformada de Fourier, puede observarse que sus componentes abarcan longitudes de onda pequeñas, medianas y grandes.}
 	
 	\item \textbf{Difusividad.} Se tiene una mezcla eficaz\footnote{El término ``mezcla eficaz'' se refiere a la capacidad de un flujo turbulento para mezclar y dispersar las diferentes propiedades del fluido de manera rápida y homogénea \cite{pope2001turbulent}.} de todas las propiedades del fluido (masa, velocidad, temperatura, concentración, etc.).
 
 \end{itemize}
 
-Por su relevancia práctica y su naturaleza aleatoria y compleja, este fenómeno ha sido objeto de un gran número de investigaciones teóricas y experimentales a lo largo de los últimos dos siglos. Incluso en la actualidad, se sigue estudiando con el objetivo de entender mejor su complejidad. En este contexto, el uso de la computación para resolver las ecuaciones que gobiernan la dinámica de fluidos ha adquirido un papel preponderante y se ha consolidado como una de las herramientas más utilizadas para el análisis de flujos turbulentos.
+\textcolor{black}{Por su relevancia práctica y por su complejidad (en particular su fuerte sensibilidad a las condiciones iniciales y de contorno, que genera un comportamiento caótico de apariencia aleatoria)}, este fenómeno ha sido objeto de un gran número de investigaciones teóricas y experimentales a lo largo de los últimos dos siglos. Incluso en la actualidad, se sigue estudiando con el objetivo de entender mejor su complejidad. En este contexto, el uso de la computación para resolver las ecuaciones que gobiernan la dinámica de fluidos ha adquirido un papel preponderante y se ha consolidado como una de las herramientas más utilizadas para el análisis de flujos turbulentos.
 
-El rápido progreso de las computadoras de alto rendimiento permite que la \linebreak simulación numérica directa (\textit{Direct Numerical Simulation}, DNS) sea una herramienta fundamental para la investigación de la turbulencia \cite{moin1998direct}.{\linebreak}Esta permite calcular la solución tridimensional y no estacionaria de las ecuaciones de conservación involucradas. Al resolverse sin recurrir a modelos de turbulencia, estas simulaciones requieren una precisión numérica elevada para capturar todas las escalas del flujo \cite{pope2001turbulent}.
+El rápido progreso de las computadoras de alto rendimiento permite que la \linebreak simulación numérica directa (\textit{Direct Numerical Simulation}, DNS) sea una herramienta fundamental para la investigación de la turbulencia \cite{moin1998direct}.{\linebreak}Esta permite calcular la solución tridimensional y no estacionaria de las ecuaciones de conservación involucradas. Al resolverse sin recurrir a modelos de turbulencia\footnote{\textcolor{black}{En CFD es usual emplear las ecuaciones de Reynolds (RANS) para obtener campos medios, como el de velocidad. Estas ecuaciones requieren hipótesis adicionales sobre el tensor de Reynolds para cerrar el sistema de ecuaciones} \cite{durbin}.}, estas simulaciones requieren una precisión numérica elevada para capturar todas las escalas del flujo \cite{pope2001turbulent}.
+
+
+
 
 \section{Descripción del sistema bajo estudio} \label{sec:descripcion}
 
@@ -47,9 +56,9 @@ El flujo ocurre en la dirección paralela al eje $X$ (\textit{streamwise}) y su 
 \begin{equation}
         \boxed{ \begin{array}{lcc}
 			  %\\
-              &  \nabla \cdot \left( \rho \mathbf{u} \right) = 0 \\
+              &  \nabla \cdot  \mathbf{u}  = 0 \\
               \vspace*{2mm}
-              &  \frac{\partial \left( \rho \mathbf{u} \right)}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho \mathbf{u} \right) = -\nabla \text{p} + \mu \hspace{1mm} {\nabla}^2 \mathbf{u}  + \rho \hspace{1mm} \mathbf{g} \\
+              &   \rho \left[ \frac{ \partial  \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right)   \mathbf{u} \right] = -\nabla \text{p} + \mu \hspace{1mm} {\nabla}^2 \mathbf{u}  + \rho \hspace{1mm} \mathbf{g} \\
               \vspace*{2mm}
               &  \frac{\partial T}{\partial t} + \mathbf{u} \cdot \nabla T =  \alpha_{T} \hspace{1mm} \nabla^2 T  \\
               % \\
@@ -105,7 +114,7 @@ Antes de discutir la periodicidad del campo de presiones es necesario introducir
 \end{equation}
 
 \begin{equation}
-\frac{ \rho_o \hspace{0.5mm} \partial \mathbf{u}}{\partial t} + \mathbf{u} \cdot \nabla  \left( \rho_o \mathbf{u} \right) = -\nabla \left[ \text{p} + \left( \int \langle \rho_{w} \rangle \hspace{1mm} dx \right) \hspace{0.5mm} g + C \right] + \mu_o \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{0.5mm} \rho_o \hspace{0.5mm} \beta \hspace{0.5mm} \theta \hspace{0.5mm} \mathbf{\widehat{e_g}},
+\rho_o \left[ \frac{ \partial  \mathbf{u}}{\partial t} + \left( \mathbf{u} \cdot \nabla \right)   \mathbf{u} \right] = -\nabla \left[ \text{p} + \left( \int \langle \rho_{w} \rangle \hspace{1mm} dx \right) \hspace{0.5mm} g + C \right] + \mu_o \hspace{1mm} {\nabla}^2 \mathbf{u}  + g \hspace{0.5mm} \rho_o \hspace{0.5mm} \beta \hspace{0.5mm} \theta \hspace{0.5mm} \mathbf{\widehat{e_g}},
 \label{eq:mom_rewrite}  
 \end{equation}
 
@@ -128,7 +137,7 @@ Por otro lado, empleando la velocidad en el centro del canal $U_o$, el semiancho
 \end{equation}
 
 \begin{equation}
-\text{Re}_o = \frac{\mu_o}{\rho_o \hspace{0.5mm} U_o \hspace{0.5mm} d } \quad ; \quad \text{Pr}= \frac{\mu_o}{\rho_o \hspace{0.5mm} \alpha_{T}} \quad ; \quad \Pi = \frac{\text{Ri}_o}{\text{Re}_o \hspace{0.5mm} \text{Pr}} \quad ; \quad \text{Ri}_o = \frac{g \hspace{0.5mm} \beta \hspace{0.5mm} q''_w \hspace{0.5mm} d^2}{k \hspace{0.5mm} U_o^2} = \frac{2}{9} \hspace{0.5mm} \text{Ri}_b
+\text{Re}_o = \frac{\rho_o \hspace{0.5mm} U_o \hspace{0.5mm} d }{\mu_o} \quad ; \quad \text{Pr}= \frac{\mu_o}{\rho_o \hspace{0.5mm} \alpha_{T}} \quad ; \quad \Pi = \frac{\text{Ri}_o}{\text{Re}_o \hspace{0.5mm} \text{Pr}} \quad ; \quad \text{Ri}_o = \frac{g \hspace{0.5mm} \beta \hspace{0.5mm} q''_w \hspace{0.5mm} d^2}{k \hspace{0.5mm} U_o^2} = \frac{2}{9} \hspace{0.5mm} \text{Ri}_b
 \label{eq:num_adim}
 \end{equation}
 %siendo Ra, el número de Rayleigh.
@@ -138,7 +147,7 @@ Nótese que en algunas de las referencias consideradas \cite{guo2022direct}, \ci
 Las condiciones de flujo de calor constante en las paredes se expresan, en su forma adimensional, en la ecuación \ref{eq:neumann_adim}. Sin embargo, estas condiciones pueden ser \linebreak aproximadas como condiciones de Dirichlet ya que al suponer que la temperatura de las paredes es constante\footnote{En este contexto, algunos autores \cite{kasagi1992direct} asumen que las fluctuaciones del flujo de calor y de la temperatura sobre la pared son pequeñas a fin de considerar que la temperatura en la misma es localmente isotérmica.} en el tiempo y en la dirección $Z$, y crece linealmente con la coordenada \textit{streamwise} de manera conocida se obtiene:
 $$T(x,y=-d,z,t) = T(x,y=+d,z,t) \simeq \langle T_w \rangle \text{ .} $$
 
-Este tipo de aproximación se conoce en la literatura como \textit{Mixed Boundary \linebreak Condition} (MBC) \cite{straub2019influence} y su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. En este trabajo se utiliza la aproximación MBC para imponer la condición de borde térmica dado que ha sido ampliamente evaluada y utilizada en el grupo de trabajo \cite{abregu2023dns}, \cite{szuban2023}, \cite{machaca2024}, y en diversas publicaciones científicas \cite{kawamura2000dns, kasagi1992direct}. Por último, para las componentes de la velocidad y del campo de presión, se adoptan condiciones de no deslizamiento y condiciones de Neumann homogéneas \cite{bartholomew2020xcompact3d}, respectivamente, en las paredes. 
+Este tipo de aproximación se conoce en la literatura como \textit{Mixed Boundary \linebreak Condition} (MBC) \cite{straub2019influence} y su forma adimensional se expresa en la ecuación \ref{eq:dirichlet_adim_theta}. En este trabajo se utiliza la aproximación MBC para imponer la condición de borde térmica dado que ha sido ampliamente evaluada y utilizada en el grupo de trabajo \cite{abregu2023dns}, \cite{szuban2023}, \cite{machaca2024}, y en diversas publicaciones \cite{kawamura2000dns, kasagi1992direct}. Por último, para las componentes de la velocidad y del campo de presión, se adoptan condiciones de no deslizamiento y condiciones de Neumann homogéneas \cite{bartholomew2020xcompact3d}, respectivamente, en las paredes. 
 
 \begin{align}
 \begin{array}{l}
@@ -155,7 +164,7 @@ Este tipo de aproximación se conoce en la literatura como \textit{Mixed Boundar
 
 
 
-\subsection{Sumario de Ecuaciones}
+\subsection*{Sumario de Ecuaciones}
 
 \textbf{Ecuaciones de Gobierno:}
 \begin{equation}
@@ -182,7 +191,6 @@ Este tipo de aproximación se conoce en la literatura como \textit{Mixed Boundar
 &\partial_y \text{p}^*(x^*,y^*=-1,z^*,t^*) = \partial_y \text{p}^*(x^*,y^*=+1,z^*,t^*) = 0
 	\label{eq:bc_5}
 \end{align}
-
 
 A lo largo de este trabajo, particularmente para el análisis de estabilidad lineal (Sección \ref{line_an}), se utiliza también la forma adimensional de las ecuaciones del trabajo de Chen \cite{chen1996linear} que se obtienen empleando el  semiancho del canal $d$, la velocidad \textit{bulk} $U_b$ y la temperatura $T_c = \text{Re} \hspace{0.5mm} \text{Pr} \hspace{0.5mm} \mathcal{A} \hspace{0.5mm} d$. Dichas ecuaciones se expresan en \ref{eq:gob_system_res2} donde se emplea el superíndice ``${\star}$'' para indicar esta variante adimensional. Las condiciones de borde son exactamente análogas a su forma adimensional de más arriba. Adicionalmente, aparece otro número adimensional conocido: el número de Rayleigh (Ra) basado en el flujo de calor y definido en la ecuación \ref{eq:Rayleigh}.
 
@@ -251,6 +259,8 @@ Algunas cantidades importantes que aparecen en las ecuaciones promediadas de con
 \end{equation}
 
 \end{itemize}
+
+\textcolor{black}{Estas magnitudes estadísticas son fundamentales porque aparecen al promediar las ecuaciones instantáneas de conservación (masa, momento y energía) mediante el promedio de Reynolds. Dicho proceso introduce términos adicionales (como los esfuerzos de Reynolds o los flujos turbulentos de calor, véase \ref{apen:budgets}) que representan los efectos de las fluctuaciones sobre los campos promedio. En formulaciones basadas en las ecuaciones RANS, estos términos deben modelarse para cerrar el sistema, mientras que en simulaciones directas (DNS) pueden calcularse directamente a partir de los campos instantáneos. En este trabajo, estas cantidades se emplearán para caracterizar estadísticamente los flujos turbulentos desarrollados.}
 
 
 \section{Teoría de Estabilidad Lineal} \label{line_an}
@@ -326,7 +336,8 @@ Despreciando términos de segundo orden, esto es, productos de perturbaciones, y
 \label{eq:pertub_energy} 
 \end{align} 
 
-Luego, aplicando el operador divergencia a la ecuación \ref{eq:pertub_momentum} es posible encontrar una expresión para el Laplaciano de la presión:
+
+\textcolor{black}{Para la construcción del mecanismo de inestabilidad  que se introduce en las simulaciones como condición inicial (véase subsección \ref{sec:mecanismo}), se emplean únicamente los campos de velocidad y temperatura. Esta elección sigue la estrategia utilizada por Chen y Chung \cite{chen2003direct}, quienes también prescinden del campo de presión para la generación de las perturbaciones iniciales. En consecuencia, el sistema de ecuaciones \ref{eq:pertub_continuity} - \ref{eq:pertub_energy} no resulta directamente adecuado para este propósito, ya que incluye explícitamente a la presión como variable acoplada. Por lo tanto, se procede a eliminar el término asociado a la presión en la ecuación de momento, lo cual permite obtener un sistema cerrado en términos de las perturbaciones de velocidad y temperatura únicamente. En este contexto, aplicando el operador divergencia a la ecuación \ref{eq:pertub_momentum} es posible encontrar una expresión para el Laplaciano de la presión:}
 
 \begin{equation}
 - \nabla^2 \widetilde{p} = 2 \hspace{1mm} \partial_x \widetilde{v_y} \hspace{1mm} \partial_y V_x - \frac{\text{Ra}}{\text{Re}_b} \partial_x \widetilde{\varphi} \text{.}
@@ -360,7 +371,7 @@ donde $c$  es la velocidad de fase, y $\alpha$ y $\beta$ son los números de ond
 Si el crecimiento de la perturbación ocurre en el tiempo, se denomina transición temporal \cite{machaca2024}. Aquí, $c$ es la velocidad de fase compleja ($c \equiv c_r + i \hspace{0.5mm} c_i$) y la frecuencia $\omega$ es también una cantidad compleja ($\omega \equiv \omega_r + i \hspace{0.5mm} \omega_i$). En ese sentido: $\alpha$, $\beta$, $c_r$, $c_i$, $\omega_r$ y $\omega_i$ son números reales. Además, la perturbación crece o decae en el tiempo de acuerdo al término $e^{\alpha c_i t}$ dependiendo del signo de $c_i$: 
 
 \begin{itemize}
-\item[$\blacklozenge$] Si $\alpha c_i > 0$ entonces las perturbaciones crecen en el tiempo. El flujo se vuelve inestable.
+\item[$\blacklozenge$] Si $\alpha c_i > 0$ entonces las perturbaciones crecen en el tiempo. \textcolor{black}{El flujo perturbado es inestable}.
 
 \item[$\blacklozenge$] Si $\alpha c_i < 0$ entonces las perturbaciones decaen exponencialmente en el tiempo y la perturbación se atenúa. El flujo se vuelve estable.
 \end{itemize}
@@ -368,23 +379,12 @@ Si el crecimiento de la perturbación ocurre en el tiempo, se denomina transici�
 Por otro lado, si el crecimiento de las perturbaciones ocurre en el espacio, por ejemplo a lo largo de la dirección $X$, entonces se denomina transición espacial \cite{machaca2024}. Aquí $c$, $\omega$ y $\beta$ son números reales, mientras que $\alpha$ es un número complejo ($\alpha = \alpha_r + i \alpha_i$). En este sentido:
 
 \begin{itemize}
-\item[$\blacklozenge$] Si $\alpha_i < 0$ entonces las perturbaciones crecen en el espacio, en la dirección de la \linebreak corriente. El flujo se vuelve inestable.
+\item[$\blacklozenge$] Si $\alpha_i < 0$ entonces las perturbaciones crecen en el espacio, en la dirección de la \linebreak corriente. \textcolor{black}{El flujo perturbado es inestable}.
 
 \item[$\blacklozenge$] Si $\alpha_i > 0$ entonces las perturbaciones decaen exponencialmente en el espacio y la pertubación se atenúa. El flujo se vuelve estable.
 \end{itemize}
 
-%donde $c \equiv c_r + i \hspace{0.5mm} c_i$ es la velocidad de fase compleja, $\alpha$ y $\beta$ son el número de onda en la dirección de la corriente $X$ y en la dirección $Z$, respectivamente; por otro lado, $\omega \equiv \alpha c$ es la frecuencia angular compleja. Además, $\alpha$, $\beta$, $c_r$ y $c_i$ son números reales. 
-
 En este trabajo se considera únicamente la transición temporal. En este contexto, al reemplazar las soluciones tipo \ref{eq:waves3d} en el sistema de ecuaciones, se obtiene un problema de autovalores generalizado de la siguiente forma:
-
-%En este sentido, dado que se busca y se estudia la transición temporal, se distinguen dos casos \cite{szuban2023}:
-%
-%\begin{itemize}
-%\item[$\blacklozenge$] Si $\alpha c_i > 0$ entonces las perturbaciones crecen en el tiempo. El flujo se vuelve inestable.
-%
-%\item[$\blacklozenge$] Si $\alpha c_i < 0$ entonces las perturbaciones decaen exponencialmente en el tiempo y la pertubación se atenúa. El flujo se vuelve estable.
-%\end{itemize}
-
 
 
 \begin{equation}
@@ -429,11 +429,11 @@ La resolución de este problema de autovalores generalizado se realiza empleando
 
 \subsection{Mecanismos de Inestabilidad} \label{sec:mecanismo}
 
-A continuación, la construcción de las condiciones iniciales que se consideran en \linebreak esta subsección se basan en el concepto de inestabilidad secundaria que ha sido utilizado por el grupo de trabajo en el caso de convección forzada. Allí, se perturba el flujo \linebreak laminar con una onda bidimensional más un par de ondas oblicuas \cite{machaca2024}, \cite{schmid}. Cabe destacar que esta estrategia también ha sido empleada en otros trabajos donde se estudian flujos en convección mixta \cite{chen2003direct}.  
+A continuación, la construcción de las condiciones iniciales que se consideran en \linebreak esta subsección se basa en el concepto de inestabilidad secundaria que ha sido utilizado por el grupo de trabajo en el caso de convección forzada. Allí, se perturba el flujo \linebreak laminar con una onda bidimensional más un par de ondas oblicuas \cite{machaca2024}, \cite{schmid}. Cabe destacar que esta estrategia también ha sido empleada en otros trabajos donde se estudian flujos en convección mixta \cite{chen2003direct}.  
 
-En el caso de un flujo Poiseuille entre placas paralelas con convección forzada, se tiene, según la teoría de estabilidad lineal, que el flujo es estable para números de Reynolds menores que $\text{Re}_{\text{crit}}=5772$ \cite{orszag1971accurate}. Sin embargo, los experimentos reales muestran que el flujo puede inestabilizarse para $\text{Re} < \text{Re}_{\text{crit}}$, como es el caso del experimento realizado por \cite{kao1970experimental}, quienes encontraron un número de Reynolds crítico $\text{Re}_{\text{crit}}= 975$. 
+En el caso de un flujo Poiseuille entre placas paralelas con convección forzada, se tiene, según la teoría de estabilidad lineal, que el flujo es estable para números de Reynolds menores que $\text{Re}_{\text{crit}}=5772$ \cite{orszag1971accurate}. Sin embargo, los experimentos muestran que el flujo puede inestabilizarse para $\text{Re} < \text{Re}_{\text{crit}}$, como es el caso del experimento realizado por \cite{kao1970experimental}, quienes encontraron un número de Reynolds crítico $\text{Re}_{\textcolor{black}{crit, exp}}= 975$. 
 
-En vista de que en los experimentos reales el flujo se inestabiliza a $\text{Re} < 5772$, muchos investigadores abarcaron el problema  de forma numérica. Por ejemplo, Orszag y Kells \cite{orszag1980transition} lograron inestabilizar el flujo para  $\text{Re} \approx 1000$ mediante la introducción de perturbaciones tridimensionales de pequeña amplitud. Estas perturbaciones tridimensionales dan lugar a lo que se conoce como inestabilidad secundaria.
+En vista de que en los experimentos el flujo se inestabiliza a $\text{Re} < 5772$, muchos investigadores abarcaron el problema  de forma numérica. Por ejemplo, Orszag y Kells \cite{orszag1980transition} lograron inestabilizar el flujo para  $\text{Re} \approx 1000$ mediante la introducción de perturbaciones tridimensionales de pequeña amplitud. Estas perturbaciones tridimensionales dan lugar a lo que se conoce como inestabilidad secundaria.
 
 La teoría de inestabilidad secundaria se ocupa del análisis de estabilidad de estados estacionarios o cuasi-estacionarios que resultan de la inestabilidad primaria. Esta última aborda la primera etapa del proceso de transición: el crecimiento de las ondas bidimensionales (2D) de Tollmien–Schlichting (TS) \cite{tollmien1935, schlichting1933} que se propagan en la dirección de la corriente. Cuando la amplitud de la onda TS excede cierto umbral, las perturbaciones tridimensionales (3D) comienzan a amplificarse \cite{schmid}. 
 
@@ -446,7 +446,7 @@ La teoría de inestabilidad secundaria se ocupa del análisis de estabilidad de 
 \end{aligned}
 \label{eq:init_con_1}
 \end{equation}
-La condición inicial considerada para el crecimiento de la perturbación en el tiempo, se \linebreak construye como la suma del flujo base y la perturbación bidimensional compuesta por una onda 2D del tipo $\widehat{\xi}(y) \hspace{0.5mm} e^{i \hspace{0.5mm} \alpha_{2D} \hspace{0.5mm} x }$ (inestabilidad primaria). Luego se produce una saturación no lineal de la onda 2D mediante la adición de un par de ondas tridimensionales oblicuas del tipo $\widehat{\xi}(y) \hspace{0.5mm} e^{i \hspace{0.5mm} \alpha_{3D} \hspace{0.5mm} x \pm \beta z  }$ (inestabilidad secundaria). Así, la forma funcional de las perturbaciones $\widetilde{\mathbf{v}}$ y $\widetilde{\mathbf{\varphi}}$ se expresa en las ecuaciones \ref{eq:init_con_2} y \ref{eq:init_con_3}, respectivamente. Allí, $A_{2D}$ corresponde a la \linebreak amplitud de la perturbación bidimensional y $A_{3D}$ corresponde a la amplitud total del par de ondas tridimensionales. Las autofunciones $\widehat{\mathbf{v^{}_{2D}}}(y)$, $\widehat{\mathbf{v^{}_{3D}}}(y)$, $\widehat{\varphi^{}_{2D}}(y)$ y $\widehat{\varphi^{}_{3D}}(y)$ son calculadas con la herramienta OSMC descrita en el Capítulo \ref{cap:numerico}. Los superíndices $+$ y $-$ representan las autofunciones calculadas para $+ \beta$ y $- \beta$, respectivamente ($\beta>0$). 
+La condición inicial considerada para el crecimiento de la perturbación en el tiempo, se \linebreak construye como la suma del flujo base y la perturbación bidimensional compuesta por una onda 2D del tipo $\widehat{\xi}(y) \hspace{0.5mm} e^{i \hspace{0.5mm} \alpha_{2D} \hspace{0.5mm} x }$ (inestabilidad primaria). Luego se produce una saturación no lineal de la onda 2D mediante la adición de un par de ondas tridimensionales oblicuas del tipo $\widehat{\xi}(y) \hspace{0.5mm} e^{i \hspace{0.5mm}( \alpha_{3D} \hspace{0.5mm} x \pm \beta z ) }$ (inestabilidad secundaria). Así, la forma funcional de las perturbaciones $\widetilde{\mathbf{v}}$ y $\widetilde{\mathbf{\varphi}}$ se expresa en las ecuaciones \ref{eq:init_con_2} y \ref{eq:init_con_3}, respectivamente. Allí, $A_{2D}$ corresponde a la \linebreak amplitud de la perturbación bidimensional y $A_{3D}$ corresponde a la amplitud total del par de ondas tridimensionales. Las autofunciones $\widehat{\mathbf{v^{}_{2D}}}(y)$, $\widehat{\mathbf{v^{}_{3D}}}(y)$, $\widehat{\varphi^{}_{2D}}(y)$ y $\widehat{\varphi^{}_{3D}}(y)$ son calculadas con la herramienta OSMC descrita en el Capítulo \ref{cap:numerico}. Los superíndices $+$ y $-$ representan las autofunciones calculadas para $+ \beta$ y $- \beta$, respectivamente ($\beta>0$). 
 Por último, $\mathbb{R}[\text{(.)}]$ denota la parte real de la función compleja considerada.  
 \begin{equation}
 \begin{aligned}
